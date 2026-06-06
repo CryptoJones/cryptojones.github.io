@@ -25,7 +25,7 @@ Open-source, mostly security- and agent-flavored:
 
 - **[KaliMCP](https://github.com/CryptoJones/KaliMCP)** & **[PerplexityAgent](https://github.com/CryptoJones/PerplexityAgent)** — security-hardened MCP servers exposing, respectively, a curated subset of Kali Linux tools and the Perplexity Search/Sonar APIs to AI agents (refuse-list guards + audit logging, hardened to NSA MCP guidance).
 - **[omind](https://github.com/CryptoJones/omind)** — persistent-memory tooling for Claude Code (Obsidian/OMI), with a local web app to view, edit, and add agent memory.
-- **[dave](https://github.com/CryptoJones/dave)** — a QLoRA fine-tune of Llama-3.3-70B for writing security-assessment reports.
+- **[dave](https://github.com/CryptoJones/dave)** — a standalone LoRA adapter (QLoRA fine-tune of Llama-3.3-70B) for writing security-assessment reports; separate from the Ronin 48 suite below.
 - **[Ronin 48 expert-system suite](https://github.com/CryptoJones/Models)** — LoRA adapters fine-tuned on open-source base models for high-stakes domains I actually work in: **[BONES](https://github.com/CryptoJones/BONES)** (EMS clinical), **[BRUNO](https://github.com/CryptoJones/BRUNO)** (fire-service tactical), **[ATTICUS](https://github.com/CryptoJones/ATTICUS)** (criminal-defense), **[SELMA](https://github.com/CryptoJones/SELMA)** (law enforcement), and **[ABBY](https://github.com/CryptoJones/ABBY)** (forensic).
 - **[1812](https://github.com/CryptoJones/1812)** — self-hosted Discord chatbot with pluggable LLM backends and persistent memory.
 - **[Triage](https://github.com/CryptoJones/Triage)** — a meta-scheduler that watches signals and reorders its own priority queue.

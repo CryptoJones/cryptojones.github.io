@@ -6,7 +6,7 @@
 name: CryptoJones
 
 # Short bio or description (displayed in the header)
-description: SWE / Perpetual Student
+description: Principal SWE · AI agents & security
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars1.githubusercontent.com/u/1234985?s=400&u=fa4369b90d3f2087d7e0fb047598f37a43739d2f&v=4
@@ -18,7 +18,7 @@ avatar: https://avatars1.githubusercontent.com/u/1234985?s=400&u=fa4369b90d3f208
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: cryptojones@gmail.com
+  email: cryptojones@owasp.org
   facebook:
   flickr:
   github: cryptojones
@@ -28,7 +28,7 @@ footer-links:
   rss: # just type anything here for a working RSS icon
   twitter: aaronkclark
   stackoverflow:  users/706008/cryptojones
-  youtube:  channel/UCnL22lL71dC0BoqIkFDWboQ
+  youtube:  "@0xCryptoJones"
   googleplus: # anything in your profile username that comes after plus.google.com/
 
 

@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
-<img src="{{ site.baseurl }}/images/cryptojones.jpg" alt="Aaron K. Clark (CryptoJones)" style="max-width:340px;width:100%;display:block;margin:0 auto;" />
-
 I'm **Aaron K. Clark** — **CryptoJones** online. A **Principal Software
 Engineer / Architect** with 25+ years spanning .NET/backend development,
 AI-agent infrastructure, cloud, and security, and a USMC veteran. Right now I'm

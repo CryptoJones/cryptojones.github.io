@@ -2,22 +2,18 @@
 layout: default
 ---
 
-<p style="margin-bottom:2.2em;padding:.9em 1.1em;border-left:3px solid #5ef38c;background:#f6fff9;border-radius:4px;">
-  <strong>Guide:</strong>
+<div class="featured">
+  <div class="tag">▌ featured guide</div>
   <a href="{{ site.baseurl }}/tailscale-applytrack.html">applytrack on the Tailnet — putting my self-hosted app behind <code>tailscale serve</code> →</a>
-</p>
+</div>
 
 <div class="posts">
   {% for post in site.posts %}
-    <article class="post">
-
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    <article class="post-card">
+      <div class="post-meta">{{ post.date | date: "%Y.%m.%d" }}</div>
+      <h2 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+      <div class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</div>
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">read more →</a>
     </article>
   {% endfor %}
 </div>

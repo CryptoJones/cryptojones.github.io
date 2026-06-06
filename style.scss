@@ -178,6 +178,10 @@ pre code{background:none;border:0;padding:0;color:var(--text);font-size:.84rem}
 .highlight .nv,.highlight .vg,.highlight .vi{color:#cfe0d2}
 .highlight .err{color:#e07a7a}
 
+/* ---- nebraska tagline ---- */
+.tagline{text-align:center;color:var(--muted);font-family:var(--mono);font-size:.85rem;letter-spacing:.04em;margin:2.5rem 0 0}
+.tagline em{color:var(--amber);font-style:normal}
+
 /* ---- footer ---- */
 .site-footer{border-top:1px solid var(--panel-edge);margin-top:3rem;padding:2rem 0 3rem}
 .site-footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;font-family:var(--mono);font-size:.8rem}

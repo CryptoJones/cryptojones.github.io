@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tmux × Claude — survive the power cord</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Spline+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070b08;
+    --bg-2:#0c130d;
+    --panel:#0e1610;
+    --panel-edge:#1c2a1f;
+    --phosphor:#5ef38c;
+    --phosphor-dim:#36a35c;
+    --amber:#ffb454;
+    --amber-dim:#7a5a26;
+    --text:#cfe0d2;
+    --muted:#7d917f;
+    --faint:#4f5f52;
+    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --disp:'Chakra Petch',var(--mono);
+    --body:'Spline Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(120% 80% at 80% -10%, rgba(94,243,140,.06), transparent 60%),
+      radial-gradient(100% 60% at 0% 110%, rgba(255,180,84,.05), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    min-height:100vh;
+    padding:clamp(1.2rem,4vw,4rem) clamp(1rem,5vw,2rem) 6rem;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* scanline + grain atmosphere */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.18) 2px 3px);
+    mix-blend-mode:multiply;opacity:.5;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:49;
+    background:radial-gradient(120% 120% at 50% 50%,transparent 60%,rgba(0,0,0,.55) 100%);
+  }
+  .wrap{max-width:920px;margin:0 auto;position:relative;z-index:1}
+
+  /* ---- header ---- */
+  header{
+    border:1px solid var(--panel-edge);
+    border-radius:14px;
+    background:linear-gradient(180deg,var(--panel),var(--bg-2));
+    padding:clamp(1.4rem,4vw,2.6rem);
+    position:relative;overflow:hidden;
+    box-shadow:0 0 0 1px rgba(94,243,140,.04),0 30px 80px -40px rgba(0,0,0,.9);
+    opacity:0;transform:translateY(14px);
+    animation:rise .7s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  header::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--phosphor),transparent);
+    opacity:.6;
+  }
+  .prompt{
+    font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;
+    color:var(--phosphor-dim);margin-bottom:1.1rem;text-transform:uppercase;
+  }
+  .prompt .blink{
+    display:inline-block;width:.55em;height:1.05em;background:var(--phosphor);
+    margin-left:.15em;vertical-align:-.18em;animation:blink 1.1s steps(1) infinite;
+    box-shadow:0 0 8px var(--phosphor);
+  }
+  h1{
+    font-family:var(--disp);font-weight:700;
+    font-size:clamp(2.1rem,7vw,4rem);line-height:1.02;
+    letter-spacing:-.01em;color:#eafff0;
+    text-shadow:0 0 26px rgba(94,243,140,.25);
+  }
+  h1 .x{color:var(--phosphor);text-shadow:0 0 22px rgba(94,243,140,.6)}
+  .sub{
+    margin-top:1rem;max-width:60ch;color:var(--muted);
+    font-size:clamp(.98rem,2.3vw,1.12rem);
+  }
+  .machine{
+    margin-top:1.5rem;display:flex;gap:.6rem;flex-wrap:wrap;
+    font-family:var(--mono);font-size:.76rem;
+  }
+  .chip{
+    border:1px solid var(--panel-edge);border-radius:999px;
+    padding:.3rem .8rem;color:var(--muted);background:rgba(94,243,140,.03);
+  }
+  .chip b{color:var(--phosphor);font-weight:600}
+
+  /* ---- section scaffolding ---- */
+  section{margin-top:clamp(2.2rem,5vw,3.4rem)}
+  .eyebrow{
+    font-family:var(--mono);font-size:.74rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:.7rem;
+    display:flex;align-items:center;gap:.7rem;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--phosphor-dim)}
+  h2{
+    font-family:var(--disp);font-weight:600;
+    font-size:clamp(1.4rem,4vw,2rem);color:#e6f5ea;letter-spacing:-.01em;
+    line-height:1.15;
+  }
+  h2 .num{color:var(--phosphor);font-weight:700;margin-right:.5rem}
+  p.lead{margin-top:.7rem;color:var(--muted);max-width:64ch}
+
+  /* ---- caveat callout ---- */
+  .callout{
+    margin-top:1.3rem;border:1px solid var(--amber-dim);border-radius:12px;
+    background:linear-gradient(180deg,rgba(255,180,84,.07),rgba(255,180,84,.02));
+    padding:1.3rem 1.4rem;position:relative;overflow:hidden;
+  }
+  .callout::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--amber);box-shadow:0 0 14px var(--amber);
+  }
+  .callout .tag{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--amber);font-weight:600;
+    display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;
+  }
+  .callout h3{font-family:var(--disp);font-size:1.2rem;color:#fce7c4;font-weight:600;margin-bottom:.5rem}
+  .callout p{color:#d8c6a6}
+  .callout strong{color:var(--amber)}
+
+  /* ---- code blocks ---- */
+  .code{
+    margin-top:1.1rem;border:1px solid var(--panel-edge);border-radius:12px;
+    background:var(--bg-2);overflow:hidden;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.02),0 18px 40px -28px rgba(0,0,0,.9);
+  }
+  .code .bar{
+    display:flex;align-items:center;gap:.5rem;padding:.6rem .9rem;
+    border-bottom:1px solid var(--panel-edge);background:rgba(94,243,140,.02);
+  }
+  .dot{width:11px;height:11px;border-radius:50%;background:#283326}
+  .dot.r{background:#3a2424}.dot.y{background:#3a3324}.dot.g{background:#243a2c}
+  .code .bar span{
+    font-family:var(--mono);font-size:.72rem;color:var(--faint);margin-left:.4rem;
+  }
+  pre{
+    font-family:var(--mono);font-size:.86rem;line-height:1.7;
+    padding:1.05rem 1.2rem;overflow-x:auto;color:var(--text);
+  }
+  pre .c{color:var(--faint);font-style:italic}     /* comment */
+  pre .p{color:var(--phosphor)}                     /* prompt $ */
+  pre .k{color:var(--amber)}                         /* command keyword */
+  pre .a{color:#9fd6ff}                              /* arg/flag */
+
+  code.inline{
+    font-family:var(--mono);font-size:.86em;
+    background:rgba(94,243,140,.08);color:var(--phosphor);
+    padding:.12em .4em;border-radius:5px;border:1px solid rgba(94,243,140,.12);
+  }
+
+  /* ---- key bindings grid ---- */
+  .grid{
+    margin-top:1.2rem;display:grid;gap:.7rem;
+    grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+  }
+  .kcard{
+    border:1px solid var(--panel-edge);border-radius:11px;
+    background:linear-gradient(180deg,var(--panel),var(--bg-2));
+    padding:1rem 1.1rem;transition:border-color .25s,transform .25s,box-shadow .25s;
+  }
+  .kcard:hover{
+    border-color:var(--phosphor-dim);transform:translateY(-3px);
+    box-shadow:0 16px 30px -22px rgba(94,243,140,.5);
+  }
+  .kcard .lbl{font-size:.95rem;color:var(--text);margin-bottom:.6rem}
+  .keys{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap}
+  kbd{
+    font-family:var(--mono);font-size:.78rem;color:#dff7e6;
+    background:#13201600;background:linear-gradient(180deg,#1a271c,#101a12);
+    border:1px solid #2a3b2d;border-bottom-width:2px;border-radius:6px;
+    padding:.22rem .5rem;box-shadow:0 1px 0 rgba(0,0,0,.4);min-width:1.6em;text-align:center;
+  }
+  kbd.ph{color:var(--phosphor);border-color:var(--phosphor-dim)}
+  .plus{color:var(--faint);font-family:var(--mono);font-size:.75rem}
+
+  /* ---- workflow steps ---- */
+  ol.flow{margin-top:1.2rem;list-style:none;counter-reset:s}
+  ol.flow li{
+    counter-increment:s;position:relative;padding:.55rem 0 .55rem 2.6rem;
+    color:var(--muted);border-left:1px solid var(--panel-edge);margin-left:.9rem;
+  }
+  ol.flow li::before{
+    content:counter(s,decimal-leading-zero);position:absolute;left:-1rem;top:.5rem;
+    font-family:var(--mono);font-size:.72rem;color:var(--phosphor);
+    background:var(--bg);border:1px solid var(--phosphor-dim);border-radius:50%;
+    width:2rem;height:2rem;display:grid;place-items:center;
+    box-shadow:0 0 12px rgba(94,243,140,.2);
+  }
+  ol.flow li b{color:var(--text);font-weight:600}
+
+  /* ---- verdict ---- */
+  .verdict{
+    margin-top:clamp(2.4rem,6vw,3.6rem);
+    border:1px solid var(--phosphor-dim);border-radius:14px;
+    background:linear-gradient(135deg,rgba(94,243,140,.08),rgba(94,243,140,.02));
+    padding:clamp(1.4rem,4vw,2.2rem);position:relative;overflow:hidden;
+  }
+  .verdict::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(80% 120% at 100% 0%,rgba(94,243,140,.12),transparent 55%);
+  }
+  .verdict .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--phosphor);margin-bottom:.7rem}
+  .verdict p{font-size:clamp(1rem,2.6vw,1.2rem);color:#dff0e2;max-width:66ch;position:relative;z-index:1}
+  .verdict strong{color:var(--phosphor);font-weight:600}
+
+  footer{
+    margin-top:3rem;text-align:center;font-family:var(--mono);
+    font-size:.72rem;color:var(--faint);letter-spacing:.05em;
+  }
+  footer .blink{color:var(--phosphor-dim)}
+
+  /* staggered reveals */
+  .reveal{opacity:0;transform:translateY(16px);animation:rise .65s cubic-bezier(.2,.8,.2,1) forwards}
+  .d1{animation-delay:.12s}.d2{animation-delay:.22s}.d3{animation-delay:.32s}
+  .d4{animation-delay:.42s}.d5{animation-delay:.52s}.d6{animation-delay:.62s}
+
+  @keyframes rise{to{opacity:1;transform:none}}
+  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    .reveal,header{opacity:1!important;transform:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="prompt">you@host:~$ tmux attach -t claude<span class="blink"></span></div>
+    <h1>Surviving the<br>Power&nbsp;Cord<span class="x">.</span></h1>
+    <p class="sub">A field guide to keeping Claude Code sessions alive when your laptop keeps cutting out — and the one truth about tmux nobody tells you.</p>
+    <div class="machine">
+      <span class="chip">host <b>your-box</b></span>
+      <span class="chip">tmux <b>3.6</b></span>
+      <span class="chip">claude <b>2.1.149</b></span>
+    </div>
+  </header>
+
+  <!-- CAVEAT -->
+  <section class="reveal d1">
+    <div class="eyebrow">read this first</div>
+    <h2>tmux does <em>not</em> survive a power-off</h2>
+    <p class="lead">tmux keeps sessions alive when your <b>terminal</b> dies — you close the window, SSH drops, the app crashes. But the tmux server is just another process on the machine. When the laptop loses power, that process dies with everything else.</p>
+    <div class="callout">
+      <div class="tag">⚠ the trap</div>
+      <h3>If the cord cuts out, plain tmux on the laptop saves nothing.</h3>
+      <p>The whole OS goes down — and tmux goes with it. To actually survive power loss you need <strong>two</strong> things working together: Claude's own session recovery, and (ideally) running the work somewhere that isn't on the failing cord.</p>
+    </div>
+  </section>
+
+  <!-- 1: claude resume -->
+  <section class="reveal d2">
+    <div class="eyebrow">layer one</div>
+    <h2><span class="num">01</span>claude --continue / --resume</h2>
+    <p class="lead">Claude Code writes conversation history to disk continuously. After any crash or reboot, the in-flight tool call is lost — but the conversation is recoverable. This is your real power-loss safety net.</p>
+    <div class="code">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span>recover after a crash</span></div>
+<pre><span class="c"># reopen the most recent session in this directory</span>
+<span class="p">$</span> <span class="k">claude</span> <span class="a">--continue</span>
+
+<span class="c"># pick from a list of past sessions</span>
+<span class="p">$</span> <span class="k">claude</span> <span class="a">--resume</span></pre>
+    </div>
+    <p class="lead" style="margin-top:1rem">Test it now: start a session, say something, hard-kill the terminal, then run <code class="inline">claude --continue</code>. Watching it come back builds the muscle memory you'll want at 2am.</p>
+  </section>
+
+  <!-- 2: run on always-on box -->
+  <section class="reveal d3">
+    <div class="eyebrow">layer two</div>
+    <h2><span class="num">02</span>Run it on a box that won't die</h2>
+    <p class="lead">The bulletproof setup: run <code class="inline">claude</code> inside tmux on an always-on machine — <b>Pluto</b> or the <b>macmini</b> — and SSH in from the laptop. Now the laptop dying is a non-event. You just SSH back and reattach.</p>
+    <div class="code">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span>the resilient loop</span></div>
+<pre><span class="p">$</span> <span class="k">ssh</span> youruser@&lt;box&gt;            <span class="c"># from the laptop</span>
+<span class="p">$</span> <span class="k">tmux</span> attach <span class="a">||</span> <span class="k">tmux</span> new <span class="a">-s</span> claude
+   <span class="c"># ... laptop loses power ...</span>
+<span class="p">$</span> <span class="k">ssh</span> youruser@&lt;box&gt;            <span class="c"># reconnect</span>
+<span class="p">$</span> <span class="k">tmux</span> attach <span class="a">-t</span> claude       <span class="c"># still running the whole time</span></pre>
+    </div>
+  </section>
+
+  <!-- CHEAT SHEET -->
+  <section class="reveal d4">
+    <div class="eyebrow">cheat sheet</div>
+    <h2>tmux, the parts you'll actually use</h2>
+    <p class="lead">Everything is <b>prefix then key</b>. Default prefix is <kbd>Ctrl</kbd>&nbsp;<span class="plus">+</span>&nbsp;<kbd>b</kbd> — press both, release, then tap the next key.</p>
+
+    <div class="code" style="margin-top:1.2rem">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span>sessions — the part you care about</span></div>
+<pre><span class="p">$</span> <span class="k">tmux</span> new <span class="a">-s</span> claude       <span class="c"># start a named session</span>
+<span class="p">$</span> <span class="k">tmux</span> ls                  <span class="c"># list running sessions</span>
+<span class="p">$</span> <span class="k">tmux</span> attach <span class="a">-t</span> claude     <span class="c"># reattach  (or just: tmux a)</span>
+<span class="p">$</span> <span class="k">tmux</span> kill-session <span class="a">-t</span> claude</pre>
+    </div>
+
+    <div class="grid">
+      <div class="kcard">
+        <div class="lbl">Detach — leave it running</div>
+        <div class="keys"><kbd class="ph">Ctrl</kbd><span class="plus">+</span><kbd class="ph">b</kbd><span class="plus">then</span><kbd>d</kbd></div>
+      </div>
+      <div class="kcard">
+        <div class="lbl">New window</div>
+        <div class="keys"><kbd class="ph">Ctrl</kbd><span class="plus">+</span><kbd class="ph">b</kbd><span class="plus">then</span><kbd>c</kbd></div>
+      </div>
+      <div class="kcard">
+        <div class="lbl">Next / previous window</div>
+        <div class="keys"><kbd class="ph">Ctrl</kbd><span class="plus">+</span><kbd class="ph">b</kbd><span class="plus">then</span><kbd>n</kbd><span class="plus">/</span><kbd>p</kbd></div>
+      </div>
+      <div class="kcard">
+        <div class="lbl">Split vertical / horizontal</div>
+        <div class="keys"><kbd class="ph">Ctrl</kbd><span class="plus">+</span><kbd class="ph">b</kbd><span class="plus">then</span><kbd>%</kbd><span class="plus">/</span><kbd>"</kbd></div>
+      </div>
+      <div class="kcard">
+        <div class="lbl">Move between panes</div>
+        <div class="keys"><kbd class="ph">Ctrl</kbd><span class="plus">+</span><kbd class="ph">b</kbd><span class="plus">then</span><kbd>←↑↓→</kbd></div>
+      </div>
+      <div class="kcard">
+        <div class="lbl">Scroll / copy mode &nbsp;(<kbd>q</kbd> to exit)</div>
+        <div class="keys"><kbd class="ph">Ctrl</kbd><span class="plus">+</span><kbd class="ph">b</kbd><span class="plus">then</span><kbd>[</kbd></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- daily loop -->
+  <section class="reveal d5">
+    <div class="eyebrow">the daily loop</div>
+    <h2>How a session actually goes</h2>
+    <ol class="flow">
+      <li><b>tmux new -s claude</b> — open your named session.</li>
+      <li><b>claude</b> — run it as normal inside the session.</li>
+      <li>Walk away, close the lid, terminal crashes — the session keeps running <em>as long as the machine stays on</em>.</li>
+      <li><b>tmux attach -t claude</b> — pick up exactly where you left off.</li>
+      <li>Machine actually powered off? Fall back to <b>claude --continue</b>.</li>
+    </ol>
+  </section>
+
+  <!-- VERDICT -->
+  <div class="verdict reveal d6">
+    <div class="tag">▌ the verdict</div>
+    <p>For the laptop itself, lean on <strong>claude --continue</strong> — that's what survives power loss. For real resilience, move long-running work onto <strong>Pluto</strong> or the <strong>macmini</strong> over SSH&nbsp;+&nbsp;tmux, so the flaky cord stops mattering at all.</p>
+  </div>
+
+  <footer>
+    keep the cord plugged in &middot; <a href="/">← back to the blog</a> <span class="blink">_</span>
+  </footer>
+
+</div>
+</body>
+</html>

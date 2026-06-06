@@ -48,10 +48,16 @@ greatest tabletop RPG ever made.
 
 ### Credentials
 
-MS in Data Analytics (in progress, Eastern University) &middot; B.S. Computer and
-Information Science (UMUC) &middot; RIT MicroMaster's in Cybersecurity &middot;
-graduate certificates from Kennesaw State and Colorado State. SSCP, AWS Solutions
-Architect Associate, CompTIA A+/Network+. Member of OWASP, ACM, DC402, and RITSEC.
+**Education**
+
+- MS in Data Analytics &mdash; Eastern University *(in progress)*
+- B.S. Computer and Information Science &mdash; UMUC
+- MicroMaster's in Cybersecurity &mdash; RIT
+- Graduate certificates &mdash; Kennesaw State &middot; Colorado State
+
+**Certifications** &mdash; SSCP &middot; AWS Solutions Architect Associate &middot; CompTIA A+/Network+
+
+**Memberships** &mdash; OWASP &middot; ACM &middot; DC402 &middot; RITSEC
 
 ### Find me
 

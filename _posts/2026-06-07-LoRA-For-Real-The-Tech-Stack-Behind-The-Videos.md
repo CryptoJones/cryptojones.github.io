@@ -193,7 +193,7 @@ and merge later on a high-memory CPU instance — or just **serve the adapter
 unmerged**, which is the whole point of LoRA anyway.
 
 Deployment ends up trivial: the adapter ships to HuggingFace
-([Ronin48LLC/selma](https://huggingface.co/Ronin48LLC/selma)),
+([Ronin48LLC/selma-lora-adapter](https://huggingface.co/Ronin48LLC/selma-lora-adapter)),
 a GGUF export feeds llama.cpp / LM Studio / Ollama, and `ollama run` serves it
 with no Python at all.
 

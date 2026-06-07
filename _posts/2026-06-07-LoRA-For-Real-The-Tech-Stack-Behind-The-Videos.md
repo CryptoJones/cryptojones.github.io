@@ -3,6 +3,8 @@ layout: post
 title: "LoRA, For Real: The Tech Stack Behind the Videos"
 ---
 
+**Huge thanks to Ronin 48 and Thomas Wenzke for the initial push to do this.**
+
 *I made two videos about LoRA. One is 90 seconds for people who have never
 written a line of code; the other is a 13-minute walk through building adapters
 for frontier models. This post is neither of those. The videos use analogies —

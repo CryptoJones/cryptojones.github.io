@@ -504,6 +504,10 @@ providers:
   <section id="n4">
     <div class="sec-no">note 04 &middot; status hub</div>
     <h2>Planned System Upgrade: Radeon Pro v620 32GB on Node-b</h2>
+    <div style="margin:14px 0;padding:12px 16px;border-left:4px solid #55ff99;background:#0c150f;border-radius:4px;">
+      <div style="color:#55ff99;font-weight:bold;letter-spacing:.04em;">&#9612; UPDATE &middot; 2026-06-17 &mdash; resolved path</div>
+      <p style="margin:8px 0 0;">Firmware-unhide is <b>ruled out</b>. An IFR decode of node-b's <i>live</i> B85-HD3 F2 BIOS (dumped from <code>/dev/mtd0</code>, decoded with UEFIExtract&nbsp;NE + IFRExtractor-RS) confirms the <b>&ldquo;Above 4G Decoding&rdquo; option is entirely absent</b> from the Setup forms &mdash; not merely hidden &mdash; so <code>setup_var</code>/AMIBCP cannot expose it. The only above-4G toggle present is &ldquo;Memory Remap&rdquo; (the MRC RAM-remap, already enabled, unrelated to PCIe BAR placement). <b>Decision:</b> buy the planned <b>Supermicro X10SLH-F</b> board and do the swap. Interim firmware-free fallback (verified): node-a's ASRock B550 already maps 64-bit BARs above 4&nbsp;GB, so the V620 could run there over the LAN if needed sooner.</p>
+    </div>
     <div class="meta">
       <span class="created"><b>Created:</b> 2026-06-12</span><br>
       <span class="chips">

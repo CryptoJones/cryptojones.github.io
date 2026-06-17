@@ -64,7 +64,7 @@ go to the people who do them best:
 - **StatQuest** (Josh Starmer) — probability, softmax, sampling, all in friendly pieces.
 - **Andrej Karpathy** — *Neural Networks: Zero to Hero*. Build a tiny net from scratch
   and watch the gradient happen in code.
-- **Susanna S. Epp** — *Discrete Mathematics with Applications*. The book behind the
-  "secret weapon" segment.
+- **Susanna S. Epp** — *[Discrete Mathematics with Applications](https://www.amazon.com/Discrete-Mathematics-Applications-Susanna-Epp/dp/1337694193/)*.
+  The book behind the "secret weapon" segment.
 
 *Proudly Made in Nebraska. Go Big Red! 🌽 <https://xkcd.com/2347/>*

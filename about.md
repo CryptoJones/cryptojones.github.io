@@ -66,7 +66,7 @@ greatest tabletop RPG ever made.
 - **Code** — [GitHub](https://github.com/CryptoJones) &middot; [Codeberg](https://codeberg.org/CryptoJones) &middot; [Stack Overflow](https://stackoverflow.com/users/706008/cryptojones) &middot; [HackerRank](https://www.hackerrank.com/cryptojones) &middot; [Pastebin](https://pastebin.com/u/CryptoJones)
 - **Security** — [Hack The Box](https://app.hackthebox.com/users/146774)
 - **Photography & art** — [ArtStation](https://www.artstation.com/aaronkclark) &middot; [PassGallery](https://starlightdotphotos.passgallery.com)
-- **Social** — [Mastodon](https://infosec.exchange/@CryptoJones) &middot; [LinkedIn](https://www.linkedin.com/in/aaronkclark/) &middot; [Twitter/X](https://twitter.com/AaronKClark) &middot; [Instagram](https://www.instagram.com/aaronkclark) &middot; [YouTube](https://www.youtube.com/@0xCryptoJones)
+- **Social** — [Mastodon](https://infosec.exchange/@CryptoJones) &middot; [LinkedIn](https://www.linkedin.com/in/aaronkclark/) &middot; [Instagram](https://www.instagram.com/aaronkclark) &middot; [YouTube](https://www.youtube.com/@0xCryptoJones)
 
 ---
 

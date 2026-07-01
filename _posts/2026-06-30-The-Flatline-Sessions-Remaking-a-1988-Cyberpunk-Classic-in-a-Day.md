@@ -37,11 +37,10 @@ the whole game.)
 
 Two images are deliberately *not* AI, and that's the point. Ratz the bartender
 has a **hand-painted pink prosthetic arm** — Gibson's prose says pink, the model
-rendered it teal, so I ran a pink layer over it in Procreate. And the game's
-secret room — a glitch you fall into only by tampering with your save file — is
-getting a **hand-drawn pencil plate**, rendered sharp while everything else stays
-pixelated. The one hand-made image in the game is the one you reach by breaking
-it.
+rendered it teal, so I ran a pink layer over it in Procreate. There's one other
+**hand-drawn piece** tucked away in the game, rendered sharp while everything
+else stays pixelated — but telling you where would ruin it. The players who go
+looking will know it when they find it.
 
 ![The Chatsubo — Ratz and the pink arm](/images/flatline-chatsubo.png)
 

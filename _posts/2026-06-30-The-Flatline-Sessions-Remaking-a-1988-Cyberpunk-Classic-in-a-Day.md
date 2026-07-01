@@ -3,6 +3,8 @@ layout: post
 title: "The Flatline Sessions: Remaking a 1988 Cyberpunk Classic in a Day"
 ---
 
+<p align="center"><strong>🎂 HAPPY BIRTHDAY, P13XU5! 🎂</strong></p>
+
 *Yesterday evening I had an empty folder and a copy of Interplay's 1988
 Neuromancer. About twenty-two hours later I had a finished, standalone, winnable
 remake of it — its own art, its own prose, its own soundtrack, two endings, and

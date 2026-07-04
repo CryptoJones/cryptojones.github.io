@@ -5,6 +5,8 @@ title: "From Waltz to Flip: The Composition Theory Behind a Klezmer EDM Banger"
 
 *A buddy of mine is running a marathon and asked me for a playlist. Five hours and twenty minutes later, the first track was in his hands: Andy Statman's **Flatbush Waltz** — a sparse klezmer mandolin instrumental — turned into a sacred-and-profane EDM banger that literally paces a runner. I can't read music. So I built it the way I build everything now: I described what I was hearing to an AI composer, it named the fundamental I was fumbling toward, and we fixed that. Here's the theory behind every decision — worked out live between a guy with ears and no vocabulary, and a composer with all the vocabulary and no ears at all.*
 
+🎧 **[Listen on SoundCloud &rarr;](https://on.soundcloud.com/Qz5MgFiJTA5dbpJQlW)**
+
 ## Don't rebuild the pig — flip it
 
 The obvious way to make an "EDM version" of a song is to transcribe it: pull out the melody, quantize the notes, rebuild a new track from synths that quote the original. I tried that first. It kept coming out dead. A transcription is a *skeleton*, and a skeleton isn't recognizable — the ear keeps asking for the record it knows.
@@ -72,6 +74,8 @@ None of this is magic, and most of it isn't even new — hocket is medieval, for
 And now it's a machine. Warp to constant tempo, shape the tempo curve, place the drops on the tune's own seams, weave the texture off-beat, voice the choir with real formants, and let the arc carry a story. That's the recipe for all eighteen tracks on the *Flurry Running Soundtrack*. Seventeen to go — and the hard one's finished.
 
 It was never really about the track. Somewhere around mile twenty, with his legs gone, a friend of mine is going to hear a song I love turned into the exact thing that carries him home — and feel every decision on this page without needing a single word of it.
+
+*A production note: everything above describes the track as **composed** — in G minor, at the tempos it was built around. The **shipped master** was then pitched down about 2½ semitones (into roughly E minor) and slowed to **0.86× speed**, one last pass to make it hit heavier and darker. Final runtime 4:34.*
 
 ---
 

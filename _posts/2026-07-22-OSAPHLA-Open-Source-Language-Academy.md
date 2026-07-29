@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "OSAPHLA: An Open-Source Pan-Hispanic Language Academy"
+audio: /audio/posts/OSAPHLA-Open-Source-Language-Academy.mp3
 ---
 
 I've been building a full language-learning academy as a single-user PWA — no
@@ -66,6 +67,8 @@ curriculum-contract and balanced-assessment validation.
 ## Try it, run it, or read the source
 
 The demo is the fastest way to see it: **[osaphla.cryptojones.dev](https://osaphla.cryptojones.dev)**.
+
+**[View the OSAPHLA source on GitHub](https://github.com/CryptoJones/OSAPHLA)**.
 
 To run it locally, it's a standard Node/Vite project — `npm install` and
 `npm run start:local` will prompt for a port, start the dev server, and open

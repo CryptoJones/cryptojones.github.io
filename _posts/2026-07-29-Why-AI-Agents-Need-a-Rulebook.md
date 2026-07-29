@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Why AI Agents Need a Rulebook"
+description: "AI agents can move fast, but they need clear rules. This summary explains how ontologies help agents check facts, follow limits, and avoid costly mistakes."
+audio: /audio/posts/Why-AI-Agents-Need-a-Rulebook.mp3
 ---
 
 <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; margin-bottom:1rem;">

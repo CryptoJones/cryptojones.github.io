@@ -128,6 +128,32 @@ article.post > h1,article.page > h1{
 }
 article.post .date{font-family:var(--mono);font-size:.78rem;color:var(--phosphor-dim);font-style:normal;letter-spacing:.06em;margin-top:1.6rem;border-top:1px solid var(--panel-edge);padding-top:1rem}
 
+/* ---- article narration ---- */
+.article-audio{
+  display:inline-flex;align-items:center;gap:.55rem;
+  max-width:100%;margin:.55rem 0 1rem;padding:.4rem .5rem;
+  border:1px solid var(--panel-edge);border-radius:7px;
+  background:rgba(94,243,140,.035);
+}
+.article-audio__button{
+  flex:0 0 auto;
+  border:1px solid var(--phosphor-dim);border-radius:5px;
+  background:var(--bg);color:var(--phosphor);
+  padding:.4rem .6rem;
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:.02em;cursor:pointer;
+  transition:background .2s,color .2s,box-shadow .2s;
+}
+.article-audio__button:hover,
+.article-audio__button:focus-visible{
+  background:var(--phosphor);color:#06140b;
+  box-shadow:0 0 18px -5px var(--phosphor);outline:none;
+}
+.article-audio audio{
+  width:235px;max-width:45vw;height:32px;
+  color-scheme:dark;
+}
+
 /* ---- prose ---- */
 .entry{margin-top:1.2rem}
 .entry p{margin:1rem 0;color:var(--text)}

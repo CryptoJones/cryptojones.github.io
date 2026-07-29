@@ -1,0 +1,13 @@
+<div class="article-audio">
+  <button
+    type="button"
+    class="article-audio__button"
+    aria-controls="article-audio-player"
+    onclick="const player = this.parentElement.querySelector('audio'); player.paused ? player.play() : player.pause();"
+  >Listen to this article.</button>
+  <audio id="article-audio-player" controls preload="metadata">
+    <source src="{{ page.audio | relative_url }}" type="audio/mpeg">
+    Your browser does not support embedded audio.
+    <a href="{{ page.audio | relative_url }}">Download the narration.</a>
+  </audio>
+</div>

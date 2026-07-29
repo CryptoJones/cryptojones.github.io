@@ -5,6 +5,10 @@ layout: default
 <article class="post">
   <h1>{{ page.title }}</h1>
 
+  {% if page.audio %}
+    {% include article-audio.html %}
+  {% endif %}
+
   <div class="entry">
     {{ content }}
   </div>

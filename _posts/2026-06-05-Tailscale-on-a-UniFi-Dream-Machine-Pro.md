@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Reach Your Whole Home Lab From Anywhere: Tailscale on a UniFi Dream Machine Pro"
+audio: /audio/posts/Tailscale-on-a-UniFi-Dream-Machine-Pro.mp3
 ---
 
 *Turn your UDM Pro into a Tailscale subnet router so every device on your LAN is reachable from anywhere — no port forwarding, no public exposure.*

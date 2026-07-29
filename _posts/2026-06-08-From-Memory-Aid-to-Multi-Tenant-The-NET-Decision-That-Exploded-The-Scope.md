@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "From a Memory Aid to Multi-Tenant: The .NET Decision That Exploded the Scope"
+audio: /audio/posts/From-Memory-Aid-to-Multi-Tenant-The-NET-Decision-That-Exploded-The-Scope.mp3
 ---
 
 *ApplyTrack started life as a glorified memory aid — a folder of Markdown files

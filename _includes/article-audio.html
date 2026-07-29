@@ -10,4 +10,16 @@
     Your browser does not support embedded audio.
     <a href="{{ page.audio | relative_url }}">Download the narration.</a>
   </audio>
+  <label class="article-audio__volume">
+    Vol
+    <input
+      type="range"
+      min="0"
+      max="1"
+      step="0.05"
+      value="1"
+      aria-label="Narration volume"
+      oninput="this.closest('.article-audio').querySelector('audio').volume = this.value;"
+    >
+  </label>
 </div>

@@ -130,7 +130,7 @@ article.post .date{font-family:var(--mono);font-size:.78rem;color:var(--phosphor
 
 /* ---- article narration ---- */
 .article-audio{
-  display:inline-flex;align-items:center;gap:.55rem;
+  display:inline-flex;align-items:center;flex-wrap:wrap;gap:.55rem;
   max-width:100%;margin:.55rem 0 1rem;padding:.4rem .5rem;
   border:1px solid var(--panel-edge);border-radius:7px;
   background:rgba(94,243,140,.035);
@@ -152,6 +152,14 @@ article.post .date{font-family:var(--mono);font-size:.78rem;color:var(--phosphor
 .article-audio audio{
   width:235px;max-width:45vw;height:32px;
   color-scheme:dark;
+}
+.article-audio__volume{
+  display:inline-flex;align-items:center;gap:.3rem;
+  color:var(--muted);font-family:var(--mono);font-size:.65rem;
+}
+.article-audio__volume input{
+  width:62px;margin:0;
+  accent-color:var(--phosphor);
 }
 
 /* ---- prose ---- */

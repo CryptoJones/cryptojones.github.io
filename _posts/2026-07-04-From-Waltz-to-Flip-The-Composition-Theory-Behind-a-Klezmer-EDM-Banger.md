@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "From Waltz to Flip: The Composition Theory Behind a Klezmer EDM Banger"
+audio: /audio/posts/From-Waltz-to-Flip-The-Composition-Theory-Behind-a-Klezmer-EDM-Banger.mp3
 ---
 
 *A buddy of mine is running a marathon and asked me for a playlist. Five hours and twenty minutes later, the first track was in his hands: Andy Statman's **Flatbush Waltz** — a sparse klezmer mandolin instrumental — turned into a sacred-and-profane EDM banger that literally paces a runner. I can't read music. So I built it the way I build everything now: I described what I was hearing to an AI composer, it named the fundamental I was fumbling toward, and we fixed that. Here's the theory behind every decision — worked out live between a guy with ears and no vocabulary, and a composer with all the vocabulary and no ears at all.*

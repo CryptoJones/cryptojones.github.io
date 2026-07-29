@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "LoRA, For Real: The Tech Stack Behind the Videos"
+audio: /audio/posts/LoRA-For-Real-The-Tech-Stack-Behind-The-Videos.mp3
 ---
 
 **Huge thanks to Ronin 48 and Thomas Wenzke for the initial push to do this.**

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Three Tools, One Song: The Setup Behind Music I Can't Read"
+audio: /audio/posts/Three-Tools-One-Song-The-Setup-Behind-Music-I-Cant-Read.mp3
 ---
 
 *I can't read music. Not a note. But I keep putting out tracks, so people ask how. The short answer is that I built a little factory for it. Three tools do the work: one writes the song in code, one moves it into a real studio program, and one listens to the result and tells me if it's any good. Here's how each one works, in plain words — and two songs that came out the other end.*

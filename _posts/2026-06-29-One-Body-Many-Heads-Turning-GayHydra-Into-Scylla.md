@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "One Body, Many Heads: Turning GayHydra into Scylla"
+audio: /audio/posts/One-Body-Many-Heads-Turning-GayHydra-Into-Scylla.mp3
 ---
 
 *I built a Software Architecture course around a single stubborn idea — protect a

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Flatline Sessions: Remaking a 1988 Cyberpunk Classic in a Day"
+audio: /audio/posts/The-Flatline-Sessions-Remaking-a-1988-Cyberpunk-Classic-in-a-Day.mp3
 ---
 
 <p align="center"><strong>🎂 HAPPY BIRTHDAY, P13XU5! 🎂</strong></p>

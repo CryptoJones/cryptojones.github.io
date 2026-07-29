@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Narrating a Novel Locally: A Voice-Cloning Audio Pipeline"
+audio: /audio/posts/Narrating-a-Novel-Locally-A-Voice-Cloning-Audio-Pipeline.mp3
 ---
 
 *I wanted a multi-voice audiobook — a full narrator plus distinct character voices —

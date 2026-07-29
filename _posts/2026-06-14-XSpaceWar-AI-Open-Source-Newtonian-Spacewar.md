@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "XSpaceWar-AI: We Rebuilt Spacewar! With Real Gravity — and It's Free"
+audio: /audio/posts/XSpaceWar-AI-Open-Source-Newtonian-Spacewar.mp3
 ---
 
 *Sixty-four years ago a couple of MIT hackers wired two spaceships and a star

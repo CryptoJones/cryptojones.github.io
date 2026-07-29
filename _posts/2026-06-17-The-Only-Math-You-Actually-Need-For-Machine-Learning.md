@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Only Math You Actually Need for Machine Learning"
+audio: /audio/posts/The-Only-Math-You-Actually-Need-For-Machine-Learning.mp3
 ---
 
 *The lie that keeps people out of machine learning is that you need a math degree

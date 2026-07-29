@@ -1,3 +1,9 @@
+---
+layout: post
+title: "Forgot Domain Admin Password Windows Server 2022"
+audio: /audio/posts/Forgot-Domain-Admin-Password-Windows-Server-2022.mp3
+---
+
 ##Forgot Domain Admin Password Windows Server 2022
 
 --Boot to recovery mode with ISO

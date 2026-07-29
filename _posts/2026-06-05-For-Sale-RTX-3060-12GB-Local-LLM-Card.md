@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "For Sale: A 12 GB GPU That Runs Local LLMs at ~60 tok/s"
+audio: /audio/posts/For-Sale-RTX-3060-12GB-Local-LLM-Card.mp3
 ---
 
 *GIGABYTE RTX 3060 EAGLE OC 12 GB — $350 shipped anywhere in CONUS.*

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Systems Thinking, and the Colorado State PhD I Keep Backlogging"
+audio: /audio/posts/Systems-Thinking-And-The-Colorado-State-PhD-I-Keep-Backlogging.mp3
 ---
 
 *Every few months I fall down the same hole. Something on systems thinking crosses

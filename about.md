@@ -53,7 +53,7 @@ greatest tabletop RPG ever made.
 - MS in Data Analytics &mdash; Eastern University *(in progress)*
 - B.S. Computer and Information Science &mdash; UMUC
 - MicroMaster's in Cybersecurity &mdash; RIT
-- Graduate certificates &mdash; Kennesaw State &middot; Colorado State
+- Graduate certificates &mdash; Kennesaw State (Computer Science Foundations) &middot; Colorado State (Information Technology Project Management)
 
 **Certifications** &mdash; SSCP &middot; AWS Solutions Architect Associate &middot; CompTIA A+/Network+
 

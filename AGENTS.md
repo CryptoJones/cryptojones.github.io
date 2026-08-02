@@ -51,3 +51,63 @@ This repository is CryptoJones's personal blog site.
   a second player inside the post body.
 - Confirm that the MP3 is playable, validate the narration against its source
   text, build the Jekyll site, and verify the page and audio path before publishing.
+
+### Running the render (read this before installing anything)
+
+**Nothing needs to be installed.** The renderer runs on
+`$GPU_RENDERING_BOX_NAMED_AFTER_CARTOON_DOG` through `uv`, with every
+dependency already in that host's uv cache, resolved fully offline. If you conclude that you need to `pip install` torch, download the
+model, or free disk space, you have probed the wrong interpreter. A plain
+`python3 -c "import torch"` tests the *system* interpreter and will always
+report the package missing, because the toolchain lives in the uv cache.
+
+Three things trip up every first attempt:
+
+1. **Pin `--python 3.12`.** `uv` defaults to a newer CPython on
+   `$GPU_RENDERING_BOX_NAMED_AFTER_CARTOON_DOG`, and the cached torch wheels
+   stop at the `cp312` ABI. Without the pin the
+   resolver fails with "requirements are unsatisfiable" plus a hint about ABI
+   tags, which reads like a missing package but is not.
+2. **Pass `--offline`.** It proves the run needs no network, and it fails fast
+   and loudly instead of silently pulling multi-gigabyte CUDA wheels.
+3. **Use `--device cuda:0`, the default.** On a multi-GPU host, torch and
+   `nvidia-smi` can enumerate devices in *opposite* order. Do not translate an
+   `nvidia-smi` index into a `--device` flag. `qwen_narrate_longform.py` guards
+   on the device name and refuses to run on the wrong card, so a mismatch shows
+   up as `Refusing to run on unexpected CUDA device`.
+
+The invocation, run from a work directory holding the script, the reference
+pair, and the chunk JSON:
+
+```bash
+uv run --offline --python 3.12 \
+  --with qwen-tts==0.1.1 --with torch --with soundfile --with numpy \
+  python qwen_narrate_longform.py \
+    --model ~/models/Qwen3-TTS-12Hz-0.6B-Base \
+    --reference aaron_reference.wav \
+    --reference-text aaron_reference.txt \
+    --chunks <post-slug>.json \
+    --output-dir out --output-name narration.wav \
+    --language English --device cuda:0 --seed <YYYYMMDD> --resume
+```
+
+`Warning: flash-attn is not installed` is expected and harmless; every existing
+post was rendered on the same manual PyTorch path.
+
+Then encode and place the file:
+
+```bash
+ffmpeg -i out/narration.wav -ac 1 -ar 24000 -b:a 96k \
+  -af loudnorm=I=-16:TP=-1.5:LRA=11 audio/posts/<post-slug>.mp3
+```
+
+Chunk JSON is a list of objects with `id`, `kind`, `stanza`, `text`, and
+`pause_after_ms`. Useful pause values: 900 ms after a heading, 700 ms after a
+definition blockquote, 500 ms after a body paragraph.
+
+**Do not purge `$GPU_RENDERING_BOX_NAMED_AFTER_CARTOON_DOG`'s uv cache to
+reclaim disk.** It is tens of
+gigabytes and looks like throwaway download cruft, but it *is* the renderer:
+the cached CUDA torch build and `qwen-tts` wheel are what make an offline run
+possible. Clearing it breaks narration for every future post and forces a
+multi-gigabyte re-download. Reclaim space somewhere else.

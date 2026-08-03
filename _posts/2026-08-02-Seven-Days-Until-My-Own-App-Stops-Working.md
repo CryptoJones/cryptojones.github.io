@@ -5,6 +5,8 @@ description: "Apple makes you pay to keep your own app running on your own phone
 audio: /audio/posts/Seven-Days-Until-My-Own-App-Stops-Working.mp3
 ---
 
+![Fists clenched at the desk, thinking about Apple]({{ site.baseurl }}/images/angry_apple_aaron.png)
+
 I wrote the app, I own the phone, and I own the computer that built it. On Sunday afternoon my phone still told me no.
 
 The exact words were "Untrusted Developer," and below that, in smaller print, it named the developer it did not trust. The name was mine.

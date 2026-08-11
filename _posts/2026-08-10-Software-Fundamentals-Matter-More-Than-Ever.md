@@ -27,6 +27,8 @@ The second is *The Pragmatic Programmer*, which has a chapter on software entrop
 
 That is exactly what the compiler loop was doing. Every pass was a change made with no thought about the whole.
 
+![The specs-to-code entropy loop: spec to AI to code, re-run, and the code degrades a little more each pass until it collapses](/images/software-fundamentals-entropy-loop.svg)
+
 ## Code is not cheap
 
 The slogan behind specs to code is that code is cheap now. Pocock disagrees, and this is the part that stuck with me.
@@ -83,6 +85,8 @@ Deep modules are the same code with boundaries drawn around it. Design those int
 
 That kind of codebase rewards TDD, because the boundary you test at is simple.
 
+![Deep modules versus shallow modules: shallow is a field of tiny modules with fat interfaces the AI gets lost in; deep is a few large modules behind simple interfaces you can test at the boundary](/images/software-fundamentals-deep-vs-shallow.svg)
+
 ## Your brain is the last bottleneck
 
 Here is the failure I felt in my chest. Everything is working, you are shipping more than ever, and you are exhausted.
@@ -98,6 +102,8 @@ His fifth tip is the shortest one. Design the interface, delegate the implementa
 He closes with Kent Beck: invest in the design of the system every day. Specs to code does the reverse. It divests.
 
 His last picture is the one I will keep. AI is a great tactical programmer. It is the sergeant on the ground making the changes. Someone has to be thinking above that, at the strategic level, about where the system is going. That is you. And it takes the same fundamentals people have been practicing for twenty years and longer.
+
+![Who does what: you work at the strategic level — the design of the whole system — while the AI works tactically, writing code, passing tests, and filling in the modules](/images/software-fundamentals-tactical-strategic.svg)
 
 That is a comforting message, and I do not think it is only comforting. I think it is correct. The books are on Amazon. The talk is free. Go watch it.
 

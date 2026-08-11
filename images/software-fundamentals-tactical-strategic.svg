@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" font-family="Menlo, Consolas, monospace">
+  <defs>
+    <filter id="g3" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/><feMerge>
+      <feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="a3" markerWidth="11" markerHeight="11" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#27d4ff"/>
+    </marker>
+    <marker id="a3g" markerWidth="11" markerHeight="11" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#55ff99"/>
+    </marker>
+  </defs>
+  <rect width="960" height="430" fill="#07090f"/>
+  <text x="40" y="50" fill="#27d4ff" font-size="26" filter="url(#g3)" letter-spacing="1">who does what</text>
+  <text x="40" y="78" fill="#5a6678" font-size="15">the AI is a great tactical programmer. someone has to think above it &#8212; that&#8217;s you.</text>
+
+  <!-- STRATEGIC (you) -->
+  <rect x="60" y="110" width="840" height="96" rx="10" fill="#0c1018" stroke="#27d4ff" stroke-width="1.8"/>
+  <text x="86" y="146" fill="#27d4ff" font-size="20" filter="url(#g3)">YOU &#8212; strategic</text>
+  <text x="86" y="172" fill="#d7e0ee" font-size="15">design of the whole system &#183; boundaries &#183; where it&#8217;s going</text>
+  <text x="86" y="194" fill="#55ff99" font-size="14">&#8220;invest in the design of the system every day.&#8221; &#8212; Kent Beck</text>
+
+  <!-- arrows between layers -->
+  <line x1="330" y1="206" x2="330" y2="264" stroke="#27d4ff" stroke-width="1.8" marker-end="url(#a3)"/>
+  <text x="345" y="240" fill="#27d4ff" font-size="13">direction, design</text>
+  <line x1="630" y1="264" x2="630" y2="206" stroke="#55ff99" stroke-width="1.8" marker-end="url(#a3g)"/>
+  <text x="645" y="240" fill="#55ff99" font-size="13">code, feedback</text>
+
+  <!-- TACTICAL (AI) -->
+  <rect x="60" y="266" width="840" height="120" rx="10" fill="#0c1018" stroke="#55ff99" stroke-width="1.8"/>
+  <text x="86" y="300" fill="#55ff99" font-size="20" filter="url(#g3)">AI &#8212; tactical</text>
+  <text x="86" y="322" fill="#5a6678" font-size="14">the sergeant on the ground, making the changes</text>
+  <g text-anchor="middle" font-size="12.5">
+    <rect x="120" y="336" width="150" height="34" rx="6" fill="#11151f" stroke="#55ff99" stroke-width="1.2"/>
+    <text x="195" y="358" fill="#d7e0ee">write the code</text>
+    <rect x="300" y="336" width="150" height="34" rx="6" fill="#11151f" stroke="#55ff99" stroke-width="1.2"/>
+    <text x="375" y="358" fill="#d7e0ee">make tests pass</text>
+    <rect x="480" y="336" width="150" height="34" rx="6" fill="#11151f" stroke="#55ff99" stroke-width="1.2"/>
+    <text x="555" y="358" fill="#d7e0ee">refactor</text>
+    <rect x="660" y="336" width="180" height="34" rx="6" fill="#11151f" stroke="#55ff99" stroke-width="1.2"/>
+    <text x="750" y="358" fill="#d7e0ee">fill in the modules</text>
+  </g>
+</svg>

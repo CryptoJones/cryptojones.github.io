@@ -90,6 +90,47 @@ of what follows.
     or one big card, is the honest requirement.</li>
 </ul>
 
+<h2>Turning the thinking off, and why it can backfire</h2>
+<p class="sub">This model reasons before it answers. The reasoning comes back in its own
+field, separate from the reply. You can switch it off per request. The obvious guess is
+that switching it off always makes things faster. That guess is wrong.</p>
+
+<table>
+<tr><th>Task</th><th>Mode</th><th>Seconds</th><th>Tokens</th><th>Reasoning chars</th><th>Answer chars</th></tr>
+<tr><td rowspan="2">Write a haiku</td><td>thinking</td><td>23.74</td><td>268</td><td>823</td><td>71</td></tr>
+<tr><td>off</td><td class="big">1.64</td><td class="big">17</td><td>0</td><td>59</td></tr>
+<tr><td rowspan="2">Define an acronym</td><td>thinking</td><td>6.16</td><td>59</td><td>202</td><td>43</td></tr>
+<tr><td>off</td><td class="big">1.54</td><td class="big">10</td><td>0</td><td>43</td></tr>
+<tr><td rowspan="2">Arithmetic word problem</td><td>thinking</td><td class="big">105.86</td><td class="big">1248</td><td>3361</td><td>6</td></tr>
+<tr><td>off</td><td>169.01</td><td>1994</td><td>0</td><td>6033</td></tr>
+</table>
+
+<table>
+<tr><th>Task</th><th>Speed change with thinking off</th><th>Token change</th></tr>
+<tr><td>Write a haiku</td><td>14.5x faster</td><td>15.8x fewer</td></tr>
+<tr><td>Define an acronym</td><td>4.0x faster</td><td>5.9x fewer</td></tr>
+<tr><td>Arithmetic word problem</td><td><b>0.6x, meaning slower</b></td><td><b>0.6x, meaning more</b></td></tr>
+</table>
+
+<div class="note">
+On the two easy tasks, switching thinking off is a big win. On the task that actually
+needed reasoning it made things worse. The model did not stop reasoning. It moved the
+reasoning into the visible answer, used 60 percent more tokens, and took longer.
+</div>
+
+<p>Look at the answer length on the last row. With thinking on, the reply was
+<b>6 characters</b>, just the number asked for, because the working happened in the
+reasoning field. With thinking off, the reply was <b>6,033 characters</b> of working out
+loud.</p>
+
+<p>That is the part worth knowing if you care about context. The reasoning field is
+usually dropped by the client when it builds the next turn of a conversation. The answer
+field is not. So on reasoning heavy work, turning thinking off can grow a conversation
+faster rather than slower, which is the opposite of what people expect.</p>
+
+<p>Rule of thumb: turn it off for lookups, formatting, and short creative output. Leave it
+on for anything with steps in it.</p>
+
 <h2>Notes</h2>
 <ul>
 <li>The model reports its architecture as <code>qwen35</code>, so a llama.cpp build from

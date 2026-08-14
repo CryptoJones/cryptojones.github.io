@@ -6,6 +6,8 @@ audio: /audio/posts/when-the-cell-towers-go-quiet.mp3
 image: /images/mesh/three-network-shapes.png
 ---
 
+![Two small LoRa mesh radio boards held up at a workbench, with the Meshtastic logo in a thought bubble overhead]({{ '/images/mesh/meshtastic-nodes-in-hand.png' | relative_url }})
+
 Think about the last time your phone showed "No Service." Maybe a bad storm rolled through. Maybe the power went out for a whole neighborhood. For a few minutes you could not call, text, or look anything up. Now stretch that out. Picture it lasting three days, across your whole county.
 
 That is the quiet part of most disasters that nobody plans for. The wind and the water get all the attention. But the thing that fails first, and hurts the most, is talking to each other.

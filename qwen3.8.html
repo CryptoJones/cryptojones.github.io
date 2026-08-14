@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qwen3.8-27B on a Split Pascal + Ampere Pair</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Benchmark numbers for Qwen3.8-27B at Unsloth Dynamic Q5, running split across a Tesla P100 and an RTX 3060 with no CPU offload.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090f; --panel:#0c1018; --hair:#141a26;
+    --fg:#cfd8e3; --dim:#8a97a8; --dim2:#5a6678;
+    --accent:#27d4ff; --green:#55ff99; --amber:#ff9b3d; --red:#ff6e6e;
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(120% 80% at 80% -10%,rgba(39,212,255,.06),transparent 60%),var(--bg);
+    color:var(--fg);font-family:var(--mono);line-height:1.6;font-size:16px;
+    padding:clamp(1.2rem,4vw,3.5rem) clamp(1rem,5vw,2rem) 5rem;}
+  .wrap{max-width:900px;margin:0 auto}
+  .badge{display:inline-block;font-size:12px;letter-spacing:.08em;color:var(--amber);
+    border:1px solid #3a2a14;background:#160f06;border-radius:6px;padding:3px 10px;margin-bottom:14px}
+  h1{font-size:clamp(1.5rem,4vw,2.1rem);margin:.2rem 0 .4rem;color:var(--accent);text-shadow:0 0 14px rgba(39,212,255,.35)}
+  .sub{color:var(--dim);font-size:1rem;margin:0 0 1.6rem;max-width:80ch}
+  h2{font-size:1.15rem;color:var(--green);margin:2.2rem 0 .6rem;border-bottom:1px solid var(--hair);padding-bottom:.3rem}
+  code{background:#0e1622;border:1px solid var(--hair);border-radius:4px;padding:1px 6px;font-size:.9em;color:#bfe6ff}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92rem}
+  th,td{border:1px solid var(--hair);padding:8px 12px;text-align:left;vertical-align:top}
+  th{background:#0e1622;color:var(--accent);font-weight:600}
+  .big{color:var(--green);font-weight:700;font-size:1.05em}
+  .note{border-left:3px solid var(--hair);padding:.4rem 0 .4rem 1rem;color:var(--dim);margin:1rem 0}
+  ul{padding-left:1.2rem} li{margin:.35rem 0}
+  footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--hair);color:var(--dim2);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="badge">UNLISTED / BENCH NOTES</div>
+<h1>Qwen3.8-27B on a Split Pascal + Ampere Pair</h1>
+<p class="sub">Raw numbers, measured 14 August 2026. No write-up, just the run.</p>
+
+<h2>What was measured</h2>
+<table>
+<tr><th>Model</th><td>Qwen3.8-27B, Unsloth Dynamic <code>UD-Q5_K_XL</code></td></tr>
+<tr><th>Reported size</th><td>18.82 GiB, 27.32 B parameters</td></tr>
+<tr><th>Architecture</th><td><code>qwen35</code>, dense (not mixture of experts)</td></tr>
+<tr><th>Native context</th><td>262144</td></tr>
+<tr><th>License</th><td>Apache 2.0</td></tr>
+<tr><th>GPUs</th><td>Tesla P100 16 GB (compute 6.0) + RTX 3060 12 GB (compute 8.6)</td></tr>
+<tr><th>Combined VRAM</th><td>28.2 GB usable</td></tr>
+<tr><th>Settings</th><td>all layers on GPU, flash attention on, no CPU offload</td></tr>
+</table>
+
+<div class="note">
+<b>Dense</b> means every parameter is used for every token. A <b>mixture of experts</b>
+model only wakes up a small slice of itself per token. That one difference explains most
+of what follows.
+</div>
+
+<h2>Results</h2>
+<table>
+<tr><th>Test</th><th>Result</th></tr>
+<tr><td>Prompt processing (pp512)</td><td class="big">198.47 &plusmn; 0.12 tok/s</td></tr>
+<tr><td>Token generation (tg128)</td><td class="big">12.07 &plusmn; 0.00 tok/s</td></tr>
+</table>
+
+<h2>How the model split across the two cards</h2>
+<table>
+<tr><th>Card</th><th>Benchmark run</th><th>As a live server, 32k context</th></tr>
+<tr><td>RTX 3060</td><td>8,763 MiB</td><td>9,059 MiB</td></tr>
+<tr><td>Tesla P100</td><td>11,171 MiB</td><td>11,979 MiB</td></tr>
+<tr><td><b>Total</b></td><td><b>19.9 GB</b></td><td><b>21.0 GB</b></td></tr>
+</table>
+
+<h2>Context for the numbers</h2>
+<ul>
+<li>A 35B mixture of experts model with roughly 3B active parameters reaches about
+    <b>62 tok/s</b> on this same pair of cards. This dense 27B reaches 12. That is the
+    dense penalty, and it is about five times.</li>
+<li>Prompt processing stays healthy at 198 tok/s because that work is limited by compute,
+    not by memory bandwidth. Generation is the opposite.</li>
+<li>A different 27B model squeezed down to roughly 2 bits runs at about <b>10 tok/s</b> on
+    a 16 GB Apple M2 Pro. So this setup is a little faster while keeping a far better
+    quantization.</li>
+<li>No 4 bit build of a dense 27B fits inside 16 GB. The 4 bit file is 17.11 GB. Two cards,
+    or one big card, is the honest requirement.</li>
+</ul>
+
+<h2>Notes</h2>
+<ul>
+<li>The model reports its architecture as <code>qwen35</code>, so a llama.cpp build from
+    June 2026 loaded it with no source changes.</li>
+<li>It is a reasoning model. Replies come back with a separate reasoning block before the
+    answer, so give it a generous token budget or the reply comes back empty.</li>
+<li>It also ships a vision tower and a separate projector file, which was not exercised here.</li>
+</ul>
+
+<footer>
+Measured with <code>llama-bench</code>, 3 repetitions per test. Hardware and software
+details generalized on purpose.
+</footer>
+
+</div>
+</body>
+</html>

@@ -2,6 +2,7 @@
 layout: post
 title: "When Software Says Yes and Does Nothing"
 description: "The most expensive bugs do not crash. They accept your request, report success, and quietly do nothing. Here is what running a fleet of AI agents taught me."
+audio: /audio/posts/buzz.mp3
 permalink: /buzz.html
 ---
 

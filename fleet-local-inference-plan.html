@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Local Security RAG + Exploit-Dev Pipeline</title>
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="Self-hosted, GPU-split retrieval-augmented generation for security assessments — PrivateGPT + Dolphin-8B orchestrator + Qwen3 embeddings + hybrid Qdrant + marker, with a Radeon Pro V620 security/code specialist tier.">
+<meta name="description" content="Self-hosted, GPU-split retrieval-augmented generation for security assessments — a hybrid Qdrant corpus, cross-encoder reranking, and a grounded RAG proxy on a Tesla P100 + RTX 3060, with a Radeon Pro V620 specialist tier landing on telesto.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,64 +37,95 @@
   td b{color:var(--fg)}
   .pluto{color:var(--accent)} .telesto{color:var(--red)} .plan{color:var(--violet)}
   ol li,ul li{margin:.3rem 0}
+  .live{display:inline-block;font-size:11px;letter-spacing:.05em;color:var(--green);
+    border:1px solid #16402a;background:#0b1a12;border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:middle}
+  .pend{display:inline-block;font-size:11px;letter-spacing:.05em;color:var(--violet);
+    border:1px solid #2a2450;background:#100e1c;border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:middle}
+  .changelog{background:#0a0e16;border:1px solid var(--hair);border-left:4px solid var(--accent);
+    border-radius:10px;padding:14px 18px;margin:1.2rem 0}
+  .changelog h3{margin:.2rem 0 .5rem;color:var(--accent);font-size:1rem}
   footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--hair);color:var(--dim2);font-size:13px}
 </style>
 </head>
 <body>
+
 <div class="wrap">
   <div class="badge">▌ INTERNAL · UNLISTED</div>
   <h1>Local Security RAG + Exploit-Dev Pipeline</h1>
-  <p class="sub">A fully self-hosted, GPU-split retrieval-augmented-generation stack built for security assessments and exploit development — no cloud, no API keys leaving the LAN. A small uncensored model orchestrates; a heavyweight specialist does the audit/exploit work; a hybrid vector store grounds everything in a private security library.</p>
+  <p class="sub">A fully self-hosted, GPU-split retrieval-augmented-generation stack for security research &mdash; no cloud, no API keys leaving the LAN. A ~488-PDF security library is embedded into a hybrid Qdrant index, cross-encoder reranked, and answered by an uncensored local model with real citations. Everything runs on a Tesla&nbsp;P100 + RTX&nbsp;3060, with a 32&nbsp;GB Radeon Pro V620 specialist tier landing on a second node.</p>
 
-  <figure class="fig">
-    <a href="images/security-rag-pipeline.png" target="_blank" rel="noopener" title="Open full-size"><img src="images/security-rag-pipeline.png" alt="Security RAG + Exploit-Dev pipeline architecture diagram"></a>
-    <figcaption>End-to-end architecture across the homelab fleet — query &rarr; orchestrator &rarr; hybrid retrieval &rarr; specialist model &rarr; grounded answer.</figcaption>
-  </figure>
+  <div class="changelog">
+    <h3>What changed &mdash; the 2026-08-13/14 rebuild</h3>
+    <p class="sub" style="margin:0">The <b>Tesla P100 (16 GB HBM2)</b> is now physically installed on <span class="pluto">pluto</span>, replacing the GTX&nbsp;1080. That single swap rewrote the whole stack: the embedder went from ~5&ndash;11 chunks/s to full-rate FP16, the reranker finally has a home, and the box now hosts a 35B model entirely in VRAM. Along the way the design shifted from an agentic &ldquo;orchestrator routes to specialist&rdquo; model to a <b>direct grounded-RAG pipeline</b> &mdash; because PrivateGPT v2 turned agentic and orphaned the bulk-ingested corpus (see <a href="#grounding">Grounding, the hard way</a>). Net result: grounded security-corpus chat actually works end-to-end, served through a browser UI on the LAN.</p>
+  </div>
 
-  <h2>How a query flows</h2>
+  <h2>How a query flows <span class="live">LIVE</span></h2>
+  <p class="sub" style="margin:0 0 .6rem">A single service &mdash; <code>rag-proxy</code> on <code>:8092</code> &mdash; speaks the OpenAI chat API as one model id, <code>security-corpus</code>, and drives the whole pipeline. That means the existing web chat UI and the model-swap proxy treat grounded RAG like any other model: pick it from a dropdown.</p>
   <ol>
-    <li><b>Analyst query</b> hits <code>PrivateGPT</code> (zylon v2) on <code>:8001</code> &mdash; the app / entry layer.</li>
-    <li>The <b>Dolphin-2.9.4-8B orchestrator</b> (uncensored router / agent / tool-caller) takes over.</li>
-    <li>It embeds the query via <code>Qwen3-Embedding-0.6B</code> (<code>:8082</code>).</li>
-    <li><code>Qdrant</code> runs <b>hybrid retrieval</b> &mdash; dense vectors + BM25 sparse.</li>
-    <li>Top-K candidates go to a <span class="plan">planned <code>bge-reranker-v2-m3</code></span> for cross-encoder re-ranking.</li>
-    <li>The re-ranked context returns to the orchestrator.</li>
-    <li>The orchestrator <b>routes</b> the real work to the specialist tier &mdash; security audit / exploit dev to the uncensored specialist, precise codegen to the coder.</li>
-    <li>A <b>grounded answer</b> (with sources from the library) returns to the analyst.</li>
+    <li><b>Analyst query</b> arrives at <code>rag-proxy</code> (<code>:8092</code>) via the LAN-only <code>/chat/</code> web UI &mdash; nginx reverse-proxy, RFC-1918 gated.</li>
+    <li>The query is embedded two ways in parallel: <b>dense</b> via <code>Qwen3-Embedding-0.6B</code> (through <code>embed-clamp</code>, <code>:8085</code>) and <b>sparse BM25</b> (<code>:8086</code>).</li>
+    <li><code>Qdrant</code> runs a <b>hybrid query</b> &mdash; dense + sparse prefetch, fused with Reciprocal Rank Fusion &mdash; returning the <b>top&nbsp;32</b> candidate chunks.</li>
+    <li>The 32 candidates go to <code>bge-reranker-v2-m3</code> (<code>:8088</code>), a cross-encoder that re-scores each <i>(query, chunk)</i> pair and keeps the <b>best&nbsp;5</b>.</li>
+    <li>Those 5 chunks are assembled into a grounding prompt with numbered sources and a &ldquo;answer only from these sources&rdquo; instruction.</li>
+    <li><code>huihui-Qwen3-30B-A3B-abliterated</code> (<code>:8083</code>) streams the answer; <code>rag-proxy</code> appends a real <b>Sources</b> list of the actual file names.</li>
   </ol>
+  <p class="sub" style="margin:.4rem 0 0">Every stage is <b>fail-open</b>: if sparse or the reranker is down, retrieval degrades to dense-only / raw order rather than erroring. Verified end-to-end against the real corpus &mdash; answers cite actual books (Shellcoder&rsquo;s Handbook, CEH v9, the XSS Attacks title), not hallucinated titles.</p>
 
-  <h2>Components</h2>
+  <h2>Components <span class="live">running on pluto</span></h2>
   <table>
-    <tr><th>Component</th><th>Role</th><th>Host / GPU</th></tr>
-    <tr><td><b>PrivateGPT</b> (zylon v2)</td><td>API / app layer, <code>:8001</code></td><td class="pluto">pluto</td></tr>
-    <tr><td><b>Dolphin-2.9.4-Llama3.1-8B</b></td><td>Orchestrator &mdash; uncensored router, agent, tool-calls</td><td class="pluto">pluto &middot; RTX 3060 (12 GB)</td></tr>
-    <tr><td><b>Qwen3-Embedding-0.6B</b></td><td>Query/doc embeddings, <code>:8082</code></td><td class="pluto">pluto &middot; Tesla P100 (16 GB)</td></tr>
-    <tr><td><b>Qdrant</b></td><td>Vector DB &mdash; hybrid dense + BM25 retrieval</td><td class="pluto">pluto</td></tr>
-    <tr><td><b>marker</b></td><td>PDF &rarr; Markdown preprocessing (clean chunks)</td><td class="pluto">pluto</td></tr>
-    <tr><td class="plan"><b>bge-reranker-v2-m3</b> <i>(planned)</i></td><td>Cross-encoder re-rank of top-K before context</td><td class="pluto">pluto &middot; Tesla P100</td></tr>
+    <tr><th>Component</th><th>Role</th><th>Port</th><th>GPU</th></tr>
+    <tr><td><b>rag-proxy</b></td><td>Grounded-RAG orchestrator; OpenAI-compatible; model id <code>security-corpus</code></td><td>8092</td><td class="pluto">&mdash; (CPU glue)</td></tr>
+    <tr><td><b>Qwen3-Embedding-0.6B</b> (llama.cpp)</td><td>Dense query/doc embeddings, 1024-dim, full-rate FP16</td><td>8082</td><td class="pluto">P100</td></tr>
+    <tr><td><b>embed-clamp</b></td><td>Token-aware embedding proxy (<a href="https://github.com/CryptoJones/embed-clamp">open-sourced</a>)</td><td>8085</td><td class="pluto">&mdash;</td></tr>
+    <tr><td><b>sparse encoder</b></td><td>BM25 sparse vectors for hybrid search</td><td>8086</td><td class="pluto">&mdash;</td></tr>
+    <tr><td><b>bge-reranker-v2-m3</b> (llama.cpp)</td><td>Cross-encoder rerank of the top-K before context</td><td>8088</td><td class="pluto">P100</td></tr>
+    <tr><td><b>Qdrant</b></td><td>Vector DB &mdash; hybrid dense + BM25, RRF fusion</td><td>6333</td><td class="pluto">&mdash;</td></tr>
+    <tr><td><b>huihui-Qwen3-30B-A3B</b> (abliterated)</td><td>RAG generator &mdash; uncensored, MoE (~3B active)</td><td>8083</td><td class="pluto">P100</td></tr>
+    <tr><td><b>marker</b></td><td>PDF &rarr; Markdown preprocessing (ingest only)</td><td>&mdash;</td><td class="pluto">&mdash;</td></tr>
   </table>
+  <p class="sub" style="margin:.3rem 0 0">All under ~17 GB of the P100+3060&rsquo;s 28 GB, leaving headroom. A one-command switcher (<code>rag-stack.sh up|down|status</code>) flips the whole box between this RAG stack and the general-chat model below, repointing the web UI automatically.</p>
 
-  <h2>The specialist tier <span class="telesto">(telesto &middot; Radeon Pro V620 32 GB &mdash; pending board swap)</span></h2>
-  <p>The orchestrator is deliberately small and fast; the heavy reasoning/codegen lives on a 32 GB ROCm card so the right model can be loaded per task:</p>
+  <h2>General chat &mdash; the other mode <span class="live">LIVE</span></h2>
+  <p>When the box isn&rsquo;t doing RAG, it runs a single large model for open-ended work, hot-swappable via <a href="https://github.com/mostlygeek/llama-swap">llama-swap</a> (<code>:8090</code>, one OpenAI endpoint, loads models on demand):</p>
   <table>
-    <tr><th>Model</th><th>Job</th></tr>
-    <tr><td><b>Qwen3.6-35B-A3B-Uncensored-HauhauCS</b> (Q4_K_M)</td><td>&#9733; Security specialist &mdash; audits + exploit development (uncensored + cybersecurity-tuned)</td></tr>
-    <tr><td><b>Gemma-4-31B-Heretic</b></td><td>Alternate uncensored generalist (multimodal / vision)</td></tr>
-    <tr><td><b>Qwen3-Coder-30B-A3B</b></td><td>Code muscle &mdash; exploit PoCs, secure-code auditing</td></tr>
+    <tr><th>Model</th><th>Role</th><th>GPU footprint</th></tr>
+    <tr><td><b>Qwen3.6-35B-A3B-Uncensored-HauhauCS</b> (Q4_K_M)</td><td>&#9733; Security specialist &mdash; uncensored + cybersecurity-tuned; thinking model, native tool-calling</td><td class="pluto">~22 GB across P100 + 3060, 65k ctx, fully resident</td></tr>
+    <tr><td><b>Ternary-Bonsai-27B</b> (Q2_0)</td><td>Experimental ternary model</td><td class="pluto">RTX 3060</td></tr>
   </table>
-  <p class="sub" style="margin-top:.8rem">The V620 install is gated on a motherboard swap. Telesto's current board is a <b>Gigabyte B85-HD3</b> (Intel B85, LGA1150) whose final F2 BIOS &mdash; last updated in 2014 &mdash; has no Above-4G Decoding, so there is no PCIe MMIO window above 4 GB to map the card's 32 GB BAR. Confirmed by a live-BIOS IFR decode: every BAR is crammed below <code>feafffff</code>. No later official BIOS adds the option and no working modded BIOS exists, so this is a hard dead end rather than a tuning problem.</p>
-  <p class="sub" style="margin-top:.6rem">The replacement is a <b>Supermicro X10SLH-F</b> (Intel C226, LGA1150, mATX, ~$67 new), which exposes Above-4G Decoding under <i>Advanced &rarr; PCIe/PCI/PnP Configuration</i> and gives the V620 a full x16 CPU-lane slot. It carries the existing 32 GB of DDR3-1600 over verbatim, ships with a <b>Xeon E3-1241 v3</b> already installed (Haswell 4C/8T, ECC-capable, VT-d), and adds IPMI/BMC for remote console and power &mdash; better suited to a headless rack node than the outgoing consumer board. Until the swap lands, the specialist tier runs on the CUDA side or a B550 host.</p>
+  <p class="sub" style="margin:.3rem 0 0">Served to a cyberdeck-themed web chat UI (streaming, conversation history, per-chat list, image staging, copy controls, iOS-safe) at a LAN-only <code>/chat/</code>. A coding harness (<a href="https://github.com/Aider-AI/aider">aider</a>) on a third node points at the HauhauCS endpoint over the LAN &mdash; repo-map retrieval keeps a whole codebase inside a 65k window at ~700 tokens/edit.</p>
+
+  <h2 id="specialist">The specialist tier <span class="telesto">(telesto &middot; Radeon Pro V620 32 GB)</span> <span class="pend">PARTS IN HAND</span></h2>
+  <p>A dedicated 32 GB ROCm coding/audit node is fully sourced and staged &mdash; a build night away rather than a plan:</p>
+  <table>
+    <tr><th>Model (staged on the NAS)</th><th>Job</th></tr>
+    <tr><td><b>Qwen3.6-27B</b> (dense, UD-Q5_K_XL, ~20 GB)</td><td>Coding &mdash; multi-file reasoning, MTP speedup</td></tr>
+    <tr><td><b>Ornith-1.0-35B</b> (MoE, Q5_K_M, ~25 GB)</td><td>Agentic coding challenger &mdash; A/B against the incumbent</td></tr>
+    <tr><td><b>Gemma-4-31B-Heretic</b> + mmproj</td><td>Uncensored generalist with <b>vision</b> &mdash; the future image-input path</td></tr>
+  </table>
+  <p class="sub" style="margin-top:.8rem">Telesto&rsquo;s current board is a <b>Gigabyte B85-HD3</b> (2014 F2 BIOS) with <b>no Above-4G Decoding</b> &mdash; IFR-verified absent, so a 32 GB BAR can never be mapped. The fix is a board swap, not a tuning problem. <b>Acquired / ordered 2026-08-13:</b> a <b>Supermicro X10SLH-F</b> (Intel C226, Xeon E3-1241 v3 pre-installed, IPMI/BMC), a <b>Corsair RM1000e</b> 1000&nbsp;W PSU (dual native EPS for the Xeon + the V620&rsquo;s EPS-8-pin), a <b>GDSTIME 9733 blower</b> (18 W, 2.0&nbsp;inH<sub>2</sub>O &mdash; static pressure is the spec that matters for a sealed datacenter heatsink), an ABS-printed shroud, and a 500&nbsp;GB SSD to move the OS off a 14-year-old WD Green. When it lands: aider repoints here, and <code>bge-reranker</code> migrates <i>from</i> telesto (a CUDA reranker can&rsquo;t run on ROCm) &mdash; already done, it now lives on the pluto P100.</p>
 
   <h2>The corpus</h2>
-  <p>~<b>488 PDFs</b> &mdash; a security/tech library of audit references and exploit-dev material &mdash; flow through <code>marker</code> into clean Markdown, get chunked, embedded, and indexed in Qdrant for hybrid retrieval. The model never &ldquo;memorizes&rdquo; the books; it retrieves the relevant pages at query time and answers grounded in them, with citations.</p>
+  <p>~<b>488 PDFs</b> &mdash; a security/tech library of audit references and exploit-dev material &mdash; flow through <code>marker</code> into clean Markdown, get chunked, embedded, and indexed in Qdrant as <b>143,193</b> hybrid (dense + sparse) points. The model never &ldquo;memorizes&rdquo; the books; it retrieves the relevant pages at query time and answers grounded in them, with citations. Direct retrieval scores sit at a healthy 0.64&ndash;0.67 cosine; the reranker then pulls the genuinely-relevant chunk from #14 up to #1 where a limited context window can see it.</p>
 
-  <h2>Design notes</h2>
-  <ul>
-    <li><b>GPU-split by role</b> &mdash; orchestrator LLM on the 3060, embeddings/reranker on the P100, specialist on the V620. Each card sized to its job.</li>
-    <li><b>Hybrid &gt; dense-only</b> &mdash; BM25 catches exact tokens (CVE ids, flags, function names) that pure vector search misses.</li>
-    <li><b>Reranker is the next quality jump</b> &mdash; a cross-encoder re-orders the top-K so the most relevant chunks land in the limited context window.</li>
-    <li><b>Uncensored where it matters</b> &mdash; the orchestrator and specialist won't refuse legitimate offensive-security work; precision (a strong code model) matters more than raw &ldquo;willingness&rdquo; for working exploits.</li>
-  </ul>
+  <h2 id="grounding">Grounding, the hard way &mdash; when the corpus goes invisible</h2>
+  <p class="sub" style="margin:0 0 1rem">The single most instructive failure of the rebuild: the RAG chat gave confident, well-written answers &mdash; that cited books <i>not in the library</i>. It was hallucinating grounding. The diagnosis chain is worth keeping.</p>
+  <ol>
+    <li><b>A great answer with a fake citation is worse than an error.</b> The tell was a citation to a plausible-sounding title that wasn&rsquo;t in the corpus. If retrieval were working, every citation would be a real file name. Always verify grounding against the <i>known</i> source set, not against how confident the prose sounds.</li>
+    <li><b>&ldquo;RAG is running&rdquo; &ne; &ldquo;RAG is grounding.&rdquo;</b> The reranker service was up and healthy but receiving <b>zero</b> requests during chat &mdash; it was serving nothing. A component being alive says nothing about whether it&rsquo;s in the path.</li>
+    <li><b>PrivateGPT v2 went agentic and per-artifact.</b> It no longer chats over &ldquo;all your docs&rdquo;; retrieval is a <code>semantic_search</code> <i>tool</i> the model must choose to call, and that tool refuses to run without an <b>ingested-artifact context</b>. The bulk-ingested corpus predates that model &mdash; <code>/v1/artifacts/list</code> returned <b>0 artifacts</b>. The 143k vectors existed and queried perfectly, but were <i>orphaned</i> from the chat path. The vectors were never the problem; the framework&rsquo;s idea of &ldquo;a searchable thing&rdquo; had changed underneath them.</li>
+    <li><b>The model wasn&rsquo;t the problem either.</b> Forcing the tool still produced no call &mdash; but the same model, hit directly, emitted a clean tool call on the first try. The tool definition simply wasn&rsquo;t being <i>sent</i>, because there was no artifact to attach it to.</li>
+    <li><b>The fix was to stop fighting the framework.</b> Rather than re-ingest 488 PDFs through the new artifact API (hours, and a re-run of the 8&times;-duplication risk below), a ~230-line proxy does the pipeline directly &mdash; embed, hybrid-search, rerank, ground, stream &mdash; and presents as one OpenAI model so the existing UI just works. When the tool a framework hands you has outgrown your use case, a thin purpose-built endpoint beats bending the framework back.</li>
+    <li><b>Block-buffered stderr hides the truth.</b> Instrumenting the proxy showed nothing until it was run with <code>python&nbsp;-u</code> &mdash; the &ldquo;0 logged &ne; stuck&rdquo; gotcha, again. Unbuffered, it printed <code>retrieve: hybrid(dense+sparse)</code> and <code>rerank OK: 30&rarr;5</code>, proving the path end-to-end.</li>
+  </ol>
+
+  <h2>The P100 install &mdash; a GPU swap breaks more than you think</h2>
+  <p class="sub" style="margin:0 0 1rem">Dropping a passively-cooled datacenter card into a consumer tower surfaced a cluster of gotchas, each masquerading as something else.</p>
+  <ol>
+    <li><b>&ldquo;Won&rsquo;t POST&rdquo; was a BIOS toggle.</b> The board hung before video because <b>CSM was enabled, which greys out Above-4G Decoding</b> &mdash; and without Above-4G the P100&rsquo;s 16 GB BAR can&rsquo;t be mapped. They&rsquo;re coupled: CSM off first, <i>then</i> Above-4G becomes settable. The headless box was diagnosed remotely by watching the UniFi controller for the machine&rsquo;s Wi-Fi MAC re-associating &mdash; a network controller doubles as a boot sensor when there&rsquo;s no monitor.</li>
+    <li><b>Same-generation, different kernel.</b> The P100 is GP100 = <b>sm_60</b>; the retired GTX 1080 was GP104 = <b>sm_61</b>. Every local llama.cpp build targeted 61;86 and died on the P100 with <code>no kernel image is available for execution on the device</code> &mdash; it allocates VRAM fine, then fails at first kernel launch. Rebuilt with <code>-DCMAKE_CUDA_ARCHITECTURES=&quot;60;61;86&quot;</code>. (CUDA 13 dropped Pascal entirely, so this pins to CUDA 12.9.)</li>
+    <li><b>The card throttled to 45% clock &mdash; and it was a fan curve, not cooling.</b> Under load the P100 hit 80&nbsp;&deg;C in under a minute and clocked from 1328 to 594 MHz. It <i>had</i> a blower. The blower was on a chassis fan header whose curve tracks <b>CPU</b> temperature &mdash; and the CPU sits on a cold AIO, so the board idled the fan at ~30% while the GPU cooked. Nothing in the loop knew the GPU existed. Pinning the header to 100% dropped peak-load temp 80&nbsp;&rarr;&nbsp;60&nbsp;&deg;C and held full boost indefinitely. <b>Lesson: any passive datacenter GPU in a consumer board has an open control loop &mdash; wire its fan to constant 12&nbsp;V, never a temp-driven header.</b></li>
+    <li><b>The swap silently broke every service that named the old card.</b> Scripts using a <i>numeric</i> <code>CUDA_VISIBLE_DEVICES=1</code> kept pointing at &ldquo;device 1&rdquo; &mdash; which used to be the 1080 and was now the P100 &mdash; and services sized for the 1080&rsquo;s 8 GB OOMed on the P100. Numeric indices silently retarget when hardware moves; pin by <b>GPU-UUID</b> instead.</li>
+  </ol>
 
   <h2>Lessons learned &mdash; getting a code-heavy corpus through a fixed-context embedder</h2>
   <p class="sub" style="margin:0 0 1rem">Backfilling the security/programming library surfaced a set of non-obvious gotchas about local embeddings. The fix that fell out &mdash; a transparent, token-aware embedding proxy &mdash; is open-sourced as <a href="https://github.com/CryptoJones/embed-clamp">embed-clamp</a>.</p>
@@ -113,12 +144,12 @@
     <li><b>Idempotency has to be against the <i>store</i>, not your own bookkeeping.</b> The ingester deleted a document&rsquo;s old vectors only when it was already in the <i>local</i> manifest. A doc that succeeded server-side but whose client call timed out got recorded as <i>failed</i> &mdash; so the next retry wave re-ingested it <b>without deleting first</b>, appending a second full copy. Across ~40 waves that compounded to 8&times;. Fix: <b>purge-before-ingest unconditionally</b> (delete the artifact&rsquo;s vectors every time &mdash; a cheap no-op when absent), and cap retries with a <b>quarantine</b> so a doc that simply can&rsquo;t ingest stops being re-chunked forever.</li>
     <li><b>Detached children outlive the parent you killed.</b> The loops were launched with <code>setsid</code>, so killing the orchestrator left the ingest driver (and its worker grandchildren) running &mdash; three separate escaped loops over one session, each still duplicating. <b>Always <code>pgrep</code> for stray drivers</b> before <i>and</i> after any rebuild step; a dead parent is not a stopped job.</li>
     <li><b>You can&rsquo;t cheaply de-duplicate re-ingests.</b> The duplicate vectors weren&rsquo;t byte-identical copies &mdash; the source <code>.md</code> had been re-split between runs, so chunk boundaries drifted and the &ldquo;duplicates&rdquo; were <i>distinct</i> vectors (32,981 points / 31,124 unique on one book). Nothing to delete cheaply; the only correct fix is <b>wipe the collection and re-embed</b> from the current text.</li>
-    <li><b>Pascal is the wall.</b> The interim embedder ran <code>f16</code> on a GTX&nbsp;1080 (Pascal, sm_61) at <b>~5&ndash;11 chunks/s</b>, and <i>batching did nothing</i> &mdash; llama.cpp serialized the batch and Pascal&rsquo;s f16 rate is ~1/64. Worse, the modern stack has dropped Pascal: <b>vLLM/TEI won&rsquo;t run on sm_61</b>, and marker&rsquo;s Torch (<code>cu130</code>) <b>has no Pascal kernels at all</b> (<code>no kernel image is available for execution on the device</code>) &mdash; so you can&rsquo;t even shard the PDF&rarr;Markdown sweep onto that card. The same model on the Ampere RTX&nbsp;3060 hits <b>~27 chunks/s</b> and <i>does</i> scale with batch. Confirm a card can run your kernels before you plan around it.</li>
+    <li><b>Pascal is the wall.</b> The interim embedder ran <code>f16</code> on a GTX&nbsp;1080 (Pascal, sm_61) at <b>~5&ndash;11 chunks/s</b>, and <i>batching did nothing</i> &mdash; llama.cpp serialized the batch and Pascal&rsquo;s f16 rate is ~1/64. Worse, the modern stack has dropped Pascal: <b>vLLM/TEI won&rsquo;t run on sm_61</b>, and marker&rsquo;s Torch (<code>cu130</code>) <b>has no Pascal kernels at all</b> (<code>no kernel image is available for execution on the device</code>) &mdash; so you can&rsquo;t even shard the PDF&rarr;Markdown sweep onto that card. The same model on the Ampere RTX&nbsp;3060 hits <b>~27 chunks/s</b> and <i>does</i> scale with batch. Confirm a card can run your kernels before you plan around it. <span class="sub">(Since resolved: the P100&rsquo;s full-rate FP16 removes this wall for the embedder.)</span></li>
     <li><b>The real speed lever is a properly-batching backend.</b> llama.cpp&rsquo;s embedding endpoint is effectively one-sequence-at-a-time; swapping to <b>vLLM</b> serving the same Qwen3-Embedding on the Ampere card &mdash; with requests actually batched on-GPU &mdash; is what turns a ~day-long re-embed into a few hours.</li>
     <li><b>Trust the measurement, not the process.</b> The bloated collection looked healthy by every process check; only counting points-per-document revealed the 8&times;. Gate &ldquo;done&rdquo; on an <b>audit</b> &mdash; each doc&rsquo;s point count near its real node count (none at a multiple), a sane total, and a vector-hash duplicate scan &mdash; and start every rebuild from an <b>empty collection with the manifest reset</b> (wipe <i>without</i> resetting the manifest and the ingester skips everything, leaving you empty).</li>
   </ol>
 
-  <footer>Self-hosted on the CryptoJones homelab fleet &middot; PrivateGPT v2 &middot; Dolphin-8B / llama.cpp &middot; Qwen3 embeddings &middot; hybrid Qdrant &middot; marker &middot; updated 2026-06-20 &middot; unlisted / noindex</footer>
+  <footer>Self-hosted on the CryptoJones homelab fleet &middot; rag-proxy / llama-swap &middot; llama.cpp (CUDA 12.9, sm_60/61/86) &middot; Qwen3 embeddings + BM25 &middot; bge-reranker-v2-m3 &middot; hybrid Qdrant &middot; huihui-30B / HauhauCS-35B &middot; updated 2026-08-14 &middot; unlisted / noindex</footer>
 </div>
 </body>
 </html>

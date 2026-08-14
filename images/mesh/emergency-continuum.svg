@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 520" width="1040" height="520">
+<rect width="1040" height="520" fill="#07090f"/>
+<text x="520.0" y="44.0" fill="#cfd8e3" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="20" font-weight="700" text-anchor="middle" letter-spacing="2">A BACKUP PLAN HAS LAYERS</text>
+<rect x="40" y="80" width="960" height="132" rx="12" fill="#0a0e16" stroke="#141a26" stroke-width="1"/>
+<rect x="40" y="80" width="6" height="132" rx="3" fill="#27d4ff"/>
+<text x="74.0" y="122.0" fill="#27d4ff" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="700" text-anchor="start" letter-spacing="1.5">CENTRALIZED</text>
+<text x="74.0" y="154.0" fill="#cfd8e3" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="22" font-weight="700" text-anchor="start" letter-spacing="0">Cell network</text>
+<rect x="872" y="102" width="104" height="30" rx="8" fill="none" stroke="#27d4ff" stroke-width="1.2" opacity="0.8"/>
+<text x="924.0" y="122.0" fill="#27d4ff" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="13" font-weight="600" text-anchor="middle" letter-spacing="1">EVERYDAY</text>
+<text x="74.0" y="182.0" fill="#5a6678" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="400" text-anchor="start" letter-spacing="0">Fast and easy every normal day. First thing to fail, and it takes everyone</text>
+<text x="74.0" y="204.0" fill="#5a6678" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="400" text-anchor="start" letter-spacing="0">down at once.</text>
+<path d="M520.0 214 l0 10 m-6 -5 l6 5 l6 -5" stroke="#5a6678" stroke-width="1.6" fill="none"/>
+<rect x="40" y="228" width="960" height="132" rx="12" fill="#0a0e16" stroke="#141a26" stroke-width="1"/>
+<rect x="40" y="228" width="6" height="132" rx="3" fill="#55ff99"/>
+<text x="74.0" y="270.0" fill="#55ff99" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="700" text-anchor="start" letter-spacing="1.5">DECENTRALIZED</text>
+<text x="74.0" y="302.0" fill="#cfd8e3" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="22" font-weight="700" text-anchor="start" letter-spacing="0">MeshCore backbone</text>
+<rect x="806" y="250" width="170" height="30" rx="8" fill="none" stroke="#55ff99" stroke-width="1.2" opacity="0.8"/>
+<text x="890.8" y="270.0" fill="#55ff99" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="13" font-weight="600" text-anchor="middle" letter-spacing="1">REGIONAL BACKUP</text>
+<text x="74.0" y="330.0" fill="#5a6678" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="400" text-anchor="start" letter-spacing="0">Repeaters on high sites, tied together, running on solar. Covers a county or a</text>
+<text x="74.0" y="352.0" fill="#5a6678" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="400" text-anchor="start" letter-spacing="0">whole state. Takes planning.</text>
+<path d="M520.0 362 l0 10 m-6 -5 l6 5 l6 -5" stroke="#5a6678" stroke-width="1.6" fill="none"/>
+<rect x="40" y="376" width="960" height="132" rx="12" fill="#0a0e16" stroke="#141a26" stroke-width="1"/>
+<rect x="40" y="376" width="6" height="132" rx="3" fill="#ff9b3d"/>
+<text x="74.0" y="418.0" fill="#ff9b3d" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="700" text-anchor="start" letter-spacing="1.5">DISTRIBUTED</text>
+<text x="74.0" y="450.0" fill="#cfd8e3" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="22" font-weight="700" text-anchor="start" letter-spacing="0">Meshtastic grab-and-go</text>
+<rect x="796" y="398" width="180" height="30" rx="8" fill="none" stroke="#ff9b3d" stroke-width="1.2" opacity="0.8"/>
+<text x="886.0" y="418.0" fill="#ff9b3d" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="13" font-weight="600" text-anchor="middle" letter-spacing="1">LAST-DITCH LOCAL</text>
+<text x="74.0" y="478.0" fill="#5a6678" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="400" text-anchor="start" letter-spacing="0">A few radios in a drawer. Every one relays. No plan, no backbone. Covers the</text>
+<text x="74.0" y="500.0" fill="#5a6678" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="400" text-anchor="start" letter-spacing="0">block you stand on.</text>
+</svg>

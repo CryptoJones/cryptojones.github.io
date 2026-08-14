@@ -1,113 +1,64 @@
-# Repository Instructions
+# AGENTS.md — cryptojones.github.io
 
-This repository is CryptoJones's personal blog site.
+Rules for any AI agent (Claude Code, etc.) working in this repo. Read this first.
+These are **repo-local law** and OVERRIDE any general/global rule you were given —
+including the "public repos need a feature branch + PR" rule. This repo is a named
+exception to that rule (it has to be — see below).
 
-## Git workflow
+---
 
-- Direct commits to `master` or `main` are explicitly authorized for this repository.
-- Push completed changes directly to the corresponding `origin/master` or `origin/main` branch; a feature branch and pull request are not required.
-- Keep changes scoped to the requested blog-site work, and verify the working tree before committing or pushing.
+## 1. Push DIRECTLY to `master`. No branch. No PR. Do not ask.
 
-## Writing
+This is a Jekyll site published via **GitHub Pages**, which can only build from
+GitHub's `master` branch. The branch+PR ceremony that applies to other public repos
+**does NOT apply here.**
 
-- **Target an eighth-grade reading level for blog posts.** Prefer short sentences and
-  common words. It's fine to use technical terms, but define each one in plain language
-  the first time it appears (a short blockquote works well).
-- Do not use em dashes in blog posts.
-
-## Index descriptions
-
-- Add a plain-text `description` field to the YAML front matter of every new post.
-- Write one or two short sentences that explain the post in about 20 to 30 words.
-- Keep the description at an eighth-grade reading level. Do not put HTML, Markdown,
-  Liquid tags, or media embeds in it.
-- The home page in `index.html` must display `post.description` when it exists and
-  fall back to the generated excerpt for older posts.
-- Build the site and check the new post card before publishing. A post that begins
-  with a video or other embed must still have a useful text description on the index.
-
-## Article narration
-
-- Create narration for every new blog post before publishing it.
-- Use the canonical voice tools and reference files in the adjacent
-  `../aaronkclark-voicemodel` repository:
-  - `qwen_narrate_longform.py`
-  - `dataset/reference/aaron_reference.wav`
-  - `dataset/reference/aaron_reference.txt`
-  - `validate_renascence_asr.py`
-- Narrate the article text, not its YAML front matter. Leave out code listings,
-  raw URLs, image paths, video embed markup, and other text that is not useful when
-  spoken.
-- Split long text into a JSON list of short chunks for `qwen_narrate_longform.py`.
-  Each chunk must contain `id`, `text`, `stanza`, and `pause_after_ms`.
-- Use the accepted Qwen3-TTS 0.6B Aaron voice, language `English`, and native
-  pacing. The renderer requires an RTX 3060 CUDA device. Use `--resume` so an
-  interrupted render can continue safely.
-- Encode the finished WAV as a mono, 24 kHz, 96 kbps MP3. Normalize it with
-  FFmpeg's `loudnorm=I=-16:TP=-1.5:LRA=11` filter.
-- Save the final file as `audio/posts/<post-slug>.mp3` and add
-  `audio: /audio/posts/<post-slug>.mp3` to the post's YAML front matter.
-- The post layout places the compact player directly below the title. Do not add
-  a second player inside the post body.
-- Confirm that the MP3 is playable, validate the narration against its source
-  text, build the Jekyll site, and verify the page and audio path before publishing.
-
-### Running the render (read this before installing anything)
-
-**Nothing needs to be installed.** The renderer runs on
-`$GPU_RENDERING_BOX_NAMED_AFTER_CARTOON_DOG` through `uv`, with every
-dependency already in that host's uv cache, resolved fully offline. If you conclude that you need to `pip install` torch, download the
-model, or free disk space, you have probed the wrong interpreter. A plain
-`python3 -c "import torch"` tests the *system* interpreter and will always
-report the package missing, because the toolchain lives in the uv cache.
-
-Three things trip up every first attempt:
-
-1. **Pin `--python 3.12`.** `uv` defaults to a newer CPython on
-   `$GPU_RENDERING_BOX_NAMED_AFTER_CARTOON_DOG`, and the cached torch wheels
-   stop at the `cp312` ABI. Without the pin the
-   resolver fails with "requirements are unsatisfiable" plus a hint about ABI
-   tags, which reads like a missing package but is not.
-2. **Pass `--offline`.** It proves the run needs no network, and it fails fast
-   and loudly instead of silently pulling multi-gigabyte CUDA wheels.
-3. **Use `--device cuda:0`, the default.** On a multi-GPU host, torch and
-   `nvidia-smi` can enumerate devices in *opposite* order. Do not translate an
-   `nvidia-smi` index into a `--device` flag. `qwen_narrate_longform.py` guards
-   on the device name and refuses to run on the wrong card, so a mismatch shows
-   up as `Refusing to run on unexpected CUDA device`.
-
-The invocation, run from a work directory holding the script, the reference
-pair, and the chunk JSON:
+- Branch is **`master`**, not `main`.
+- Workflow for any change: **scrub → commit → push to master → verify build**.
+- **Do NOT ask "should I push?"** Publishing a blog change is one self-contained
+  unit of work. Asking permission mid-way is the wrong move and has been corrected
+  multiple times (2026-08-02, 2026-08-14).
 
 ```bash
-uv run --offline --python 3.12 \
-  --with qwen-tts==0.1.1 --with torch --with soundfile --with numpy \
-  python qwen_narrate_longform.py \
-    --model ~/models/Qwen3-TTS-12Hz-0.6B-Base \
-    --reference aaron_reference.wav \
-    --reference-text aaron_reference.txt \
-    --chunks <post-slug>.json \
-    --output-dir out --output-name narration.wav \
-    --language English --device cuda:0 --seed <YYYYMMDD> --resume
+git -C . fetch origin --prune        # freshness (its own command)
+git -C . commit -am "…"              # then commit
+git push origin master               # then push, directly
 ```
 
-`Warning: flash-attn is not installed` is expected and harmless; every existing
-post was rendered on the same manual PyTorch path.
+## 2. ALWAYS verify the Pages build after pushing. Never assume it worked.
 
-Then encode and place the file:
+A push does not mean the site updated — a Jekyll build can fail and leave the live
+site stale while you report success. After every push:
 
 ```bash
-ffmpeg -i out/narration.wav -ac 1 -ar 24000 -b:a 96k \
-  -af loudnorm=I=-16:TP=-1.5:LRA=11 audio/posts/<post-slug>.mp3
+RID=$(gh run list -R CryptoJones/cryptojones.github.io -L 1 --json databaseId -q '.[0].databaseId')
+gh run watch "$RID" -R CryptoJones/cryptojones.github.io --exit-status
 ```
 
-Chunk JSON is a list of objects with `id`, `kind`, `stanza`, `text`, and
-`pause_after_ms`. Useful pause values: 900 ms after a heading, 700 ms after a
-definition blockquote, 500 ms after a body paragraph.
+Only report "published" after that exits 0.
 
-**Do not purge `$GPU_RENDERING_BOX_NAMED_AFTER_CARTOON_DOG`'s uv cache to
-reclaim disk.** It is tens of
-gigabytes and looks like throwaway download cruft, but it *is* the renderer:
-the cached CUDA torch build and `qwen-tts` wheel are what make an offline run
-possible. Clearing it breaks narration for every future post and forces a
-multi-gigabyte re-download. Reclaim space somewhere else.
+## 3. Scrub real-world data before committing — with ONE exception.
+
+Genericize real IPs/subnets, MACs, internal hostnames, host:port endpoints,
+personal paths/usernames, and **never** publish secrets (keys/tokens/passwords).
+See `CLAUDE.md` in this repo for the placeholder table.
+
+**THE EXCEPTION:** `fleet-local-inference-plan.html` is an **unlisted** page
+(noindex, not in nav). Real internal IPs, subnets, hostnames (pluto/telesto/ronin28),
+GPU UUIDs, host:port endpoints, and real file paths MAY appear on THAT page — it is
+owner-authorized and exists to document the real homelab for teaching value. The
+one universal line still holds even there: **never publish live secrets.** This
+exception applies ONLY to that one file; every other post gets fully scrubbed.
+
+## 4. Authoring posts
+
+- File: `_posts/YYYY-MM-DD-Title-With-Dashes.md`. Front matter: `layout: post` +
+  a quoted `title:`. The `post` layout renders the title as `<h1>` — do NOT repeat
+  it as an `#` heading in the body. Lead with the intro paragraph.
+- Post URLs permalink as `https://cryptojones.dev/<Post-Title-Slug>/` (no date path).
+- New posts auto-appear in the index; no manual index edit needed.
+- Standard footer/banner conventions live in the global `CLAUDE.md`.
+
+---
+
+*Proudly Made in Nebraska. Go Big Red! 🌽 <https://xkcd.com/2347/>*

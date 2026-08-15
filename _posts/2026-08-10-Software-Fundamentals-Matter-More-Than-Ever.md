@@ -5,6 +5,8 @@ description: "Matt Pocock argues that specs to code makes worse code every pass,
 audio: /audio/posts/Software-Fundamentals-Matter-More-Than-Ever.mp3
 ---
 
+![A developer at a workbench desk, holding a Rubik's cube in one hand and an ornate dodecahedron in the other, with a class diagram floating in a thought bubble overhead](/images/software-fundamentals-hero.jpeg)
+
 *Matt Pocock gave a talk at the AI Engineer conference called "Software Fundamentals Matter More Than Ever." It is about eighteen minutes long and it is worth every one of them. His message is simple. If you have been worried that AI made your skills worthless, the opposite is true. The old books matter more now than they did before. Here is what he said, and why I think he is right.*
 
 🎥 **[Watch the talk on YouTube &rarr;](https://www.youtube.com/watch?v=v4F1gFy-hqg)**

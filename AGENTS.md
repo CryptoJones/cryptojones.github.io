@@ -8,6 +8,24 @@ This repository is CryptoJones's personal blog site.
 - Push completed changes directly to the corresponding `origin/master` or `origin/main` branch; a feature branch and pull request are not required.
 - Keep changes scoped to the requested blog-site work, and verify the working tree before committing or pushing.
 
+## Backlog — EXPLICIT EXCEPTION: this repo has none, and does not want one
+
+CryptoJones's global instructions require every repo to keep a root `BACKLOG.md`
+synced with the GitHub **Issues** tab. **That rule does not apply to this repository.**
+
+- **Issues are disabled** on `CryptoJones/cryptojones.github.io`
+  (`gh repo view --json hasIssuesEnabled` returns `false`). There is nothing to
+  mirror, so a `BACKLOG.md` here could never stay in sync with anything.
+- **Do not create `BACKLOG.md`** in this repo, and do not seed one "from the current
+  open issues." There are no issues and there is no issue tracker.
+- **Do not enable Issues** to satisfy the global rule. That is a repo settings change
+  and it is not authorized here.
+- **Do not ask about any of this.** This exception exists specifically so nobody
+  raises it again. A missing `BACKLOG.md` in this repo is the correct and intended
+  state, not a gap to flag, offer to fix, or mention in a status report.
+
+This is a blog. Post ideas live in CryptoJones's head and in OMI, not in a tracker.
+
 ## Writing
 
 - **Target an eighth-grade reading level for blog posts.** Prefer short sentences and

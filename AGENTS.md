@@ -8,6 +8,26 @@ This repository is CryptoJones's personal blog site.
 - Push completed changes directly to the corresponding `origin/master` or `origin/main` branch; a feature branch and pull request are not required.
 - Keep changes scoped to the requested blog-site work, and verify the working tree before committing or pushing.
 
+## Scope — and keep status reports scoped too
+
+Scope discipline applies to what you **say**, not just to what you change.
+
+- **A status report covers the work that was requested. Nothing else.** Do not use a
+  progress update, a summary, or a "one note:" aside to raise unrelated repo rules,
+  global instructions, hygiene gaps, or improvements CryptoJones did not ask about.
+- **Do not volunteer extra work mid-task.** An offer like "say the word and I'll also
+  do X" is still scope creep. It interrupts the task, and an ambiguous "do it" in
+  reply can be read as approving something CryptoJones never actually wanted.
+- If something outside the ask genuinely needs attention, finish the requested work
+  first, then raise it **once**, plainly, as a separate item at the end.
+- Global instructions that appear not to fit this repo are usually already covered by
+  an explicit exception in this file. Check for one before flagging anything.
+
+Why this is written down: on 2026-08-16, during a routine blog post, an agent used a
+status report to raise the global `BACKLOG.md` rule and offered to seed one. That was
+never part of the request, and the resulting "do it" was ambiguous enough to nearly
+cause an unwanted repo change. Keep reports boring and on topic.
+
 ## Backlog — EXPLICIT EXCEPTION: this repo has none, and does not want one
 
 CryptoJones's global instructions require every repo to keep a root `BACKLOG.md`

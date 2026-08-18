@@ -46,6 +46,30 @@ synced with the GitHub **Issues** tab. **That rule does not apply to this reposi
 
 This is a blog. Post ideas live in CryptoJones's head and in OMI, not in a tracker.
 
+## Definition of done for a post — NARRATION IS NOT OPTIONAL
+
+A post is not finished when the Markdown is written. **Every article on this site is
+narrated, and every new one needs narration too.** A post that merges without an
+`audio:` line is an incomplete post, not a complete post missing a nice-to-have.
+
+Required before you commit a new post:
+
+1. Markdown at `_posts/YYYY-MM-DD-Title-With-Dashes.md`, eighth-grade reading level,
+   no em dashes. See **Writing**.
+2. A `description` field in the front matter. See **Index descriptions**.
+3. **Narration rendered and encoded to `audio/posts/<post-slug>.mp3`.**
+4. **`audio: /audio/posts/<post-slug>.mp3` added to the front matter.**
+5. The sensitive-data scrub in `CLAUDE.md`.
+
+Read **Article narration** below *before* you start writing, not after. The render
+is the slow step, it runs on another machine, and discovering that at commit time is
+how posts end up shipping silent.
+
+If the narration truly cannot be rendered in this session (render box down, GPU
+unavailable, no SSH), then leave the `audio:` line out rather than pointing it at a
+file that does not exist, and **say so plainly in the status report** so it can be
+finished later. Do not quietly ship a silent post and do not treat it as done.
+
 ## Writing
 
 - **Target an eighth-grade reading level for blog posts.** Prefer short sentences and

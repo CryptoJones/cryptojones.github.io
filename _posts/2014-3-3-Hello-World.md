@@ -1,11 +1,8 @@
 ---
 layout: post
-title: You're up and running!
-audio: /audio/posts/Hello-World.mp3
+title: "Hello, World!"
+description: "My first post. Who I am, where I study, and what I do for a living. A short introduction before the real writing starts."
+audio: /audio/posts/hello-world.mp3
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
-
-![_config.yml]({{ site.baseurl }}/images/config.png)
-
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
+I am Aaron Clark, an Undergraduate Computer Science student at the University of Maryland University College. By day, I am a .NET Programmer at Reinke Manufacturing, Inc. in Lexington, Nebraska and this is my first blog post!

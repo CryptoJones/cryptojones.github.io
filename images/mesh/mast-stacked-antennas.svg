@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560" role="img" aria-label="Elevation drawing of a mast. The Meshtastic antenna sits at the top and the MeshCore antenna ten feet below it. Each antenna radiates a donut pattern with strong lobes to the left and right and a dead spot straight up and down, so the coupling path between them runs through both dead spots, giving about 67 decibels of isolation.">
+<title>Two antennas stacked on one mast, ten feet apart</title>
+<style>
+  :root {
+    --bg: #070b08;
+    --fg: #cfd8e3;
+    --accent: #27d4ff;
+    --stamp: #55ff99;
+    --dim: #5a6678;
+    --dim2: #3a4456;
+    --muted: #88aaaa;
+    --mt: #7dff6e;
+    --mc: #ff4fd8;
+  }
+  .s-struct { stroke: var(--dim);  stroke-width: 1.6; fill: none; }
+  .s-mast   { fill: #1b2430; stroke: var(--dim2); stroke-width: 1; }
+  .s-dim    { stroke: var(--muted); stroke-width: 1.3; fill: none; }
+  .s-ext    { stroke: var(--dim2); stroke-width: 1; fill: none; stroke-dasharray: 3 4; }
+  .s-null   { stroke: var(--accent); stroke-width: 2; fill: none; stroke-dasharray: 9 7; }
+  .lobe-mt  { fill: #7dff6e1f; stroke: var(--mt); stroke-width: 1.4; }
+  .lobe-mc  { fill: #ff4fd81f; stroke: var(--mc); stroke-width: 1.4; }
+  .el-mt    { stroke: var(--mt); stroke-width: 3.4; fill: none; }
+  .el-mc    { stroke: var(--mc); stroke-width: 3.4; fill: none; }
+  text { font-family: "DejaVu Sans Mono", Menlo, Consolas, monospace;
+         fill: var(--fg); font-size: 15px; }
+  .lbl     { font-size: 15px; fill: var(--fg); }
+  .lbl-s   { font-size: 13px; fill: var(--muted); }
+  .lbl-x   { font-size: 12px; fill: var(--dim); letter-spacing: .1em; }
+  .eyebrow { font-size: 12px; fill: var(--dim2); letter-spacing: .18em; }
+  .num     { font-size: 15px; fill: var(--stamp); }
+  .t-mt    { fill: var(--mt); font-size: 15px; font-weight: bold; }
+  .t-mc    { fill: var(--mc); font-size: 15px; font-weight: bold; }
+</style>
+<defs>
+  <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7"
+          markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#88aaaa"/>
+  </marker>
+  <marker id="arc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6"
+          markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#27d4ff"/>
+  </marker>
+  <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse"
+           patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="12" stroke="#22303f" stroke-width="1.4"/>
+  </pattern>
+</defs>
+
+<rect x="0" y="0" width="900" height="560" fill="#070b08"/>
+
+<text class="eyebrow" x="60" y="34">ELEVATION &#183; VERTICAL SCALE 31 px / ft</text>
+
+<!-- grade -->
+<line class="s-struct" x1="60" y1="504" x2="840" y2="504"/>
+<rect x="60" y="505" width="780" height="14" fill="url(#hatch)"/>
+
+<!-- mast -->
+<rect class="s-mast" x="334" y="70" width="12" height="434"/>
+
+<!-- top antenna : Meshtastic -->
+<ellipse class="lobe-mt" cx="280" cy="120" rx="56" ry="30"/>
+<ellipse class="lobe-mt" cx="400" cy="120" rx="56" ry="30"/>
+<line class="el-mt" x1="340" y1="90" x2="340" y2="150"/>
+<circle cx="340" cy="120" r="4.5" fill="#7dff6e"/>
+<text class="t-mt"  x="478" y="112">MESHTASTIC</text>
+<text class="lbl-s" x="478" y="133">906.875 MHz</text>
+<text class="lbl-x" x="478" y="152">OMNI &#183; VERTICAL POL</text>
+
+<!-- bottom antenna : MeshCore -->
+<ellipse class="lobe-mc" cx="280" cy="430" rx="56" ry="30"/>
+<ellipse class="lobe-mc" cx="400" cy="430" rx="56" ry="30"/>
+<line class="el-mc" x1="340" y1="400" x2="340" y2="460"/>
+<circle cx="340" cy="430" r="4.5" fill="#ff4fd8"/>
+<text class="t-mc"  x="478" y="422">MESHCORE</text>
+<text class="lbl-s" x="478" y="443">910.525 MHz</text>
+<text class="lbl-x" x="478" y="462">OMNI &#183; VERTICAL POL</text>
+
+<!-- coupling path through both nulls -->
+<line class="s-null" x1="340" y1="168" x2="340" y2="382"
+      marker-start="url(#arc)" marker-end="url(#arc)"/>
+<line class="s-ext" x1="300" y1="262" x2="330" y2="262"/>
+<text class="lbl"   x="70" y="248" fill="#27d4ff">COUPLING PATH</text>
+<text class="lbl-s" x="70" y="268">leaves through one dead spot,</text>
+<text class="lbl-s" x="70" y="287">arrives through the other</text>
+<text class="num"   x="70" y="312">&#8776; 67 dB isolation</text>
+
+<!-- dimension -->
+<line class="s-ext" x1="650" y1="120" x2="716" y2="120"/>
+<line class="s-ext" x1="650" y1="430" x2="716" y2="430"/>
+<line class="s-dim" x1="700" y1="120" x2="700" y2="430"
+      marker-start="url(#ar)" marker-end="url(#ar)"/>
+<line class="s-dim" x1="692" y1="120" x2="708" y2="120"/>
+<line class="s-dim" x1="692" y1="430" x2="708" y2="430"/>
+<text class="num"   x="724" y="264">10 ft</text>
+<text class="lbl-s" x="724" y="285">3.05 m</text>
+<text class="lbl-s" x="724" y="304">&#8776; 9.3 &#955;</text>
+</svg>

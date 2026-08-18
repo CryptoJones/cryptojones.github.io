@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" width="900" height="470" role="img" aria-label="Comparison showing that 10 feet of vertical separation and 191 feet of horizontal separation both yield about 67 dB of isolation. The horizontal case is drawn with a break mark because it is nineteen times longer.">
+<title>Comparison showing that 10 feet of vertical separation and 191 feet of horizontal separation both yield about 67 dB of isolation. The horizontal case is drawn with a break mark because it is nineteen times longer.</title>
+<style>
+  :root {
+    --bg: #070b08;
+    --fg: #cfd8e3;
+    --accent: #27d4ff;
+    --stamp: #55ff99;
+    --dim: #5a6678;
+    --dim2: #3a4456;
+    --muted: #88aaaa;
+    --alert: #ff4f4f;
+    --hairline: #141a26;
+    --cat-cyan: #27d4ff;
+    --cat-orange: #ff9b3d;
+    --mt: #7dff6e;
+    --mc: #ff4fd8;
+  }
+  .s-struct { stroke: var(--dim);   stroke-width: 1.6; fill: none; }
+  .s-mast   { fill: #1b2430; stroke: var(--dim2); stroke-width: 1; }
+  .s-dim    { stroke: var(--muted); stroke-width: 1.3; fill: none; }
+  .s-ext    { stroke: var(--dim2);  stroke-width: 1; fill: none; stroke-dasharray: 3 4; }
+  .s-null   { stroke: var(--accent); stroke-width: 2; fill: none; stroke-dasharray: 9 7; }
+  .s-grid   { stroke: var(--hairline); stroke-width: 1; fill: none; }
+  .s-axis   { stroke: var(--dim2);  stroke-width: 1.4; fill: none; }
+  .s-target { stroke: var(--accent); stroke-width: 1.4; fill: none; stroke-dasharray: 7 6; }
+  .lobe-mt  { fill: #7dff6e1f; stroke: var(--mt); stroke-width: 1.4; }
+  .lobe-mc  { fill: #ff4fd81f; stroke: var(--mc); stroke-width: 1.4; }
+  .el-mt    { stroke: var(--mt); stroke-width: 3.4; fill: none; }
+  .el-mc    { stroke: var(--mc); stroke-width: 3.4; fill: none; }
+  .cv-v     { stroke: var(--mt); stroke-width: 3; fill: none;
+              stroke-linejoin: round; stroke-linecap: round; }
+  .cv-h     { stroke: var(--mc); stroke-width: 3; fill: none;
+              stroke-linejoin: round; stroke-linecap: round; }
+  text { font-family: "DejaVu Sans Mono", Menlo, Consolas, monospace;
+         fill: var(--fg); font-size: 15px; }
+  .lbl     { font-size: 15px; fill: var(--fg); }
+  .lbl-s   { font-size: 13px; fill: var(--muted); }
+  .lbl-x   { font-size: 12px; fill: var(--dim); letter-spacing: .1em; }
+  .eyebrow { font-size: 12px; fill: var(--dim2); letter-spacing: .18em; }
+  .num     { font-size: 15px; fill: var(--stamp); }
+  .readout { font-size: 34px; fill: var(--accent); font-weight: bold; }
+  .t-mt    { fill: var(--mt); font-size: 15px; font-weight: bold; }
+  .t-mc    { fill: var(--mc); font-size: 15px; font-weight: bold; }
+</style>
+<rect x="0" y="0" width="900" height="470" fill="#070b08"/>
+
+      <defs>
+        <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7"
+                markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/>
+        </marker>
+      </defs>
+
+      <text class="eyebrow" x="60" y="34">BOTH CASES TARGET 67 dB · 915 MHz · λ = 12.9 in</text>
+
+      <!-- ══ A · VERTICAL ══ -->
+      <text class="lbl" x="60" y="72" fill="var(--mt)">A · VERTICAL — STACKED</text>
+
+      <line class="s-mast" x1="200" y1="88" x2="200" y2="210" stroke="var(--dim2)"
+            stroke-width="8"/>
+      <line class="el-mt" x1="200" y1="88"  x2="200" y2="110"/>
+      <circle cx="200" cy="110" r="4.5" fill="var(--mt)"/>
+      <line class="el-mt" x1="200" y1="188" x2="200" y2="210"/>
+      <circle cx="200" cy="210" r="4.5" fill="var(--mt)"/>
+
+      <line class="s-ext" x1="210" y1="110" x2="272" y2="110"/>
+      <line class="s-ext" x1="210" y1="210" x2="272" y2="210"/>
+      <line class="s-dim" x1="262" y1="110" x2="262" y2="210"
+            marker-start="url(#ar2)" marker-end="url(#ar2)"/>
+      <text class="num"   x="284" y="155">10 ft</text>
+      <text class="lbl-s" x="284" y="175">3.05 m</text>
+
+      <text class="readout glow" x="470" y="168">≈ 67 dB</text>
+      <text class="lbl-x"        x="472" y="192">ISOLATION</text>
+
+      <!-- ══ B · HORIZONTAL ══ -->
+      <line class="s-grid" x1="60" y1="248" x2="860" y2="248"/>
+      <text class="lbl" x="60" y="292" fill="var(--mc)">B · HORIZONTAL — SIDE BY SIDE</text>
+
+      <text class="readout" x="330" y="352" fill="var(--mc)">≈ 67 dB</text>
+      <text class="lbl-x"   x="332" y="376">SAME ISOLATION</text>
+
+      <!-- ground with break -->
+      <line class="s-struct" x1="90"  y1="410" x2="452" y2="410"/>
+      <path  class="s-struct" d="M452,410 L466,398 L482,422 L496,410"/>
+      <line class="s-struct" x1="496" y1="410" x2="862" y2="410"/>
+
+      <line class="s-mast" x1="130" y1="368" x2="130" y2="410" stroke="var(--dim2)"
+            stroke-width="8"/>
+      <line class="el-mc" x1="130" y1="346" x2="130" y2="368"/>
+      <circle cx="130" cy="368" r="4.5" fill="var(--mc)"/>
+
+      <line class="s-mast" x1="822" y1="368" x2="822" y2="410" stroke="var(--dim2)"
+            stroke-width="8"/>
+      <line class="el-mc" x1="822" y1="346" x2="822" y2="368"/>
+      <circle cx="822" cy="368" r="4.5" fill="var(--mc)"/>
+
+      <!-- dimension with break -->
+      <line class="s-ext" x1="130" y1="376" x2="130" y2="448"/>
+      <line class="s-ext" x1="822" y1="376" x2="822" y2="448"/>
+      <line class="s-dim" x1="130" y1="440" x2="450" y2="440" marker-start="url(#ar2)"/>
+      <path  class="s-dim" d="M450,440 L464,428 L480,452 L494,440"/>
+      <line class="s-dim" x1="494" y1="440" x2="822" y2="440" marker-end="url(#ar2)"/>
+      <text class="num"   x="474" y="398" text-anchor="middle">191 ft</text>
+      <text class="lbl-s" x="474" y="466" text-anchor="middle">58 m · ≈ 131 ft omitted at break</text>
+    
+</svg>

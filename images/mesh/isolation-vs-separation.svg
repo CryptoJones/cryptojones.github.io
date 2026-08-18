@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="900" height="480" role="img" aria-label="Log-scale plot of isolation in decibels against separation in feet at 915 MHz. The vertical-stack curve rises steeply and crosses the 67 dB target at 10 feet; the horizontal curve rises half as fast and does not reach 67 dB until 191 feet. A shaded band below 45 dB marks the marginal region.">
+<title>Log-scale plot of isolation in decibels against separation in feet at 915 MHz. The vertical-stack curve rises steeply and crosses the 67 dB target at 10 feet; the horizontal curve rises half as fast and does not reach 67 dB until 191 feet. A shaded band below 45 dB marks the marginal region.</title>
+<style>
+  :root {
+    --bg: #070b08;
+    --fg: #cfd8e3;
+    --accent: #27d4ff;
+    --stamp: #55ff99;
+    --dim: #5a6678;
+    --dim2: #3a4456;
+    --muted: #88aaaa;
+    --alert: #ff4f4f;
+    --hairline: #141a26;
+    --cat-cyan: #27d4ff;
+    --cat-orange: #ff9b3d;
+    --mt: #7dff6e;
+    --mc: #ff4fd8;
+  }
+  .s-struct { stroke: var(--dim);   stroke-width: 1.6; fill: none; }
+  .s-mast   { fill: #1b2430; stroke: var(--dim2); stroke-width: 1; }
+  .s-dim    { stroke: var(--muted); stroke-width: 1.3; fill: none; }
+  .s-ext    { stroke: var(--dim2);  stroke-width: 1; fill: none; stroke-dasharray: 3 4; }
+  .s-null   { stroke: var(--accent); stroke-width: 2; fill: none; stroke-dasharray: 9 7; }
+  .s-grid   { stroke: var(--hairline); stroke-width: 1; fill: none; }
+  .s-axis   { stroke: var(--dim2);  stroke-width: 1.4; fill: none; }
+  .s-target { stroke: var(--accent); stroke-width: 1.4; fill: none; stroke-dasharray: 7 6; }
+  .lobe-mt  { fill: #7dff6e1f; stroke: var(--mt); stroke-width: 1.4; }
+  .lobe-mc  { fill: #ff4fd81f; stroke: var(--mc); stroke-width: 1.4; }
+  .el-mt    { stroke: var(--mt); stroke-width: 3.4; fill: none; }
+  .el-mc    { stroke: var(--mc); stroke-width: 3.4; fill: none; }
+  .cv-v     { stroke: var(--mt); stroke-width: 3; fill: none;
+              stroke-linejoin: round; stroke-linecap: round; }
+  .cv-h     { stroke: var(--mc); stroke-width: 3; fill: none;
+              stroke-linejoin: round; stroke-linecap: round; }
+  text { font-family: "DejaVu Sans Mono", Menlo, Consolas, monospace;
+         fill: var(--fg); font-size: 15px; }
+  .lbl     { font-size: 15px; fill: var(--fg); }
+  .lbl-s   { font-size: 13px; fill: var(--muted); }
+  .lbl-x   { font-size: 12px; fill: var(--dim); letter-spacing: .1em; }
+  .eyebrow { font-size: 12px; fill: var(--dim2); letter-spacing: .18em; }
+  .num     { font-size: 15px; fill: var(--stamp); }
+  .readout { font-size: 34px; fill: var(--accent); font-weight: bold; }
+  .t-mt    { fill: var(--mt); font-size: 15px; font-weight: bold; }
+  .t-mc    { fill: var(--mc); font-size: 15px; font-weight: bold; }
+</style>
+<rect x="0" y="0" width="900" height="480" fill="#070b08"/>
+
+      <defs>
+        <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6"
+                markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
+        </marker>
+      </defs>
+
+      <text class="eyebrow" x="110" y="34">ISOLATION (dB) vs SEPARATION (ft) · 915 MHz · λ = 1.076 ft</text>
+
+      <!-- marginal band -->
+      <rect x="110" y="262" width="740" height="138" fill="#ff4f4f0e"/>
+      <text class="lbl-x" x="120" y="392" fill="var(--alert)">MARGINAL — BELOW 45 dB</text>
+
+      <!-- grid -->
+      <line class="s-grid" x1="110" y1="345" x2="850" y2="345"/>
+      <line class="s-grid" x1="110" y1="290" x2="850" y2="290"/>
+      <line class="s-grid" x1="110" y1="235" x2="850" y2="235"/>
+      <line class="s-grid" x1="110" y1="180" x2="850" y2="180"/>
+      <line class="s-grid" x1="110" y1="125" x2="850" y2="125"/>
+      <line class="s-grid" x1="110" y1="70"  x2="850" y2="70"/>
+      <line class="s-grid" x1="207" y1="70" x2="207" y2="400"/>
+      <line class="s-grid" x1="263" y1="70" x2="263" y2="400"/>
+      <line class="s-grid" x1="335" y1="70" x2="335" y2="400"/>
+      <line class="s-grid" x1="432" y1="70" x2="432" y2="400"/>
+      <line class="s-grid" x1="528" y1="70" x2="528" y2="400"/>
+      <line class="s-grid" x1="656" y1="70" x2="656" y2="400"/>
+      <line class="s-grid" x1="753" y1="70" x2="753" y2="400"/>
+
+      <!-- axes -->
+      <line class="s-axis" x1="110" y1="70" x2="110" y2="400"/>
+      <line class="s-axis" x1="110" y1="400" x2="850" y2="400"/>
+
+      <!-- y ticks -->
+      <text class="lbl-s" x="100" y="405" text-anchor="end">20</text>
+      <text class="lbl-s" x="100" y="350" text-anchor="end">30</text>
+      <text class="lbl-s" x="100" y="295" text-anchor="end">40</text>
+      <text class="lbl-s" x="100" y="240" text-anchor="end">50</text>
+      <text class="lbl-s" x="100" y="185" text-anchor="end">60</text>
+      <text class="lbl-s" x="100" y="130" text-anchor="end">70</text>
+      <text class="lbl-s" x="100" y="75"  text-anchor="end">80</text>
+
+      <!-- x ticks -->
+      <text class="lbl-s" x="110" y="422" text-anchor="middle">1</text>
+      <text class="lbl-s" x="207" y="422" text-anchor="middle">2</text>
+      <text class="lbl-s" x="263" y="422" text-anchor="middle">3</text>
+      <text class="lbl-s" x="335" y="422" text-anchor="middle">5</text>
+      <text class="lbl-s" x="432" y="422" text-anchor="middle">10</text>
+      <text class="lbl-s" x="528" y="422" text-anchor="middle">20</text>
+      <text class="lbl-s" x="656" y="422" text-anchor="middle">50</text>
+      <text class="lbl-s" x="753" y="422" text-anchor="middle">100</text>
+      <text class="lbl-s" x="850" y="422" text-anchor="middle">200</text>
+      <text class="lbl-x" x="480" y="448" text-anchor="middle">SEPARATION — FEET (LOG)</text>
+
+      <!-- 67 dB target -->
+      <line class="s-target" x1="110" y1="142" x2="850" y2="142"/>
+      <text class="lbl-s" x="118" y="134" fill="var(--accent)">67 dB TARGET — protects weak/fringe links</text>
+
+      <!-- curves -->
+      <polyline class="cv-v" points="110,363 207,297 263,258 335,209 432,143 528,77 539,70"/>
+      <polyline class="cv-h" points="110,392 207,359 263,340 335,316 432,282 528,249 656,206 753,172 850,139"/>
+
+      <!-- crossings -->
+      <circle cx="432" cy="142" r="7" fill="var(--bg)" stroke="var(--mt)" stroke-width="3"/>
+      <line class="s-ext" x1="432" y1="149" x2="432" y2="400" stroke="var(--mt)" opacity=".5"/>
+      <text class="t-mt" x="444" y="112">10 ft</text>
+
+      <circle cx="844" cy="142" r="7" fill="var(--bg)" stroke="var(--mc)" stroke-width="3"/>
+      <line class="s-ext" x1="844" y1="149" x2="844" y2="400" stroke="var(--mc)" opacity=".5"/>
+      <text class="t-mc" x="838" y="112" text-anchor="end">191 ft</text>
+
+      <!-- curve labels -->
+      <text class="t-mt" x="330" y="196" text-anchor="end">VERTICAL</text>
+      <text class="lbl-x" x="330" y="214" text-anchor="end">28 + 40·log₁₀(d/λ)</text>
+      <text class="t-mc" x="690" y="238">HORIZONTAL</text>
+      <text class="lbl-x" x="690" y="256">22 + 20·log₁₀(d/λ)</text>
+    
+</svg>

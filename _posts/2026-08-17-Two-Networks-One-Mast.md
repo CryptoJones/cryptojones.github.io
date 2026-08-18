@@ -2,6 +2,7 @@
 layout: post
 title: "Two Networks, One Mast"
 description: "You have one good high spot and two radios. Stacking the antennas ten feet apart works as well as putting them 191 feet apart side by side. Here is why."
+image: /images/mesh/mast-stacked-antennas.png
 ---
 
 Sooner or later, everyone building a radio mesh runs into the same idea. You have one good high spot. A roof, a pole, a tower. You already put one antenna up there. Why not two?
@@ -48,44 +49,11 @@ A normal upright antenna does not spray signal in every direction like a light b
 
 Now stack two of them on the same pole, one above the other. Each antenna is sitting in the other one's dead spot. For the signal to get from the top antenna to the bottom one, it has to squeeze out through one dead spot and then squeeze in through another.
 
-```
-                    ^  null (up)
-                    :
-      <=========(o)=========>   MESHTASTIC . 906.875 MHz
-        lobe      :       lobe
-                  :  ^
-                  :  |    signal has to exit
-                  :  |    one dead spot and
-                  : 10 ft enter the other
-                  :  |
-                  :  |    about 67 dB of isolation
-                  :  v
-      <=========(o)=========>   MESHCORE . 910.525 MHz
-        lobe      :       lobe
-                    v  null (down)
-                    |
-                    |  mast
-                    |
-   =================+=================  ground
-```
+![Two antennas stacked on one mast, ten feet apart. Each one radiates a donut shaped pattern with strong lobes to the sides and a dead spot straight up and down, so the path between them runs through both dead spots]({{ '/images/mesh/mast-stacked-antennas.png' | relative_url }})
 
 Now put those same two antennas side by side instead. You just did the exact opposite. Each one is aimed right at the other, straight through the strongest part of the donut.
 
-```
-   A . STACKED                    B . SIDE BY SIDE
-
-        Y  ant                       Y              Y
-        |                            |              |
-        |                            |<--- 191 ft -->|
-     10 ft                           |  // break //  |
-        |                            |              |
-        Y  ant                    ===+==============+===
-     ===+===
-
-     about 67 dB                    about 67 dB
-
-   fits on a pole               takes a city block
-```
+![The same 67 decibels of isolation two ways. Stacked, it takes ten feet of vertical separation. Side by side, it takes 191 feet, drawn with a break mark because it is nineteen times longer]({{ '/images/mesh/vertical-vs-horizontal.png' | relative_url }})
 
 Same protection. One of them fits on your roof.
 
@@ -97,27 +65,7 @@ When you stack antennas, isolation grows about **40 dB for every ten times** you
 
 Vertical does not just win. It wins faster, and the gap keeps growing the farther you go.
 
-```
-  dB
-  80 |                                V
-     |                              /
-  70 |- - - - - - - - - - - - - /- - - - - - - - - - - - - -o-  67 dB target
-     |                        o                            /
-  60 |                      /                        __/
-     |                    /                     __/
-  50 |                 /                  __/
-     |              /              ___/
-  40 |          /            __/
-     |      /          __/
-  30 |  /       __/
-     | /  ___/
-  20 |_/
-     +----+----+----+----+----+----+----+----+----+---
-       1    2    3    5   10   20   50  100  200  ft
-
-       V  STACKED     hits 67 dB at  10 ft
-       o  SIDE BY SIDE hits 67 dB at 191 ft
-```
+![Isolation plotted against separation on a log scale. The stacked line climbs twice as steeply and crosses the 67 decibel target at ten feet, while the side by side line does not reach it until 191 feet]({{ '/images/mesh/isolation-vs-separation.png' | relative_url }})
 
 At one foot apart, the two setups are only about 6 dB apart. Annoying, but you would survive it. By the time you need 67 dB, one setup needs a ten foot pole and the other needs a football field.
 
@@ -186,6 +134,6 @@ The whole problem goes away the moment one of the two radios stops talking. If y
 
 ---
 
-*If you are new to this, the earlier post "When the Cell Towers Go Quiet" covers what MeshCore and Meshtastic are and why you would run either one.*
+*If you are new to this, the earlier post [When the Cell Towers Go Quiet]({{ '/when-the-cell-towers-go-quiet/' | relative_url }}) covers what MeshCore and Meshtastic are and why you would run either one.*
 
 *All figures are open air estimates at 915 MHz. Measure your own install. Frequencies listed are the Meshtastic LongFast slot 20 center and the MeshCore US and Canada default.*

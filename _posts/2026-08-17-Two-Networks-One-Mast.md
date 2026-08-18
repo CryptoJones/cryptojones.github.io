@@ -2,6 +2,7 @@
 layout: post
 title: "Two Networks, One Mast"
 description: "You have one good high spot and two radios. Stacking the antennas ten feet apart works as well as putting them 191 feet apart side by side. Here is why."
+audio: /audio/posts/two-networks-one-mast.mp3
 image: /images/mesh/mast-stacked-antennas.png
 ---
 

@@ -5,4 +5,4 @@ description: "My first post. Who I am, where I study, and what I do for a living
 audio: /audio/posts/hello-world.mp3
 ---
 
-I am Aaron Clark, an Undergraduate Computer Science student at the University of Maryland University College. By day, I am a .NET Programmer at Reinke Manufacturing, Inc. in Lexington, Nebraska and this is my first blog post!
+I am Aaron Clark, an Undergraduate Computer Science student at the University of Maryland University College. By day, I am a .NET Programmer at Orthman Manufacturing, Inc. in Lexington, Nebraska and this is my first blog post!

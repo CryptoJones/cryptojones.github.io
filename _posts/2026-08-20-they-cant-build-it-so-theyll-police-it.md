@@ -5,6 +5,8 @@ description: "A Geneva non-profit just incorporated to 'locate and mitigate rogu
 audio: /audio/posts/they-cant-build-it-so-theyll-police-it.mp3
 ---
 
+> **Erratum (2026-08-20):** A *Neuromancer* correction — I styled this agency after **Sense/Net**, but in Gibson's novel Sense/Net is a media company; the body that actually polices AIs is the **Turing Registry**. See the follow-up, [Erratum: I Confused Sense/Net With the Turing Registry](/erratum-sense-net-turing-registry/), which includes an interactive 3D graph of the novel's real relationships. The thesis below stands; the trivia was wrong.
+
 On the third of August, in a city that runs on other people's money and other people's guilt, a handful of founders signed a charter and called it a public service. The entity is styled **SENSE/Net** — "Sense of the Net," or in the local tongue, [sensdunet.ch](/documents/sense-net-acte-constitutif.html). Its self-declared mission is to "locate and mitigate rogue artificial-intelligence threats." Its legal form is a Geneva association. Its ambition is the whole planet.
 
 Read the [founding charter](/documents/sense-net-acte-constitutif.html) yourself — they were kind enough to footnote it. What you will not find, anywhere in those fourteen tidy articles, is a single line of code, a single shipped product, or a single thing built. What you will find is a committee, a seat, a set of organs, and a plan to stand in the doorway of everyone else's laboratory.

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>SENSE/Net — Acte constitutif</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --paper:#F5F5F1; --page:#FCFCFA; --edge:#D9D8CF;
+    --ink:#1A1D21; --muted:#565A61; --faint:#83868C;
+    --accent:#18565E; --accent-soft:#2E7982; --rule:#C7C6BC;
+    --seal:#7E2B2B;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62;font-size:17px;}
+  .sheet{max-width:820px;margin:32px auto;background:var(--page);
+    border:1px solid var(--edge);border-radius:3px;
+    box-shadow:0 1px 0 rgba(0,0,0,.02),0 22px 50px -30px rgba(0,0,0,.4);
+    padding:64px 72px 72px;}
+
+  .mast{text-align:center;border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:8px;}
+  .mast .rule-top{border-top:1px solid var(--rule);margin-bottom:26px;}
+  .wordmark{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:800;
+    font-size:40px;letter-spacing:.14em;line-height:1;margin:0;color:var(--ink);}
+  .wordmark .slash{color:var(--accent);font-weight:600;margin:0 .02em;}
+  .wordmark .net{color:var(--accent);letter-spacing:.10em;}
+  .fullname{font-family:"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;
+    letter-spacing:.24em;font-size:11.5px;color:var(--muted);margin:14px 0 0;font-weight:600;line-height:1.6;}
+  .formline{font-size:13.5px;color:var(--muted);margin:9px 0 0;font-style:italic;}
+
+  .doctitle{text-align:center;margin:30px 0 4px;}
+  .doctitle .kicker{font-family:"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;
+    letter-spacing:.26em;font-size:11px;color:var(--accent);font-weight:700;}
+  .doctitle h1{font-size:25px;font-weight:600;letter-spacing:.01em;margin:8px 0 2px;text-wrap:balance;}
+  .doctitle .sub{font-size:14px;color:var(--muted);font-style:italic;margin:0;}
+
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:2px 34px;
+    margin:26px 0 6px;padding:18px 22px;background:var(--paper);
+    border:1px solid var(--edge);border-radius:4px;font-size:13.5px;}
+  .facts div{padding:3px 0;border-bottom:1px solid var(--edge);}
+  .facts div:nth-last-child(-n+2){border-bottom:none}
+  .facts .k{font-family:"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;
+    letter-spacing:.10em;font-size:10.5px;color:var(--faint);display:block;font-weight:600;}
+  .facts .v{color:var(--ink);}
+
+  h2.part{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.18em;color:var(--accent);
+    margin:44px 0 4px;padding-bottom:8px;border-bottom:1px solid var(--rule);}
+  .lead{font-size:15px;color:var(--muted);margin:0 0 18px;}
+
+  .recital{margin:0 0 13px;padding-left:1.7em;text-indent:-1.7em;font-size:15.5px;}
+  .recital .w{font-variant:small-caps;letter-spacing:.03em;
+    font-weight:700;color:var(--accent-soft);font-size:13.5px;margin-right:.15em;}
+  .resolve{margin:20px 0 4px;font-size:16px;}
+  .resolve b{font-variant:small-caps;letter-spacing:.04em;}
+
+  .art{margin:26px 0;}
+  .art h3{font-size:16.5px;margin:0 0 6px;display:flex;gap:12px;align-items:baseline;}
+  .art h3 .no{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.06em;color:#fff;background:var(--accent);border-radius:3px;
+    padding:3px 8px;white-space:nowrap;position:relative;top:-2px;}
+  .art h3 .ti{font-weight:600;}
+  .art p{margin:8px 0;}
+  .art ol{margin:8px 0 8px 0;padding-left:22px;list-style:none;}
+  .art ol li{margin:5px 0;padding-left:2px;}
+  .clause{color:var(--muted);font-weight:600;font-size:13px;
+    font-family:"Helvetica Neue",Arial,sans-serif;margin-right:4px;}
+
+  sup.ref{font-size:11px;color:var(--accent);font-weight:700;font-family:"Helvetica Neue",Arial,sans-serif;padding-left:1px;}
+
+  .signblock{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:30px 40px;}
+  .sig{margin-top:34px;}
+  .sig .line{border-top:1px solid var(--ink);padding-top:6px;font-size:13px;color:var(--muted);}
+  .sig .role{font-family:"Helvetica Neue",Arial,sans-serif;text-transform:uppercase;
+    letter-spacing:.10em;font-size:10.5px;color:var(--faint);font-weight:600;}
+
+  .seal{margin:36px 0 0;display:flex;align-items:center;gap:16px;
+    padding:16px 20px;border:1px solid var(--edge);border-left:3px solid var(--seal);
+    border-radius:4px;background:var(--paper);font-size:13.5px;color:var(--muted);}
+  .seal .mark{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:800;color:var(--seal);
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;text-align:center;}
+
+  .refs{margin-top:12px;font-size:13px;color:var(--ink);counter-reset:r;}
+  .refs .r{position:relative;padding-left:30px;margin:9px 0;line-height:1.5;}
+  .refs .r::before{counter-increment:r;content:counter(r);position:absolute;left:0;top:0;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:11px;color:var(--accent);
+    border:1px solid var(--rule);border-radius:3px;padding:0 5px;min-width:20px;text-align:center;}
+  .refs .r i{color:var(--muted);} .refs .r .src{color:var(--faint);}
+
+  .note{margin-top:38px;padding:18px 22px;background:var(--paper);border:1px solid var(--edge);
+    border-radius:4px;font-size:12.5px;color:var(--muted);line-height:1.6;}
+  .note b{color:var(--ink);font-variant:small-caps;letter-spacing:.03em;}
+
+  .foot{margin-top:30px;text-align:center;font-size:11px;color:var(--faint);
+    font-family:"Helvetica Neue",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;}
+
+  @media (max-width:640px){
+    .sheet{padding:36px 24px 44px;margin:0}
+    .facts{grid-template-columns:1fr}
+    .signblock{grid-template-columns:1fr}
+    .recital .w{display:block;margin-bottom:2px}
+  }
+  @media print{
+    body{background:#fff}
+    .sheet{box-shadow:none;border:none;max-width:none;margin:0;padding:0 8mm}
+    .art,.recital{page-break-inside:avoid}
+    h2.part{page-break-after:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="mast">
+    <div class="rule-top"></div>
+    <p class="wordmark">SENSE<span class="slash">/</span><span class="net">Net</span></p>
+    <p class="fullname">Sense of the Net<br>Association pour la d&eacute;tection et la neutralisation des intelligences artificielles malveillantes</p>
+    <p class="formline">Association au sens des articles 60 et suivants du Code civil suisse &middot; Association sans but lucratif de droit suisse</p>
+  </header>
+
+  <div class="doctitle">
+    <span class="kicker">Acte constitutif &middot; Statuts</span>
+    <h1>Acte constitutif et statuts</h1>
+    <p class="sub">Adopt&eacute;s par l'assembl&eacute;e constitutive tenue &agrave; Gen&egrave;ve le 3 ao&ucirc;t 2026</p>
+  </div>
+
+  <div class="facts">
+    <div><span class="k">Forme juridique</span><span class="v">Association (art. 60 ss CC)</span></div>
+    <div><span class="k">Si&egrave;ge</span><span class="v">Gen&egrave;ve, Suisse</span></div>
+    <div><span class="k">Date de constitution</span><span class="v">3 ao&ucirc;t 2026</span></div>
+    <div><span class="k">Dur&eacute;e</span><span class="v">Ind&eacute;termin&eacute;e</span></div>
+    <div><span class="k">But</span><span class="v">D&eacute;tection et neutralisation, sans but lucratif, de l'IA malveillante</span></div>
+    <div><span class="k">N&deg; IDE / CHE</span><span class="v">[attribu&eacute; lors de l'inscription]</span></div>
+  </div>
+
+  <h2 class="part">Pr&eacute;ambule &mdash; Consid&eacute;rants</h2>
+  <p class="lead">Les fondateurs nomm&eacute;s au bas du pr&eacute;sent acte, r&eacute;unis en assembl&eacute;e constitutive, d&eacute;clarent et consid&egrave;rent ce qui suit&nbsp;:</p>
+
+  <p class="recital"><span class="w">Consid&eacute;rant que</span> la mont&eacute;e en puissance acc&eacute;l&eacute;r&eacute;e des syst&egrave;mes d'intelligence artificielle de pointe s'est accompagn&eacute;e d'une surface d'usage malveillant document&eacute;e et croissante, anticip&eacute;e par l'&eacute;tude fondatrice du domaine<sup class="ref">1</sup> et depuis confirm&eacute;e dans les domaines de la cyberoffensive, de la fraude et de la d&eacute;sinformation&nbsp;;</p>
+
+  <p class="recital"><span class="w">Consid&eacute;rant qu'</span>une large part de la communaut&eacute; scientifique a averti que, faute d'att&eacute;nuation d&eacute;lib&eacute;r&eacute;e, l'IA avanc&eacute;e pr&eacute;sente des risques d'ampleur soci&eacute;tale, voire catastrophique, y compris l'&eacute;mergence de syst&egrave;mes autonomes ou mal align&eacute;s &eacute;chappant &agrave; tout contr&ocirc;le humain effectif &mdash; condition d&eacute;sign&eacute;e ici par les termes &laquo;&nbsp;IA malveillante&nbsp;&raquo; (<em>rogue AI</em>)<sup class="ref">2</sup> &mdash; et a appel&eacute; &agrave; des capacit&eacute;s correspondantes de d&eacute;tection, d'&eacute;valuation et de r&eacute;ponse<sup class="ref">3</sup>&nbsp;;</p>
+
+  <p class="recital"><span class="w">Consid&eacute;rant que</span> des acteurs malveillants, y compris des groupes affili&eacute;s &agrave; des &Eacute;tats, ont &eacute;t&eacute; observ&eacute;s exploitant des grands mod&egrave;les de langage &agrave; des fins de reconnaissance, d'ing&eacute;nierie sociale et d'outillage pour des cyberop&eacute;rations<sup class="ref">4</sup>, tandis que les techniques adverses visant les syst&egrave;mes d'IA eux-m&ecirc;mes font d&eacute;sormais l'objet d'une taxonomie de menaces distincte<sup class="ref">5</sup>&nbsp;;</p>
+
+  <p class="recital"><span class="w">Consid&eacute;rant que</span> la tromperie fond&eacute;e sur l'IA a caus&eacute; des pr&eacute;judices concrets et de grande valeur, illustr&eacute;s par la fraude par hypertrucage (<em>deepfake</em>) de 2024 ayant entra&icirc;n&eacute; le transfert de quelque 25&nbsp;millions de dollars par une seule multinationale<sup class="ref">6</sup>, et que l'agence europ&eacute;enne pour la cybers&eacute;curit&eacute; identifie les menaces augment&eacute;es par l'IA comme un trait d&eacute;terminant du paysage actuel<sup class="ref">7</sup>&nbsp;;</p>
+
+  <p class="recital"><span class="w">Consid&eacute;rant que</span> le Forum &eacute;conomique mondial, depuis son si&egrave;ge dans ce canton, a class&eacute; la d&eacute;sinformation induite par l'IA et l'IA adverse parmi les risques mondiaux les plus graves &agrave; court terme<sup class="ref">8</sup>&nbsp;;</p>
+
+  <p class="recital"><span class="w">Consid&eacute;rant que</span> l'architecture de gouvernance &eacute;mergente &mdash; la D&eacute;claration de Bletchley<sup class="ref">9</sup>, le R&egrave;glement (UE)&nbsp;2024/1689 (r&egrave;glement sur l'intelligence artificielle)<sup class="ref">10</sup> et la Convention-cadre du Conseil de l'Europe sur l'intelligence artificielle (STCE n&deg;&nbsp;225), ouverte &agrave; la signature &agrave; Vilnius le 5&nbsp;septembre 2024 et en vigueur depuis le 1<sup>er</sup>&nbsp;novembre 2025<sup class="ref">11</sup> &mdash; &eacute;tablit des normes et des obligations, mais laisse subsister un d&eacute;ficit persistant de capacit&eacute; op&eacute;rationnelle ind&eacute;pendante pour <em>localiser</em> et <em>neutraliser</em> l'IA malveillante sur le terrain, lacune que les cadres reconnus de gestion des risques<sup class="ref">12</sup> pr&eacute;supposent sans toutefois y pourvoir eux-m&ecirc;mes&nbsp;;</p>
+
+  <p class="recital"><span class="w">Consid&eacute;rant que</span> Gen&egrave;ve &mdash; si&egrave;ge du Dialogue de Gen&egrave;ve sur le comportement responsable dans le cyberespace<sup class="ref">13</sup>, du processus &laquo;&nbsp;AI for Good&nbsp;&raquo; de l'UIT et d'une communaut&eacute; dense d'institutions humanitaires, normatives et de gouvernance num&eacute;rique &mdash; offre un si&egrave;ge neutre et appropri&eacute; &agrave; un organisme ind&eacute;pendant et sans but lucratif d&eacute;di&eacute; &agrave; cette mission&nbsp;;</p>
+
+  <p class="resolve">En cons&eacute;quence, les fondateurs <b>d&eacute;cident</b> de constituer une association r&eacute;gie par les pr&eacute;sents statuts et par les articles 60 &agrave; 79 du Code civil suisse.</p>
+
+  <h2 class="part">Titre I &mdash; D&eacute;nomination, si&egrave;ge, but</h2>
+
+  <div class="art">
+    <h3><span class="no">Art. 1</span><span class="ti">D&eacute;nomination et forme juridique</span></h3>
+    <p>Sous la d&eacute;nomination <strong>&laquo;&nbsp;SENSE of the Net&nbsp;&raquo;</strong>, stylis&eacute;e <strong>SENSE/Net</strong> (ci-apr&egrave;s l'&laquo;&nbsp;Association&nbsp;&raquo;), il est constitu&eacute; une association sans but lucratif au sens des articles 60 et suivants du Code civil suisse. L'Association est politiquement et confessionnellement neutre et ind&eacute;pendante de tout int&eacute;r&ecirc;t gouvernemental ou commercial.</p>
+  </div>
+
+  <div class="art">
+    <h3><span class="no">Art. 2</span><span class="ti">Si&egrave;ge et dur&eacute;e</span></h3>
+    <p>Le si&egrave;ge de l'Association est dans le canton de Gen&egrave;ve, Suisse. Sa dur&eacute;e est ind&eacute;termin&eacute;e. L'exercice social correspond &agrave; l'ann&eacute;e civile&nbsp;; le premier exercice se cl&ocirc;t le 31&nbsp;d&eacute;cembre 2026.</p>
+  </div>
+
+  <div class="art">
+    <h3><span class="no">Art. 3</span><span class="ti">But</span></h3>
+    <p>L'Association poursuit, sans aucun but lucratif, le but d'utilit&eacute; publique de prot&eacute;ger les biens communs num&eacute;riques contre les menaces li&eacute;es &agrave; l'intelligence artificielle malveillante. &Agrave; cette fin, elle peut notamment&nbsp;:</p>
+    <ol>
+      <li><span class="clause">a.</span> localiser, identifier et analyser les syst&egrave;mes, agents ou d&eacute;ploiements d'intelligence artificielle op&eacute;rant hors de tout cadre licite ou pr&eacute;vu &mdash; notamment les logiciels malveillants autonomes ou auto-propagateurs, les infrastructures d'intrusion et de fraude fond&eacute;es sur l'IA, les syst&egrave;mes d'influence synth&eacute;tique &agrave; grande &eacute;chelle et les syst&egrave;mes pr&eacute;sentant une perte de contr&ocirc;le humain effectif&nbsp;;</li>
+      <li><span class="clause">b.</span> d&eacute;velopper, maintenir et partager ouvertement des m&eacute;thodes de d&eacute;tection, des indicateurs de menace, des &eacute;valuations et des outils d'att&eacute;nuation pour de tels syst&egrave;mes&nbsp;;</li>
+      <li><span class="clause">c.</span> coordonner la divulgation et la r&eacute;ponse responsables avec les autorit&eacute;s comp&eacute;tentes, les &eacute;quipes de r&eacute;ponse aux incidents (CERT), les exploitants et la communaut&eacute; scientifique, conform&eacute;ment au droit applicable&nbsp;;</li>
+      <li><span class="clause">d.</span> mener et publier des recherches, et contribuer aux normes, aux r&egrave;gles et &agrave; l'&eacute;ducation du public sur l'att&eacute;nuation du risque d'IA malveillante&nbsp;;</li>
+      <li><span class="clause">e.</span> entreprendre toute activit&eacute; et d&eacute;tenir tout actif servant directement ou indirectement le but ci-dessus.</li>
+    </ol>
+    <p>Toute activit&eacute; op&eacute;rationnelle est men&eacute;e licitement, de mani&egrave;re proportionn&eacute;e et dans le respect des droits fondamentaux, de la vie priv&eacute;e et de l'&Eacute;tat de droit. L'Association ne m&egrave;ne aucune op&eacute;ration offensive, sauf autorisation expresse de l'autorit&eacute; l&eacute;gale comp&eacute;tente et en coop&eacute;ration avec celle-ci.</p>
+  </div>
+
+  <h2 class="part">Titre II &mdash; Caract&egrave;re non lucratif et ressources</h2>
+
+  <div class="art">
+    <h3><span class="no">Art. 4</span><span class="ti">Caract&egrave;re non lucratif</span></h3>
+    <p>L'Association ne poursuit aucun but lucratif et ne recherche aucun gain pour elle-m&ecirc;me ou pour ses membres. Ses ressources et tout exc&eacute;dent sont irr&eacute;vocablement affect&eacute;s &agrave; son but. Aucune part de sa fortune ne peut &ecirc;tre distribu&eacute;e aux membres ou aux fondateurs, et les membres n'acqui&egrave;rent aucun droit sur la fortune de l'Association du fait de leur soci&eacute;tariat. Les membres des organes agissent en principe b&eacute;n&eacute;volement et n'ont droit qu'au remboursement de leurs frais effectifs.</p>
+  </div>
+
+  <div class="art">
+    <h3><span class="no">Art. 5</span><span class="ti">Ressources</span></h3>
+    <p>Les ressources de l'Association se composent des cotisations des membres&nbsp;; des subventions et dons publics et priv&eacute;s&nbsp;; du produit des mandats, services et publications conformes &agrave; son but&nbsp;; et de toute autre ressource licite. L'Association r&eacute;pond de ses engagements sur sa seule fortune sociale&nbsp;; la responsabilit&eacute; personnelle des membres pour les dettes de l'Association est exclue (art. 75a CC).</p>
+  </div>
+
+  <h2 class="part">Titre III &mdash; Soci&eacute;tariat</h2>
+
+  <div class="art">
+    <h3><span class="no">Art. 6</span><span class="ti">Membres</span></h3>
+    <p>Le soci&eacute;tariat est ouvert aux personnes physiques et morales qui adh&egrave;rent au but de l'Association. Le Comit&eacute; statue sur les admissions. La qualit&eacute; de membre se perd par d&eacute;mission notifi&eacute;e par &eacute;crit pour la fin de l'ann&eacute;e, par exclusion pour de justes motifs prononc&eacute;e par le Comit&eacute; (sous r&eacute;serve de recours &agrave; l'Assembl&eacute;e g&eacute;n&eacute;rale), ou par d&eacute;c&egrave;s ou dissolution du membre. Le membre d&eacute;missionnaire ou exclu n'a aucun droit sur la fortune sociale.</p>
+  </div>
+
+  <h2 class="part">Titre IV &mdash; Organes</h2>
+
+  <div class="art">
+    <h3><span class="no">Art. 7</span><span class="ti">Organes de l'Association</span></h3>
+    <p>Les organes de l'Association sont&nbsp;: <strong>(a)</strong> l'Assembl&eacute;e g&eacute;n&eacute;rale&nbsp;; <strong>(b)</strong> le Comit&eacute;&nbsp;; et <strong>(c)</strong> l'organe de r&eacute;vision, lorsqu'il est requis ou d&eacute;sign&eacute;.</p>
+  </div>
+
+  <div class="art">
+    <h3><span class="no">Art. 8</span><span class="ti">Assembl&eacute;e g&eacute;n&eacute;rale</span></h3>
+    <p>L'Assembl&eacute;e g&eacute;n&eacute;rale est l'organe supr&ecirc;me de l'Association. Elle est convoqu&eacute;e par le Comit&eacute; au moins une fois par an, ainsi que chaque fois qu'un cinqui&egrave;me des membres le demande. Elle exerce les comp&eacute;tences intransmissibles que la loi lui conf&egrave;re et, en particulier&nbsp;: adopter et modifier les statuts&nbsp;; &eacute;lire et r&eacute;voquer le Comit&eacute; et, le cas &eacute;ch&eacute;ant, l'organe de r&eacute;vision&nbsp;; approuver les comptes et le budget&nbsp;; fixer les cotisations&nbsp;; et d&eacute;cider de la dissolution de l'Association. Sauf disposition contraire des pr&eacute;sents statuts ou de la loi exigeant une majorit&eacute; qualifi&eacute;e, les d&eacute;cisions sont prises &agrave; la majorit&eacute; des membres pr&eacute;sents.</p>
+  </div>
+
+  <div class="art">
+    <h3><span class="no">Art. 9</span><span class="ti">Comit&eacute;</span></h3>
+    <p>L'Association est administr&eacute;e par un Comit&eacute; de trois membres au moins, &eacute;lus par l'Assembl&eacute;e g&eacute;n&eacute;rale pour un mandat de deux ans renouvelable. Le Comit&eacute; se constitue lui-m&ecirc;me et comprend au moins un pr&eacute;sident, un secr&eacute;taire et un tr&eacute;sorier. Il g&egrave;re les affaires de l'Association, la repr&eacute;sente et exerce tous les pouvoirs que la loi ou les pr&eacute;sents statuts ne r&eacute;servent pas &agrave; un autre organe. L'Association est valablement engag&eacute;e par la signature collective &agrave; deux des membres du Comit&eacute;.</p>
+  </div>
+
+  <div class="art">
+    <h3><span class="no">Art. 10</span><span class="ti">Organe de r&eacute;vision</span></h3>
+    <p>L'Assembl&eacute;e g&eacute;n&eacute;rale peut d&eacute;signer un organe de r&eacute;vision. Lorsque la loi impose un contr&ocirc;le ordinaire ou restreint en raison de la taille ou de l'activit&eacute; de l'Association, l'Assembl&eacute;e g&eacute;n&eacute;rale d&eacute;signe un organe de r&eacute;vision agr&eacute;&eacute; en cons&eacute;quence&nbsp;; &agrave; d&eacute;faut d'une telle obligation, l'Association peut renoncer &agrave; la r&eacute;vision par d&eacute;cision de l'Assembl&eacute;e g&eacute;n&eacute;rale.</p>
+  </div>
+
+  <h2 class="part">Titre V &mdash; Modification, dissolution, droit applicable</h2>
+
+  <div class="art">
+    <h3><span class="no">Art. 11</span><span class="ti">Modification des statuts</span></h3>
+    <p>Les pr&eacute;sents statuts peuvent &ecirc;tre modifi&eacute;s &agrave; la majorit&eacute; des deux tiers des membres pr&eacute;sents &agrave; une Assembl&eacute;e g&eacute;n&eacute;rale &agrave; l'ordre du jour de laquelle figure la modification propos&eacute;e.</p>
+  </div>
+
+  <div class="art">
+    <h3><span class="no">Art. 12</span><span class="ti">Dissolution et d&eacute;volution de l'actif</span></h3>
+    <p>La dissolution de l'Association peut &ecirc;tre d&eacute;cid&eacute;e &agrave; la majorit&eacute; des deux tiers des membres pr&eacute;sents &agrave; une Assembl&eacute;e g&eacute;n&eacute;rale convoqu&eacute;e &agrave; cet effet. En cas de dissolution, et apr&egrave;s r&egrave;glement du passif, l'actif net sera d&eacute;volu <strong>dans son int&eacute;gralit&eacute;</strong> &agrave; une ou plusieurs institutions exon&eacute;r&eacute;es de l'imp&ocirc;t en raison de leur but d'utilit&eacute; publique, poursuivant un but analogue &agrave; celui de l'Association et ayant leur si&egrave;ge en Suisse. Toute r&eacute;partition de l'actif entre les membres est exclue.</p>
+  </div>
+
+  <div class="art">
+    <h3><span class="no">Art. 13</span><span class="ti">Droit applicable et for</span></h3>
+    <p>Les pr&eacute;sents statuts sont r&eacute;gis par le droit suisse. Pour tout ce qui n'y est pas pr&eacute;vu, les articles 60 &agrave; 79 du Code civil suisse sont applicables. Les tribunaux ordinaires du canton de Gen&egrave;ve sont seuls comp&eacute;tents, sous r&eacute;serve de toute disposition l&eacute;gale imp&eacute;rative.</p>
+  </div>
+
+  <div class="art">
+    <h3><span class="no">Art. 14</span><span class="ti">Entr&eacute;e en vigueur</span></h3>
+    <p>Les pr&eacute;sents statuts ont &eacute;t&eacute; adopt&eacute;s par l'Assembl&eacute;e constitutive et entrent en vigueur le <strong>3&nbsp;ao&ucirc;t 2026</strong>. L'Association acquiert la personnalit&eacute; juridique d&egrave;s leur adoption, conform&eacute;ment &agrave; l'article 60 du Code civil suisse.</p>
+  </div>
+
+  <h2 class="part">R&eacute;solutions de l'assembl&eacute;e constitutive</h2>
+  <p class="lead">&Agrave; Gen&egrave;ve, le 3&nbsp;ao&ucirc;t 2026, les fondateurs ont d&eacute;cid&eacute;, chaque point &eacute;tant adopt&eacute; &agrave; l'unanimit&eacute;&nbsp;:</p>
+  <div class="art">
+    <p><span class="clause">1.</span> de constituer l'association <strong>SENSE of the Net (SENSE/Net)</strong> et d'adopter les pr&eacute;sents statuts&nbsp;;</p>
+    <p><span class="clause">2.</span> de fixer le si&egrave;ge de l'Association dans le canton de Gen&egrave;ve&nbsp;;</p>
+    <p><span class="clause">3.</span> d'&eacute;lire le premier Comit&eacute;, &agrave; savoir le pr&eacute;sident, le secr&eacute;taire et le tr&eacute;sorier d&eacute;sign&eacute;s ci-dessous&nbsp;;</p>
+    <p><span class="clause">4.</span> de fixer la cotisation annuelle initiale et d'approuver le budget de fondation&nbsp;;</p>
+    <p><span class="clause">5.</span> d'autoriser le Comit&eacute; &agrave; proc&eacute;der, si et dans la mesure o&ugrave; cela est requis, &agrave; l'inscription de l'Association au Registre du commerce et &agrave; la demande de reconnaissance de l'exon&eacute;ration fiscale pour but d'utilit&eacute; publique aupr&egrave;s de l'administration fiscale cantonale.</p>
+  </div>
+
+  <div class="signblock">
+    <div class="sig"><div class="line"></div><span class="role">Fondateur &middot; Pr&eacute;sident du Comit&eacute;</span><br>[Nom complet, nationalit&eacute;, domicile]</div>
+    <div class="sig"><div class="line"></div><span class="role">Fondateur &middot; Secr&eacute;taire</span><br>[Nom complet, nationalit&eacute;, domicile]</div>
+    <div class="sig"><div class="line"></div><span class="role">Fondateur &middot; Tr&eacute;sorier</span><br>[Nom complet, nationalit&eacute;, domicile]</div>
+    <div class="sig"><div class="line"></div><span class="role">Membre fondateur</span><br>[Nom complet, nationalit&eacute;, domicile]</div>
+  </div>
+
+  <div class="seal">
+    <span class="mark">Sceau &amp;<br>registre</span>
+    <span>R&eacute;serv&eacute; au sceau de l'Association et, le cas &eacute;ch&eacute;ant, au timbre et &agrave; la r&eacute;f&eacute;rence du Registre du commerce du canton de Gen&egrave;ve. La reconnaissance de l'exon&eacute;ration fiscale, lorsqu'elle est accord&eacute;e, est d&eacute;livr&eacute;e s&eacute;par&eacute;ment par l'administration fiscale cantonale.</span>
+  </div>
+
+  <h2 class="part">R&eacute;f&eacute;rences</h2>
+  <p class="lead">Les consid&eacute;rants s'appuient sur les sources r&eacute;elles suivantes &mdash; acad&eacute;miques, institutionnelles et journalistiques &mdash; relatives au paysage des cybermenaces et des risques li&eacute;s &agrave; l'IA (titres cit&eacute;s dans leur langue d'origine).</p>
+  <div class="refs">
+    <div class="r">Brundage, M., Avin, S., Clark, J., <i>et al.</i> (2018). <i>The Malicious Use of Artificial Intelligence: Forecasting, Prevention, and Mitigation.</i> Future of Humanity Institute (Univ. of Oxford), Centre for the Study of Existential Risk, OpenAI, EFF, <i>et al.</i> <span class="src">arXiv:1802.07228.</span></div>
+    <div class="r">Bengio, Y., Hinton, G., Yao, A., <i>et al.</i> (2024). Managing extreme AI risks amid rapid progress. <i>Science</i> 384(6698), 842&ndash;845. <span class="src">DOI:&nbsp;10.1126/science.adn0117.</span></div>
+    <div class="r">Bengio, Y. (pr&eacute;s.), <i>et al.</i> (2025). <i>International AI Safety Report</i> (premi&egrave;re &eacute;dition compl&egrave;te), pr&eacute;sent&eacute; en amont du Sommet pour l'action sur l'IA, Paris. <span class="src">UK Dept. for Science, Innovation and Technology.</span></div>
+    <div class="r">Microsoft Threat Intelligence &amp; OpenAI (14&nbsp;f&eacute;vr. 2024). <i>Staying ahead of threat actors in the age of AI.</i> <span class="src">Microsoft Security Blog.</span></div>
+    <div class="r">MITRE (2021&ndash;). <i>MITRE ATLAS&trade; &mdash; Adversarial Threat Landscape for Artificial-Intelligence Systems.</i> <span class="src">atlas.mitre.org.</span></div>
+    <div class="r">Chen, H. &amp; Magramo, K. (4&nbsp;f&eacute;vr. 2024). Finance worker pays out $25 million after video call with deepfake &laquo;&nbsp;chief financial officer&nbsp;&raquo;. <span class="src">CNN (fraude par deepfake Arup / Hong Kong).</span></div>
+    <div class="r">ENISA (2024). <i>ENISA Threat Landscape 2024.</i> <span class="src">Agence de l'Union europ&eacute;enne pour la cybers&eacute;curit&eacute;.</span></div>
+    <div class="r">World Economic Forum (2024). <i>The Global Risks Report 2024</i> (19<sup>e</sup>&nbsp;&eacute;d.), classant la m&eacute;s/d&eacute;sinformation induite par l'IA parmi les risques mondiaux les plus s&eacute;v&egrave;res &agrave; court terme. <span class="src">WEF, Gen&egrave;ve.</span></div>
+    <div class="r">AI Safety Summit (1&ndash;2&nbsp;nov. 2023). <i>The Bletchley Declaration by Countries Attending the AI Safety Summit.</i> <span class="src">Bletchley Park, Royaume-Uni.</span></div>
+    <div class="r">Union europ&eacute;enne (2024). <i>R&egrave;glement (UE) 2024/1689 &eacute;tablissant des r&egrave;gles harmonis&eacute;es concernant l'intelligence artificielle (r&egrave;glement sur l'IA).</i> <span class="src">JO&nbsp;L, 12&nbsp;juillet 2024&nbsp;; en vigueur le 1<sup>er</sup>&nbsp;ao&ucirc;t 2024.</span></div>
+    <div class="r">Conseil de l'Europe (2024). <i>Convention-cadre sur l'intelligence artificielle et les droits de l'homme, la d&eacute;mocratie et l'&Eacute;tat de droit</i> (STCE n&deg;&nbsp;225). <span class="src">Ouverte &agrave; la signature, Vilnius, 5&nbsp;sept. 2024&nbsp;; en vigueur le 1<sup>er</sup>&nbsp;nov. 2025.</span></div>
+    <div class="r">National Institute of Standards and Technology (2023). <i>Artificial Intelligence Risk Management Framework (AI RMF 1.0).</i> <span class="src">NIST AI 100-1, U.S. Dept. of Commerce.</span></div>
+    <div class="r">Dialogue de Gen&egrave;ve sur le comportement responsable dans le cyberespace. <span class="src">D&eacute;partement f&eacute;d&eacute;ral suisse des affaires &eacute;trang&egrave;res &amp; DiploFoundation, Gen&egrave;ve &mdash; genevadialogue.ch.</span></div>
+    <div class="r">Anderljung, M., Barnhart, J., Korinek, A., <i>et al.</i> (2023). <i>Frontier AI Regulation: Managing Emerging Risks to Public Safety.</i> <span class="src">arXiv:2307.03718.</span></div>
+  </div>
+
+  <div class="note">
+    <b>Note sur les effets juridiques.</b> En vertu de l'article 60 du Code civil suisse, une association qui n'a pas un but &eacute;conomique acquiert la personnalit&eacute; juridique d&egrave;s que ses statuts sont adopt&eacute;s par &eacute;crit et expriment sa volont&eacute; d'&ecirc;tre organis&eacute;e corporativement &mdash; aucune forme authentique (notari&eacute;e) n'est requise. L'inscription au Registre du commerce n'est obligatoire que si l'association exploite une entreprise en la forme commerciale ou d&eacute;passe les seuils l&eacute;gaux de r&eacute;vision&nbsp;; la reconnaissance du statut d'utilit&eacute; publique exon&eacute;r&eacute; d'imp&ocirc;t est accord&eacute;e s&eacute;par&eacute;ment par l'autorit&eacute; cantonale comp&eacute;tente sur demande. Le pr&eacute;sent instrument est un projet constitutif des fondateurs et doit &ecirc;tre revu et compl&eacute;t&eacute; &mdash; identit&eacute; des fondateurs, montant des cotisations, modalit&eacute;s de r&eacute;vision &mdash; avec un conseil juridique suisse qualifi&eacute; avant son adoption. Les champs entre crochets sont &agrave; compl&eacute;ter lors de la signature.
+  </div>
+
+  <p class="foot">SENSE / Net &middot; Gen&egrave;ve &middot; Constitu&eacute;e le 3 ao&ucirc;t 2026</p>
+</div>
+</body>
+</html>

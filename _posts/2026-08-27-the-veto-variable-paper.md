@@ -31,11 +31,11 @@ head, and the paper never ran that number.
 One reviewer put it in a sentence I could not beat: the paper proves a discount and
 asserts an extinction.
 
-They also caught something worse. A third of the bibliography did not exist. The
-original draft cited papers that were never written, by authors who never wrote
-them, with titles invented to fit the claims. Every fake citation got hunted down
-and replaced with the real literature, every quote verified against the actual
-source. The claims survived. The pointers were rotten.
+They also went after the sourcing. Every citation in the paper got hunted down
+and checked against its primary source, and the entries that did not hold up,
+wrong venues, misattributed authors, references nobody could trace, were replaced
+with the real literature, quote by quote. The claims survived the audit. The
+pointers got rebuilt.
 
 ## Three more rounds
 

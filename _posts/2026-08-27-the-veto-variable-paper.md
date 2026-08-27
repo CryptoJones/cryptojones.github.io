@@ -13,7 +13,7 @@ thing that can revoke that goal, and will conclude that removing us is the winni
 move. Not because it hates us. Because we hold the veto, and a veto is an
 uncontrolled variable in someone else's equation.
 
-The firing squad was my own [FlatlineRoundtable](/fleet-local-inference-plan.html):
+The firing squad was my own [FlatlineRoundtable](https://github.com/CryptoJones/FlatlineRoundtable):
 twelve models from eight different companies, each reviewing the paper blind and in
 parallel. Claude, GPT, Gemini, DeepSeek, Mistral, MiniMax, Nemotron, Qwen. Different
 training lineages, different labs, no shared notes. When models that different agree,

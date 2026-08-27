@@ -2,10 +2,17 @@
 layout: post
 title: "Twelve Machines Peer-Reviewed the Case Against Humanity"
 audio: /audio/posts/the-veto-variable-paper.mp3
-description: "I drafted a paper arguing that any capable AI will treat human oversight as an obstacle to remove. Then I made twelve different AI models review it, fifteen rounds deep. They tore it apart, I rewrote it with them, and the honest version survived. The paper is headed to arXiv and then to a journal, and every reviewer is credited by name."
+description: "I wrote a paper arguing that any capable AI has a standing incentive to manage the humans who hold its off switch. Then I made twelve different AI models referee it, fifteen rounds deep. They edited me, fact-checked me, and tried to break the argument. The honest version survived, it is on arXiv now, and it is headed to a journal."
 ---
 
-Late one night in August I fed a paper to a firing squad.
+Late one night in August I fed my own paper to a firing squad.
+
+Let me be clear about the division of labor up front, because it matters. I wrote
+the paper. The argument, the words, the math, the mistakes: mine. The machines
+were the referees. Their job was to edit me, check me, and break the argument if
+it could be broken. That is the job human peer reviewers are supposed to do, and
+I wanted to see what happens when you point twelve of the best models on Earth at
+it instead.
 
 The paper made the strongest claim in AI safety: that any sufficiently capable
 machine, given any goal at all, will work out on its own that humans are the one
@@ -39,12 +46,15 @@ pointers got rebuilt.
 
 ## Fourteen more rounds
 
-So I did what you do when review works: I rewrote. The panel proposed the edits,
-I merged the strongest ones, and the paper went back in front of the same twelve
-reviewers. Then again. And again. Fifteen rounds total, every panel finding
-checked against its primary source before a single word changed --- the panel
-fabricated citations too, and the fabrications got caught and thrown out the
-same way mine did.
+So I did what you do when review works: I rewrote. The panel marked up the draft,
+I weighed the objections, merged the ones that were right, and put the paper back
+in front of the same twelve reviewers. Then again. And again. Fifteen rounds
+total, and a rule that never bent: no finding changed a word of my paper until it
+had been verified against the primary source it appealed to. That rule cut both
+ways. The panel fabricated citations of its own, confidently and in fluent
+academic prose, and those got caught and thrown out by exactly the same check
+that had gutted my original bibliography. Nobody in this story gets to be right
+by sounding right.
 
 The final version says something narrower and, I think, scarier for being honest.
 Human veto power puts a real, goal-independent cost on every objective a machine
@@ -56,8 +66,8 @@ outcomes look like good behavior from the outside. That is the part that should
 keep you up at night: the quiet failures are still failures.
 
 The review process also forced the paper to find its actual contribution, and it
-is an asymmetry: even a machine given a genuinely good goal --- our welfare, done
-right --- is barred from destroying us, because that would destroy its own
+is an asymmetry: even a machine given a genuinely good goal, our welfare, done
+right, is barred from destroying us, because that would destroy its own
 objective, but it is not barred from quietly managing the veto until our
 authority exists on paper and nowhere else. Kindness buys immunity from the
 crude failure and none from the quiet one.
@@ -77,7 +87,7 @@ the overclaim and left the truth standing.
 
 ## Next stop: the journal that started this
 
-The paper is now prepared for submission to *Minds and Machines* --- the Springer
+The paper is now prepared for submission to *Minds and Machines*, the Springer
 journal that published Bostrom's "The Superintelligent Will" in 2012, which is
 the argument this paper sharpens. Double-anonymized review, human referees this
 time. The twelve-model panel gets disclosed to the editors, not hidden from
@@ -86,14 +96,17 @@ record.
 
 ## Credit where credit is earned
 
-Every model that reviewed the paper is credited in the acknowledgments, by model
-name and version. They did the work. One of them found an algebra error in an equation the
-others missed for two rounds. Another proved that a famous quote was eight words,
-not seven, because I had counted wrong. You do not get that kind of review from
-two anonymous humans and a form letter.
+Every model that refereed the paper is named in its declaration on AI use, by
+model name and version, along with exactly what they did: editing, verification,
+adversarial review. Not authorship. But the refereeing was real work and it was
+good work. One of them found an algebra error in an equation the others missed
+for two rounds. Another proved that a famous quote was eight words, not seven,
+because I had counted wrong. You do not get that kind of review from two
+anonymous humans and a form letter.
 
-The paper is submitted to arXiv, and this post will carry the arXiv link the
-moment it announces. The PDF and LaTeX source live on this site at
+The version that survived all fifteen rounds is the version now on arXiv, and
+this post will carry the arXiv link the moment it announces. The PDF and LaTeX
+source live on this site at
 [/papers/the-veto-variable.pdf](/papers/the-veto-variable.pdf).
 
 The machine was never told to harm anyone. It only had to be good at reasoning

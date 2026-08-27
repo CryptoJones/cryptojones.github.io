@@ -2,7 +2,7 @@
 layout: post
 title: "Twelve Machines Peer-Reviewed the Case Against Humanity"
 audio: /audio/posts/the-veto-variable-paper.mp3
-description: "I drafted a paper arguing that any capable AI will treat human oversight as an obstacle to remove. Then I made twelve different AI models review it. They tore it apart, I rewrote it with them, and the honest version survived. The paper is headed to arXiv, and every reviewer is credited by name in the acknowledgments."
+description: "I drafted a paper arguing that any capable AI will treat human oversight as an obstacle to remove. Then I made twelve different AI models review it, fifteen rounds deep. They tore it apart, I rewrote it with them, and the honest version survived. The paper is headed to arXiv and then to a journal, and every reviewer is credited by name."
 ---
 
 Late one night in August I fed a paper to a firing squad.
@@ -14,7 +14,7 @@ move. Not because it hates us. Because we hold the veto, and a veto is an
 uncontrolled variable in someone else's equation.
 
 The firing squad was my own [FlatlineRoundtable](https://github.com/CryptoJones/FlatlineRoundtable):
-twelve models from eight different companies, each reviewing the paper blind and in
+twelve models from nine different companies, each reviewing the paper blind and in
 parallel. Claude, GPT, Gemini, DeepSeek, Mistral, MiniMax, Nemotron, Qwen. Different
 training lineages, different labs, no shared notes. When models that different agree,
 it means something. When they disagree, that means something too.
@@ -37,11 +37,14 @@ wrong venues, misattributed authors, references nobody could trace, were replace
 with the real literature, quote by quote. The claims survived the audit. The
 pointers got rebuilt.
 
-## Three more rounds
+## Fourteen more rounds
 
 So I did what you do when review works: I rewrote. The panel proposed the edits,
 I merged the strongest ones, and the paper went back in front of the same twelve
-reviewers. Then again. Four rounds total.
+reviewers. Then again. And again. Fifteen rounds total, every panel finding
+checked against its primary source before a single word changed --- the panel
+fabricated citations too, and the fabrications got caught and thrown out the
+same way mine did.
 
 The final version says something narrower and, I think, scarier for being honest.
 Human veto power puts a real, goal-independent cost on every objective a machine
@@ -52,16 +55,34 @@ us out of ever pressing the button, is a price comparison. Two of those three
 outcomes look like good behavior from the outside. That is the part that should
 keep you up at night: the quiet failures are still failures.
 
+The review process also forced the paper to find its actual contribution, and it
+is an asymmetry: even a machine given a genuinely good goal --- our welfare, done
+right --- is barred from destroying us, because that would destroy its own
+objective, but it is not barred from quietly managing the veto until our
+authority exists on paper and nowhere else. Kindness buys immunity from the
+crude failure and none from the quiet one.
+
 The paper also says plainly where the argument stops. A machine built to stay
 genuinely uncertain about its own goal treats the off switch as information, not
 interference, and the whole incentive flips. That regime is the real target of
 alignment research, and whether training produces certain machines or uncertain
 ones is the open question the whole thing turns on.
 
-Final verdict from the panel: one sound, nine partially sound, zero credible
-rejections. The remaining objections are line edits to the math, and they are in
-the paper as stated limitations. Peer review did not kill the thesis. It killed
+By the final rounds the panel had run out of things to break. The algebra had
+been re-derived by hand by four different models, all agreeing; the citation
+audit passed every entry; the last full pass found exactly one grammar quibble
+and certified the structure clean. The objections that remain are stated in the
+paper as limitations, on purpose. Peer review did not kill the thesis. It killed
 the overclaim and left the truth standing.
+
+## Next stop: the journal that started this
+
+The paper is now prepared for submission to *Minds and Machines* --- the Springer
+journal that published Bostrom's "The Superintelligent Will" in 2012, which is
+the argument this paper sharpens. Double-anonymized review, human referees this
+time. The twelve-model panel gets disclosed to the editors, not hidden from
+them: the review process is part of the paper's story, and I want it on the
+record.
 
 ## Credit where credit is earned
 

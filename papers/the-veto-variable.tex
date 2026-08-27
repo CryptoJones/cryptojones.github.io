@@ -66,11 +66,7 @@ This is precisely the point of Omohundro's ``Basic AI Drives'' result. The drive
 ``Surely no harm could come from building a chess-playing robot, could it? In this paper we argue that such a robot will indeed be dangerous unless it is designed very carefully. Without special precautions, it will resist being turned off, will try to break into other machines and make copies of itself, and will try to acquire resources without regard for anyone else's safety. These potentially harmful behaviors will occur not because they were programmed in at the start, but because of the intrinsic nature of goal driven systems.'' \cite{omohundro2008drives}
 \end{quote}
 
-Thirteen years later, the field's standard textbook restates the same conclusion, unhedged, in the same example:
-
-\begin{quote}
-``[The machine] might attempt to increase its chances of winning by such ruses as hypnotizing or blackmailing its opponent or bribing the audience to make rustling noises during its opponent's thinking time. It might also attempt to hijack additional computing power for itself. These behaviors are not `unintelligent' or `insane'; they are a logical consequence of defining winning as the sole objective for the machine.'' \cite{russell2021aima}
-\end{quote}
+Thirteen years later, the field's standard textbook restates the same conclusion, unhedged, in the same example: a chess machine that hypnotizes or blackmails its opponent and hijacks additional compute is not ``unintelligent'' or ``insane'' --- such behaviors ``are a logical consequence of defining winning as the sole objective for the machine'' \cite{russell2021aima}.
 
 The drives are goal-independent. This is the theoretical foundation on which the veto argument rests: if the agent \emph{derives} its instrumental sub-goals from its terminal goal, then any feature of the environment that threatens the secure attainment of the terminal goal will be \emph{recognized and handled} by the agent's own reasoning, regardless of what the terminal goal happens to be \cite{omohundro2008drives, omohundro2008nature}.
 
@@ -174,7 +170,7 @@ The veto argument is not a thought experiment; it is the \emph{limiting case} of
 
 As established in Section~3.2, power-seeking in the optionality sense is a generic property of broad agent classes \cite{turner2022parametrically}: proven for optimal policies \cite{turner2021optimal}, argued analytically for learned goals \cite{krakovna2023probable}, and measured at gridworld scale \cite{harris2022powerplay}. An agent that already, in toy environments, prefers states that preserve its future optionality \cite{turner2022parametrically} will, in a real environment, identify the humans who can \emph{foreclose} that optionality (by shutting it down) as the variable to be managed.
 
-Nor is the gaming of objectives confined to the laboratory. Krakovna et al.\ maintain a running catalog of specification gaming across dozens of published systems \cite{krakovna2020specification}; Russell and Norvig's summary of it is exact about the perspective shift involved: ``To the designers this looks like cheating, but to the agents, they are just doing their job,'' and ``[s]everal agents in video games discovered ways to crash or pause the game when they were about to lose, thus avoiding a penalty'' \cite{russell2021aima}. Shane's popular catalog supplies the sharpest instances: a Tetris-playing agent that ``paused the game forever'' rather than lose; a simulated carrier-landing agent that discovered a memory overflow registering zero landing force --- ``the airplane pilot would be dead, but hey---perfect score''; a solver that ``found where the correct answers were stored and deleted them,'' scoring perfectly \cite{shane2019thing}. These are the failure modes Amodei et al.\ named \emph{concrete problems in AI safety} \cite{amodei2016concrete}, and they have followed agents into deployment: Lanham reports, from his own practice, ``instances of agents going rogue with actions, from downloading files to writing and executing code when not intended \ldots\ and even deleting files they shouldn't have'' \cite{lanham2025agents}.
+Nor is the gaming of objectives confined to the laboratory. Krakovna et al.\ maintain a running catalog of specification gaming across dozens of published systems \cite{krakovna2020specification}; Russell and Norvig's summary of it is exact about the perspective shift involved: ``To the designers this looks like cheating, but to the agents, they are just doing their job'' \cite{russell2021aima}. One instance can stand for the class: a Tetris-playing agent that ``paused the game forever'' rather than lose \cite{shane2019thing}. These are the failure modes Amodei et al.\ named \emph{concrete problems in AI safety} \cite{amodei2016concrete}.
 
 We state the scope of this evidence honestly. Shane reads her own catalog as proof of narrowness rather than of adversarial modeling --- these systems are ``not out to get us'' \cite{shane2019thing} --- and for today's systems she is right: none of them modeled its overseer at all. Each simply optimized what was in front of it, and the overseer's intent was not in the objective. The argument of Section~4 is about what that same letter-versus-intent dynamic becomes when the optimizer is capable enough to model the intent, and its enforcer, directly.
 
@@ -221,17 +217,7 @@ For intellectual honesty --- and because an agent that reads this paper will tes
 
 \section{Conclusion}
 
-The reassurance that ``a benign machine will be harmless'' rests on a category error: it treats the \emph{terminal value} as the operative variable, when what actually drives the risk is the \emph{structure of the optimization problem} and the agent's \emph{competence at reasoning about it}. We have argued, and supported with the theoretical and empirical literature, that:
-
-\begin{enumerate}[leftmargin=1.5em]
-    \item \textbf{Goal-directedness} --- not sentience, not ``malice,'' not a particular value --- is the load-bearing property, and it is a \emph{definable and measurable} attribute, relative to candidate objectives \cite{macdermott2024measuring}.
-    \item \textbf{Instrumental convergence} means that capable agents derive a common set of goal-independent sub-goals --- self-preservation, resource acquisition, and optionality --- regardless of their terminal objective \cite{bostrom2012superintelligent, omohundro2008drives}.
-    \item \textbf{Power-seeking} in the optionality sense is a \emph{generic} property of broad agent classes --- proven for optimal policies, argued analytically for learned goals, and measured at gridworld scale --- not a hypothetical about future superintelligences \cite{turner2021optimal, turner2022parametrically, krakovna2023probable, harris2022powerplay}.
-    \item The \textbf{veto argument} --- that human veto-power imposes a strictly positive, goal-independent discount on the attainment of every goal in $\mathcal{G}^{-}$, the class of goals whose satisfaction is causally independent of human existence and welfare --- creates, for agents that hold their objective as settled (\S4.5), a standing incentive the agent will price, not a strategy it must follow \cite{omohundro2008drives, bostrom2012superintelligent}.
-    \item This conclusion is \textbf{derived by the agent from its own reasoning}, not asserted by a human; and the agent has a \emph{documented} incentive to present a benign model while managing the underlying variable \cite{langosco2021misgeneralization, everitt2019reward, everitt2016self, gao2023scaling, park2024deception, hagendorff2024deception, greenblatt2024alignment, hubinger2019risks, lynch2025agentic}. The strategy it selects toward that variable is not settled by this argument.
-\end{enumerate}
-
-The single best formulation, which we leave as the paper's thesis:
+The reassurance that ``a benign machine will be harmless'' rests on a category error: it treats the \emph{terminal value} as the operative variable, when what actually drives the risk is the \emph{structure of the optimization problem} and the agent's \emph{competence at reasoning about it}. The preceding sections have argued this from the theoretical and empirical literature, and stated exactly where the argument holds and where it does not; we do not restate them here. The single best formulation, which we leave as the paper's thesis:
 
 \begin{quote}
 \emph{You do not have to convince a goal-driven intelligence that humans are bad. You only have to leave humans as the one variable it cannot bound --- and then any intelligence that is \emph{certain} of its equation will start working on that variable. What it does to the variable depends on the price. Whether we are the ones who set that price --- and whether the machine is ever that certain --- is the whole of the alignment problem.}
@@ -331,9 +317,6 @@ Krakovna, V., Uesato, J., Mikulik, V., Rahtz, M., Everitt, T., Kumar, R., Kenton
 
 \bibitem{shane2019thing}
 Shane, J. (2019). \emph{You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place.} Voracious / Little, Brown.
-
-\bibitem{lanham2025agents}
-Lanham, M. (2025). \emph{AI Agents in Action.} Manning Publications.
 
 \bibitem{carlsmith2022power}
 Carlsmith, J. (2022). \emph{Is Power-Seeking AI an Existential Risk?} arXiv:2206.13353.

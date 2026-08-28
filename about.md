@@ -62,6 +62,7 @@ greatest tabletop RPG ever made.
 ### Find me
 
 - **Email** — [cryptojones@owasp.org](mailto:cryptojones@owasp.org)
+- **ORCID** — [0000-0002-6831-2663](https://orcid.org/0000-0002-6831-2663)
 - **CV / Resume** — [Academic CV](https://github.com/CryptoJones/cv/raw/master/Clark%2C%20Aaron%20K.%20-%20CV.pdf) &middot; [Resume](https://raw.githubusercontent.com/CryptoJones/resume/master/resume.pdf)
 - **Code** — [GitHub](https://github.com/CryptoJones) &middot; [Codeberg](https://codeberg.org/CryptoJones) &middot; [Stack Overflow](https://stackoverflow.com/users/706008/cryptojones) &middot; [HackerRank](https://www.hackerrank.com/cryptojones) &middot; [Pastebin](https://pastebin.com/u/CryptoJones)
 - **Security** — [Hack The Box](https://app.hackthebox.com/users/146774)

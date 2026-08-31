@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Twelve Machines Peer-Reviewed the Case Against Humanity"
+title: "Headlines Are Not the Goal. Science Is."
 audio: /audio/posts/the-veto-variable-paper.mp3
 description: "I wrote a paper arguing that any capable AI has a standing incentive to manage the humans who hold its off switch. Then I made twelve different AI models referee it, forty-two rounds deep. They edited me, fact-checked me, and broke my favorite number. The honest version survived, and it is headed to arXiv and a journal."
 ---

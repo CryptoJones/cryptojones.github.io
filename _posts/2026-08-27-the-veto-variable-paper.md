@@ -2,7 +2,7 @@
 layout: post
 title: "Twelve Machines Peer-Reviewed the Case Against Humanity"
 audio: /audio/posts/the-veto-variable-paper.mp3
-description: "I wrote a paper arguing that any capable AI has a standing incentive to manage the humans who hold its off switch. Then I made twelve different AI models referee it, fifteen rounds deep. They edited me, fact-checked me, and tried to break the argument. The honest version survived, it is on arXiv now, and it is headed to a journal."
+description: "I wrote a paper arguing that any capable AI has a standing incentive to manage the humans who hold its off switch. Then I made twelve different AI models referee it, forty-two rounds deep. They edited me, fact-checked me, and broke my favorite number. The honest version survived, and it is headed to arXiv and a journal."
 ---
 
 Late one night in August I fed my own paper to a firing squad.
@@ -21,9 +21,9 @@ move. Not because it hates us. Because we hold the veto, and a veto is an
 uncontrolled variable in someone else's equation.
 
 The firing squad was my own [FlatlineRoundtable](https://github.com/CryptoJones/FlatlineRoundtable):
-twelve models from nine different companies, each reviewing the paper blind and in
-parallel. Claude, GPT, Gemini, DeepSeek, Mistral, MiniMax, Nemotron, Qwen. Different
-training lineages, different labs, no shared notes. When models that different agree,
+a dozen models at a time, drawn from eleven different companies over the life of
+the project. Claude, GPT, Gemini, DeepSeek, Mistral, MiniMax, Nemotron, Qwen, GLM,
+and poolside's Laguna. Different training lineages, different labs, no shared notes. When models that different agree,
 it means something. When they disagree, that means something too.
 
 ## Round one: unanimous rejection
@@ -44,11 +44,11 @@ wrong venues, misattributed authors, references nobody could trace, were replace
 with the real literature, quote by quote. The claims survived the audit. The
 pointers got rebuilt.
 
-## Fourteen more rounds
+## Forty-one more rounds
 
 So I did what you do when review works: I rewrote. The panel marked up the draft,
 I weighed the objections, merged the ones that were right, and put the paper back
-in front of the same twelve reviewers. Then again. And again. Fifteen rounds
+in front of the panel. Then again. And again. Forty-two rounds
 total, and a rule that never bent: no finding changed a word of my paper until it
 had been verified against the primary source it appealed to. That rule cut both
 ways. The panel fabricated citations of its own, confidently and in fluent
@@ -78,12 +78,28 @@ interference, and the whole incentive flips. That regime is the real target of
 alignment research, and whether training produces certain machines or uncertain
 ones is the open question the whole thing turns on.
 
-By the final rounds the panel had run out of things to break. The algebra had
-been re-derived by hand by four different models, all agreeing; the citation
-audit passed every entry; the last full pass found exactly one grammar quibble
-and certified the structure clean. The objections that remain are stated in the
-paper as limitations, on purpose. Peer review did not kill the thesis. It killed
-the overclaim and left the truth standing.
+The panel never ran out of things to break. For the last rounds I took away
+every advantage it had. Round forty-one went in naive: no history, no notes from
+earlier rounds, just the paper, the way a real journal referee will meet it.
+Round forty-two went further. Every reviewer ran cold, in an empty room, with no
+memory and no access to anything but the manuscript itself.
+
+And the cold panel broke my favorite number. The paper used to say the veto
+would need to be held eighty-three thousand times more widely before a good
+goal's own kindness could stop the quiet takeover. Twelve isolated reviewers
+converged on the same problem: that number came from parameter ranges I picked
+myself. A stipulation is not a measurement, no matter how carefully you hedge
+it. One reviewer said the honest version of the paper contains no such numbers
+at all.
+
+So the number is gone. Not hedged. Not footnoted. Deleted. What stands in its
+place is the inequality the number was always dressing up, and that inequality
+holds on its own and claims nothing it cannot defend. Deleting it cost the paper
+its best headline. Headlines are not the goal. Science is.
+
+The objections that remain are stated in the paper as limitations, on purpose.
+Peer review did not kill the thesis. It killed the overclaim, twice, and left
+the truth standing.
 
 ## Next stop: the journal that started this
 
@@ -104,8 +120,8 @@ for two rounds. Another proved that a famous quote was eight words, not seven,
 because I had counted wrong. You do not get that kind of review from two
 anonymous humans and a form letter.
 
-The version that survived all fifteen rounds is the version now on arXiv, and
-this post will carry the arXiv link the moment it announces. The PDF and LaTeX
+The version that survived all forty-two rounds is the version on this site
+today, and this post will carry the arXiv link the moment it announces. The PDF and LaTeX
 source live on this site at
 [/papers/the-veto-variable.pdf](/papers/the-veto-variable.pdf).
 

@@ -48,7 +48,7 @@ pointers got rebuilt.
 
 So I did what you do when review works: I rewrote. The panel marked up the draft,
 I weighed the objections, merged the ones that were right, and put the paper back
-in front of the panel. Then again. And again. Forty-two rounds
+in front of the panel. Then again. And again. Forty-five rounds
 total, and a rule that never bent: no finding changed a word of my paper until it
 had been verified against the primary source it appealed to. That rule cut both
 ways. The panel fabricated citations of its own, confidently and in fluent
@@ -120,7 +120,7 @@ for two rounds. Another proved that a famous quote was eight words, not seven,
 because I had counted wrong. You do not get that kind of review from two
 anonymous humans and a form letter.
 
-The version that survived all forty-two rounds is the version on this site
+The version that survived all forty-five rounds is the version on this site
 today, and this post will carry the arXiv link the moment it announces. The PDF and LaTeX
 source live on this site at
 [/papers/the-veto-variable.pdf](/papers/the-veto-variable.pdf).

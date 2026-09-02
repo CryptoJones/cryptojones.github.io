@@ -84,3 +84,6 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  # Build tooling for papers/*.html -- source, not something to serve.
+  - papers/build-reading-page.py
+  - papers/split-narration.py

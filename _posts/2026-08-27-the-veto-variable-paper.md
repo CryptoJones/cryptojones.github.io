@@ -2,7 +2,7 @@
 layout: post
 title: "Headlines Are Not the Goal. Science Is."
 audio: /audio/posts/the-veto-variable-paper.mp3
-description: "I wrote a paper arguing that any capable AI has a standing incentive to manage the humans who hold its off switch. Then I made twelve different AI models referee it, forty-two rounds deep. They edited me, fact-checked me, and broke my favorite number. The honest version survived, and it is headed to arXiv and a journal."
+description: "I wrote a paper arguing that any capable AI has a standing incentive to manage the humans who hold its off switch. Then I made twelve different AI models referee it, forty-five rounds deep. They edited me, fact-checked me, and broke my favorite number. The honest version survived, and it is headed to arXiv and a journal."
 ---
 
 Late one night in August I fed my own paper to a firing squad.
@@ -121,7 +121,7 @@ because I had counted wrong. You do not get that kind of review from two
 anonymous humans and a form letter.
 
 The version that survived all forty-five rounds is the version on this site
-today, and this post will carry the arXiv link the moment it announces. The PDF and LaTeX
+today. It is on arXiv as [arXiv:2609.00109](https://arxiv.org/abs/2609.00109) (v1, the text as of 31 August; the experiment and the credited lineage follow in v2). The PDF and LaTeX
 source live on this site at
 [/papers/the-veto-variable.pdf](/papers/the-veto-variable.pdf).
 

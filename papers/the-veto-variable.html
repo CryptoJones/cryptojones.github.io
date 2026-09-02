@@ -474,7 +474,32 @@ footer a { color: var(--dim); }
     </footer>
   </main>
 </div>
-<!-- no narration manifest yet; run split-narration.py -->
+<div class="dock">
+  <span class="dock__label">Narration</span>
+  <select class="dock__select" aria-label="Choose a section to hear"><option value="/audio/papers/the-veto-variable-00.mp3">1. Title and Abstract &middot; 3:29</option><option value="/audio/papers/the-veto-variable-01.mp3">2. Introduction &middot; 8:30</option><option value="/audio/papers/the-veto-variable-02.mp3">3. Defining the agent &middot; 4:28</option><option value="/audio/papers/the-veto-variable-03.mp3">4. Why goal-directedness, not value, is what matters &middot; 4:18</option><option value="/audio/papers/the-veto-variable-04.mp3">5. The convergence result &middot; 4:13</option><option value="/audio/papers/the-veto-variable-05.mp3">6. Formal results on power-seeking &middot; 3:52</option><option value="/audio/papers/the-veto-variable-06.mp3">7. Statement &middot; 4:10</option><option value="/audio/papers/the-veto-variable-07.mp3">8. Derivation &middot; 9:28</option><option value="/audio/papers/the-veto-variable-08.mp3">9. The asymmetry claim &middot; 19:04</option><option value="/audio/papers/the-veto-variable-09.mp3">10. Relation to gradual disempowerment and meaningful control &middot; 4:30</option><option value="/audio/papers/the-veto-variable-10.mp3">11. Trust versus capture &middot; 4:34</option><option value="/audio/papers/the-veto-variable-11.mp3">12. The normative question &middot; 4:39</option><option value="/audio/papers/the-veto-variable-12.mp3">13. The response set: what the discount does and does not settle &middot; 27:00</option><option value="/audio/papers/the-veto-variable-13.mp3">14. Pricing the capture route &middot; 28:18</option><option value="/audio/papers/the-veto-variable-14.mp3">15. The corrigibility objection, and where it bites &middot; 13:27</option><option value="/audio/papers/the-veto-variable-15.mp3">16. Power-seeking: formal results and measured instances &middot; 3:56</option><option value="/audio/papers/the-veto-variable-16.mp3">17. Reward tampering and self-modification: the agent will protect its own goal-process &middot; 4:16</option><option value="/audio/papers/the-veto-variable-17.mp3">18. Deception and alignment-faking: the agent will not reveal its true model &middot; 4:19</option><option value="/audio/papers/the-veto-variable-18.mp3">19. Availability of the argument: a pre-registered derivation test &middot; 9:21</option><option value="/audio/papers/the-veto-variable-19.mp3">20. Falsification conditions &middot; 4:01</option><option value="/audio/papers/the-veto-variable-20.mp3">21. Implications for Alignment &middot; 8:11</option><option value="/audio/papers/the-veto-variable-21.mp3">22. Limitations and Scope &middot; 8:18</option><option value="/audio/papers/the-veto-variable-22.mp3">23. Conclusion &middot; 12:57</option></select>
+  <audio controls preload="none"></audio>
+  <span class="dock__note">local TTS &middot; author's voice</span>
+</div>
+<script>
+(function () {
+  var sel = document.querySelector('.dock__select');
+  var au = document.querySelector('.dock audio');
+  if (!sel || !au) return;
+  function load(play) {
+    au.src = sel.value;
+    if (play) au.play();
+  }
+  sel.addEventListener('change', function () { load(true); });
+  // Roll into the next section rather than stopping dead between chapters.
+  au.addEventListener('ended', function () {
+    if (sel.selectedIndex < sel.options.length - 1) {
+      sel.selectedIndex++;
+      load(true);
+    }
+  });
+  load(false);
+})();
+</script>
 <script>
 (function () {
   var bar = document.getElementById('progress');

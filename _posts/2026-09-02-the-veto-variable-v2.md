@@ -128,9 +128,8 @@ models used as reviewers, and names the single model that did the grading. The
 data availability statement points at the public dataset. Nothing else about the
 core argument moved, because nothing else needed to.
 
-The paper is [arXiv:2609.00109](https://arxiv.org/abs/2609.00109), and the PDF and
-LaTeX source are on this site at
-[/papers/the-veto-variable.pdf](/papers/the-veto-variable.pdf).
+The paper is [arXiv:2609.00109](https://arxiv.org/abs/2609.00109), and you can
+[read the whole thing right here](/papers/the-veto-variable.html) on this site.
 
 I said in the last post that headlines are not the goal. This is what that costs
 in practice. It cost me a claim to novelty I did not have, and it cost me the

@@ -73,15 +73,32 @@ def bib_order(tex: str) -> list[str]:
     return re.findall(r"\\bibitem\{([^}]+)\}", tex)
 
 
-def title_and_abstract(tex: str) -> tuple[str, str, str]:
+def title_and_abstract(tex: str) -> tuple[str, str, str, str]:
     title = re.search(r"\\title\{\\textbf\{(.+?)\}\}", tex, re.S)
     author = re.search(r"\\author\{(.+?)\}", tex)
     abstract = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", tex, re.S)
     return (
         detex(title.group(1)) if title else "The Veto Variable",
         detex(author.group(1)) if author else "",
+        affiliation(tex),
         tex_to_html(abstract.group(1).strip()) if abstract else "",
     )
+
+
+def affiliation(tex: str) -> str:
+    r"""The \affil block as HTML, keeping the paper's own line break.
+
+    authblk's \\ splits school from institution on the title page, and the
+    narration reads it the same way, so the break is preserved rather than
+    flattened onto one line.
+    """
+    match = re.search(r"\\affil\{(.+?)\}\s*$", tex, re.M)
+    if not match:
+        print("  ! no \\affil found -- the page will carry no affiliation",
+              file=sys.stderr)
+        return ""
+    parts = [detex(p) for p in match.group(1).split("\\\\")]
+    return "<br>".join(html.escape(p) for p in parts if p)
 
 
 def detex(s: str) -> str:
@@ -221,7 +238,8 @@ def build_dock() -> str:
 </script>"""
 
 
-def page(title: str, author: str, abstract: str, body: str, toc: str, dock: str) -> str:
+def page(title: str, author: str, affil: str, abstract: str, body: str,
+         toc: str, dock: str) -> str:
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -296,7 +314,9 @@ h1.paper__title {{
   text-shadow: 0 0 14px rgba(39,212,255,.35);
 }}
 .paper__author {{ font-family: var(--mono); color: var(--dim); font-size: 14px;
-                  margin-bottom: 2rem; }}
+                  margin-bottom: .35rem; }}
+.paper__affil {{ font-family: var(--mono); color: var(--dim2); font-size: 13px;
+                 line-height: 1.5; margin: 0 0 2rem; }}
 .abstract {{
   border: 1px solid var(--hair); background: var(--panel); border-radius: 8px;
   padding: 1.25rem 1.5rem; margin: 0 0 2.5rem; font-size: 16.5px;
@@ -391,6 +411,7 @@ footer a {{ color: var(--dim); }}
     <span class="badge">Preprint &middot; arXiv</span>
     <h1 class="paper__title">{html.escape(title)}</h1>
     <p class="paper__author">{html.escape(author)}</p>
+    <p class="paper__affil">{affil}</p>
     <div class="abstract"><span class="abstract__label">Abstract</span>{abstract}</div>
     {body}
     <footer>
@@ -444,7 +465,7 @@ footer a {{ color: var(--dim); }}
 def main() -> int:
     tex = tex_source()
     keys = bib_order(tex)
-    title, author, abstract = title_and_abstract(tex)
+    title, author, affil, abstract = title_and_abstract(tex)
 
     body = run_pandoc()
     body = number_citations(body, keys)
@@ -452,7 +473,7 @@ def main() -> int:
     body = mark_claims(body)
     toc = build_toc(body)
 
-    OUT.write_text(page(title, author, abstract, body, toc, build_dock()),
+    OUT.write_text(page(title, author, affil, abstract, body, toc, build_dock()),
                    encoding="utf-8")
     print(f"wrote {OUT.relative_to(HERE.parent)}  "
           f"({OUT.stat().st_size // 1024} KB, {len(keys)} references)")

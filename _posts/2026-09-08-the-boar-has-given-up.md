@@ -1,12 +1,13 @@
 ---
 layout: post
 title: "The Boar Has Given Up"
+audio: /audio/posts/the-boar-has-given-up.mp3
 description: "A fake O'Reilly cover about quitting software for plumbing. I laughed, then I stopped laughing. We probably deserve this one."
 ---
 
 *Somebody sent me a fake O'Reilly cover. I laughed. I laughed some more. And then I started sobbing like a little bitch.*
 
-![A parody O'Reilly book cover reading "The End of Software Engineering — A practical beginner's guide to starting a career in plumbing." The cover animal is a wild boar, lying flat on the ground](/images/end-of-software-engineering-cover.jpeg)
+![A parody O'Reilly book cover reading "The End of Software Engineering. A practical beginner's guide to starting a career in plumbing." The cover animal is a wild boar, lying flat on the ground](/images/end-of-software-engineering-cover.jpeg)
 
 ## The craft is in the animal
 

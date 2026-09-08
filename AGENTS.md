@@ -65,6 +65,18 @@ Read **Article narration** below *before* you start writing, not after. The rend
 is the slow step, it runs on another machine, and discovering that at commit time is
 how posts end up shipping silent.
 
+This is enforced, not just documented. `.claude/settings.json` registers two hooks
+(added 2026-09-08, after an agent shipped a silent post and called it done):
+
+- `.claude/hooks/post-rules-gate.sh` blocks any write to `_posts/` or
+  `audio/posts/` until AGENTS.md has actually been read in the current turn. It
+  watches Bash as well as Write/Edit, because heredocs and `sed -i` are writes too.
+- `.claude/hooks/post-preflight.sh` resets that gate on each new user message and,
+  when the turn looks post-shaped, asks for the rule files and line numbers being
+  relied on before any producing starts.
+
+If the gate blocks you, read the file it names. Do not work around it.
+
 If the narration truly cannot be rendered in this session (render box down, GPU
 unavailable, no SSH), then leave the `audio:` line out rather than pointing it at a
 file that does not exist, and **say so plainly in the status report** so it can be

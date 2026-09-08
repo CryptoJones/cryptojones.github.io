@@ -90,10 +90,46 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 
 ## Article narration
 
-> **CURRENT PATH (2026-08-14): VibeVoice on ronin28's RTX 4060.** The site moved
-> from Qwen3-TTS to VibeVoice. Render on **ronin28** (`ssh hermes@ronin28`), NOT
-> pluto: pluto's P100 is Pascal (sm_60) and PyTorch has no Pascal kernels, so it
+> **CURRENT PATH (2026-09-08): Chatterbox on ronin28's RTX 4060.** CJ moved blog
+> narration off VibeVoice on 2026-08-24 ("let's start using chatterbox for my blog
+> post entries instead of vibevoice"). Render on **ronin28** (`ssh hermes@ronin28`),
+> NOT pluto: pluto's P100 is Pascal (sm_60) and PyTorch has no Pascal kernels, so it
 > silently falls to CPU. ronin28's 4060 (Ada, sm_89) has working GPU torch.
+>
+> Script: `~/Source/repos/aaronkclark-voicemodel/chatterbox_narrate_post.py`, run
+> with the `chatterbox` venv. Input is a plain-prose `.txt` (blank-line separated
+> paragraphs) at `work/blog-narrations/texts/<Slug>.txt`; output is the published
+> master format, so it drops straight into `audio/posts/<slug>.mp3`.
+>
+> ```bash
+> ssh hermes@ronin28
+> cd ~/Source/repos/aaronkclark-voicemodel
+> setsid nohup nice -n 10 /home/hermes/venvs/chatterbox/bin/python \
+>   chatterbox_narrate_post.py \
+>   --text work/blog-narrations/texts/<Slug>.txt \
+>   --out  work/blog-narrations/audio/<Slug>.mp3 > /tmp/cb-<slug>.log 2>&1 &
+> ```
+>
+> **Three Chatterbox facts the script already handles, and you should not undo:**
+> 1. **perth 1.0.0 exports `PerthImplicitWatermarker` as `None`**, and
+>    `ChatterboxTTS.__init__` calls it, so a bare import dies with `'NoneType'
+>    object is not callable`. The script patches it to `perth.DummyWatermarker`
+>    before importing chatterbox.
+> 2. **It repeats its closing phrase** about 1 time in 6 past ~550 chars, so
+>    paragraphs are split on sentence boundaries at 400 chars and
+>    `repetition_penalty` is held at 1.4.
+> 3. **It gets SHORT utterances flatly wrong**, so section headings are merged
+>    into the paragraph that follows them rather than narrated as fragments.
+>
+> Chatterbox reads at ~17.5 chars/sec, VibeVoice at ~11.6. Any duration estimate
+> or pace check calibrated for VibeVoice is wrong by half.
+>
+> `--cfg-weight 0.3` reads slower and flatter, which is the pacing CJ prefers for
+> narration. Reference clip is `~/Documents/VibeVoice-Test/refs/aaron-ref-canonical.wav`.
+>
+> **The VibeVoice path below is the PRIOR path, kept for reference.**
+>
+> **VibeVoice (superseded 2026-08-24).** Render on ronin28's 4060.
 >
 > Repo: `~/Source/repos/VibeVoiceCommunity` with a `.venv`. Model cache holds
 > `VibeVoice-1.5B` (fits the 4060's 8 GB) and `VibeVoice-7B` (needs ~14 GB, does
@@ -119,7 +155,7 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 >
 > Then encode: `ffmpeg -i <work>/*.wav -ac 1 -ar 24000 -b:a 96k -af loudnorm=I=-16:TP=-1.5:LRA=11 audio/posts/<slug>.mp3`
 >
-> The Qwen3-TTS instructions below are the PRIOR path, kept for reference.
+> The Qwen3-TTS instructions below are the OLDEST path, kept for reference.
 
 - Create narration for every new blog post before publishing it.
 - Use the canonical voice tools and reference files in the adjacent

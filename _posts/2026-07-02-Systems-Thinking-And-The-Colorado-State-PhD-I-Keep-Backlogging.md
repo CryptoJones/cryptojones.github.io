@@ -67,6 +67,10 @@ a bachelor's, a stack of certs, a MicroMasters, and the MS in Data Analytics I'm
 the middle of right now. A remote, working-professional doctoral program isn't a
 compromise for me. It's the only version that was ever going to happen.
 
+> **Update, September 9, 2026:** I changed my major after writing this. The degree
+> is now an MS in Applied Artificial Intelligence, in the same school at Eastern
+> University. The point above still stands. Only the name on it changed.
+
 ## So why is it *backlogged* and not *scheduled*?
 
 Because I try to be honest about capacity. I'm finishing a master's, running a stack

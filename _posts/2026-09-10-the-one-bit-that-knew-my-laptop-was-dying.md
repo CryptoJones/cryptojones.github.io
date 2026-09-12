@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "The One Bit That Knew My Laptop Was Dying"
+title: "The One Bit That Knew My Acer Predator Helios 18 (PH18-71) Was Dying"
 audio: /audio/posts/the-one-bit-that-knew-my-laptop-was-dying.mp3
-description: "My gaming laptop shut itself off at 1 AM with two chargers plugged in. Finding out why meant reading the firmware's own code, one bit at a time."
+description: "My Acer Predator Helios 18 (PH18-71) shut itself off at 1 AM with two chargers plugged in. The fix was a new barrel plug. Finding out why meant reading the firmware one bit at a time."
+keywords: "Acer Predator Helios 18, PH18-71, shuts down while plugged in, battery drains while charging, 330W barrel plug, charger not detected, Linux"
 ---
 
 At 1:03 in the morning my laptop turned itself off. I was upstairs in bed. The
@@ -298,3 +299,20 @@ The lesson I keep relearning is that the cheap direct measurement usually
 exists, and I usually reach for it last. I spent hours on clever theories about
 what killed that laptop. The answer was two bits, one second at a time, in a
 log I had already written.
+
+## If your Predator Helios 18 does this too
+
+Short version, for anyone who landed here from a search. If your Acer Predator
+Helios 18 (PH18-71) runs its battery down while the charger is plugged in, or
+shuts off at night with the light on the brick still lit, the laptop is not
+getting power through the barrel jack. On this machine that almost always means
+the 330 watt barrel plug or its cable has a bad contact. It will not tell you.
+Buy a replacement 330W Acer barrel charger, or a new cable and plug end, before
+you spend a weekend on firmware like I did. The USB-C port can keep the
+`online` flag at `1` while the barrel side is dead, so the OS will look fine
+right up until it shuts down.
+
+**Keywords:** Acer Predator Helios 18, PH18-71, laptop shuts down while plugged
+in, battery drains while charging, charger not detected, 330W barrel plug,
+barrel jack, USB-C charging 65W, Linux power_supply online, embedded controller,
+ACPI, acer_wmi unknown function number 9, UPower shutdown at 2 percent.

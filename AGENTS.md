@@ -104,19 +104,19 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 
 > **CURRENT PATH (2026-09-08): Chatterbox on ronin28's RTX 4060.** CJ moved blog
 > narration off VibeVoice on 2026-08-24 ("let's start using chatterbox for my blog
-> post entries instead of vibevoice"). Render on **ronin28** (`ssh hermes@ronin28`),
+> post entries instead of vibevoice"). Render on **ronin28** (`ssh akclark@ronin28`),
 > NOT pluto: pluto's P100 is Pascal (sm_60) and PyTorch has no Pascal kernels, so it
 > silently falls to CPU. ronin28's 4060 (Ada, sm_89) has working GPU torch.
 >
-> Script: `~/Source/repos/aaronkclark-voicemodel/chatterbox_narrate_post.py`, run
-> with the `chatterbox` venv. Input is a plain-prose `.txt` (blank-line separated
+> Script: `~/source/repos/aaronkclark-voicemodel/chatterbox_narrate_post.py`, run
+> with the `~/venvs/chatterbox` venv. Input is a plain-prose `.txt` (blank-line separated
 > paragraphs) at `work/blog-narrations/texts/<Slug>.txt`; output is the published
 > master format, so it drops straight into `audio/posts/<slug>.mp3`.
 >
 > ```bash
-> ssh hermes@ronin28
-> cd ~/Source/repos/aaronkclark-voicemodel
-> setsid nohup nice -n 10 /home/hermes/venvs/chatterbox/bin/python \
+> ssh akclark@ronin28
+> cd ~/source/repos/aaronkclark-voicemodel
+> setsid nohup nice -n 10 ~/venvs/chatterbox/bin/python \
 >   chatterbox_narrate_post.py \
 >   --text work/blog-narrations/texts/<Slug>.txt \
 >   --out  work/blog-narrations/audio/<Slug>.mp3 > /tmp/cb-<slug>.log 2>&1 &
@@ -137,7 +137,15 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 > or pace check calibrated for VibeVoice is wrong by half.
 >
 > `--cfg-weight 0.3` reads slower and flatter, which is the pacing CJ prefers for
-> narration. Reference clip is `~/Documents/VibeVoice-Test/refs/aaron-ref-canonical.wav`.
+> narration. Reference clip is the script's default, `dataset/reference/aaron_reference.wav`
+> in the voicemodel repo. The older `aaron-ref-canonical.wav` was lost in ronin28's
+> 2026-09 NVMe crash and has no surviving copy.
+>
+> **ronin28 was rebuilt 2026-09-26: the login user is `akclark`, not `hermes`**, and
+> working repos live in `~/source/repos` (lowercase). Its barrel jack is broken, so
+> it runs on 65 W USB-C, where the EC clamps the 4060 to ~10 W: a ~6.7k-char post
+> takes ~70 min, not the ~2x-realtime the 2026-09-08 measurement suggests. Plan
+> for it rather than assuming the render hung.
 >
 > **The VibeVoice path below is the PRIOR path, kept for reference.**
 >

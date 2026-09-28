@@ -15,7 +15,7 @@ keywords: "Vigil, VigilSOC, DeepTempo, Wazuh, SOC, SIEM, open source, LLM, MITRE
 
 Working for John Strand at Black Hills Information Security taught me one thing. No matter how great we think we are as individuals, our strength comes from the community around us. Before that, I worked at CrowdStrike on Humio (now Falcon LogScale). There I learned that data is power.
 
-Then, by luck, a problem I have had for years got solved.
+Then, by luck, a problem I have had for years got solved at the converge of the two lessons: COMMUNITY + DATA HORDING == SAFETY
 
 ## Data is power. Now what?
 
@@ -41,7 +41,7 @@ Vigil is a virtual SOC. It reads from sources such as Splunk, Elastic, and, than
 
 That is good, because if it did not act, I would never get to it. Vigil is the only reason I know about the critical alerts on my network. And now they are getting fixed.
 
-![Vigil's analytics dashboard showing findings by source, a severity pie chart, the top MITRE ATT&CK techniques, and an attack time heatmap. On the right, the Vigil Assistant explains technique T1565.001.](/images/vigil-analytics.png)
+[![Vigil's analytics dashboard showing findings by source, a severity pie chart, the top MITRE ATT&CK techniques, and an attack time heatmap. On the right, the Vigil Assistant explains technique T1565.001.](/images/vigil-analytics.png)](/images/vigil-analytics.png){:target="_blank" rel="noopener"}
 
 *Vigil's analytics view of my Wazuh data. On the right, the built-in assistant explains a MITRE ATT&CK technique it saw in my findings.*
 
@@ -53,13 +53,13 @@ The first thing I opened was a Critical finding. Wazuh said a core system file, 
 
 > **Rootcheck** is the part of Wazuh that looks for tampered system files. A **trojan** is a program that looks normal but hides something bad inside.
 
-![A Vigil finding marked Critical. The description reads: Trojaned version of file /bin/uname detected. The AI analysis rates the risk as Critical with 70 percent confidence.](/images/vigil-finding.png)
+[![A Vigil finding marked Critical. The description reads: Trojaned version of file /bin/uname detected. The AI analysis rates the risk as Critical with 70 percent confidence.](/images/vigil-finding.png)](/images/vigil-finding.png){:target="_blank" rel="noopener"}
 
 *A Critical finding from Wazuh. Vigil rated it Critical at 70 percent confidence and asked for manual review.*
 
 The AI's write-up did not hold back. It said the attacker could have root access, could hide files, and could steal passwords. It said the only fix was to rebuild the whole machine.
 
-![The raw model output for the same finding, as JSON. It calls the event a critical integrity violation, labels it Malware, and says recovery requires a full system rebuild.](/images/vigil-raw-output.png)
+[![The raw model output for the same finding, as JSON. It calls the event a critical integrity violation, labels it Malware, and says recovery requires a full system rebuild.](/images/vigil-raw-output.png)](/images/vigil-raw-output.png){:target="_blank" rel="noopener"}
 
 *The raw model output. It says recovery would mean rebuilding the whole machine. That is the right call if the alert is real.*
 

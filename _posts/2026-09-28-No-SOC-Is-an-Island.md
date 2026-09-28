@@ -15,7 +15,7 @@ keywords: "Vigil, VigilSOC, DeepTempo, Wazuh, SOC, SIEM, open source, LLM, MITRE
 
 Working for John Strand at Black Hills Information Security taught me one thing. No matter how great we think we are as individuals, our strength comes from the community around us. Before that, I worked at CrowdStrike on Humio (now Falcon LogScale). There I learned that data is power.
 
-Then, by luck, a problem I have had for years got solved at the converge of the two lessons: COMMUNITY + DATA HORDING == SAFETY
+Then, by luck, a problem I have had for years got solved at the convergence of the two lessons: COMMUNITY + DATA HOARDING == SAFETY
 
 ## Data is power. Now what?
 

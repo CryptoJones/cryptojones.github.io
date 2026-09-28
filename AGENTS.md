@@ -104,9 +104,18 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 
 > **CURRENT PATH (2026-09-08): Chatterbox on ronin28's RTX 4060.** CJ moved blog
 > narration off VibeVoice on 2026-08-24 ("let's start using chatterbox for my blog
-> post entries instead of vibevoice"). Render on **ronin28** (`ssh akclark@ronin28`),
-> NOT pluto: pluto's P100 is Pascal (sm_60) and PyTorch has no Pascal kernels, so it
-> silently falls to CPU. ronin28's 4060 (Ada, sm_89) has working GPU torch.
+> post entries instead of vibevoice"). Render on **ronin28** (`ssh akclark@ronin28`).
+> ronin28's 4060 (Ada, sm_89) has working GPU torch.
+>
+> **pluto's RTX 3060 CAN also do narration** (Ampere, sm_86; verified 2026-09-28 on
+> "No SOC Is an Island", ~4 min for a ~5 min post). Setup lives in `~/chatterbox` on
+> pluto: its own `venv`, `narrate_verified.py`, `texts/`, and a `render_<slug>.sh`
+> that pins the 3060 and runs with `HF_HUB_OFFLINE=1`. Only the 3060: pluto's Pascal
+> cards (P100, sm_60) have no PyTorch kernels and silently fall to CPU.
+>
+> **Rendering on pluto needs EXPLICIT permission from CJ to take down Flash Next.**
+> Ask first, every time. Do not stop Flash Next, or anything else serving on pluto,
+> on your own authority to free a GPU for narration.
 >
 > Script: `~/source/repos/aaronkclark-voicemodel/chatterbox_narrate_post.py`, run
 > with the `~/venvs/chatterbox` venv. Input is a plain-prose `.txt` (blank-line separated

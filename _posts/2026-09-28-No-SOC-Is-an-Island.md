@@ -2,6 +2,9 @@
 layout: post
 title: "No SOC Is an Island"
 audio: /audio/posts/no-soc-is-an-island.mp3
+hero: /images/vigil-stranded-not-alone.jpg
+hero_alt: "Cartoon of a bearded man at a computer on a tiny desert island, with friendly coders waving from nearby islands. The banner reads: Stranded, but not alone (thanks to Vigil)."
+image: /images/vigil-stranded-not-alone.jpg
 description: "I had three years of Wazuh logs and no time to read them. Vigil, an open source AI SOC, now reads them for me. Here is what it found."
 keywords: "Vigil, VigilSOC, DeepTempo, Wazuh, SOC, SIEM, open source, LLM, MITRE ATT&CK, false positive, abliterated models"
 ---

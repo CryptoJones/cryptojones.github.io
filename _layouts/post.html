@@ -11,6 +11,10 @@ layout: default
     </div>
   {% endif %}
 
+  {% if page.hero %}
+    <img class="post-hero" src="{{ page.hero | relative_url }}" alt="{{ page.hero_alt | default: page.title }}" style="display:block; width:100%; height:auto; margin-bottom:1rem;">
+  {% endif %}
+
   {% if page.audio %}
     {% include article-audio.html %}
   {% endif %}

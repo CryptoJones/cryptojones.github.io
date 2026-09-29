@@ -117,6 +117,13 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 > Ask first, every time. Do not stop Flash Next, or anything else serving on pluto,
 > on your own authority to free a GPU for narration.
 >
+> Since 2026-09-28 evening the 3060 is no longer a spare card: `flashnext-ik.service`
+> holds ~9 GiB of Flash Next's experts on it (rocinante was deleted), leaving under
+> 3 GiB free, so a render on pluto *always* means stopping Flash Next (:8083) for the
+> render window. Once CJ has said yes, run `FLASHNEXT_OK=1 ~/chatterbox/render_<slug>.sh`
+> on pluto — the script refuses without that variable, and always restarts Flash Next
+> on exit (it takes ~90 s to serve again).
+>
 > Script: `~/source/repos/aaronkclark-voicemodel/chatterbox_narrate_post.py`, run
 > with the `~/venvs/chatterbox` venv. Input is a plain-prose `.txt` (blank-line separated
 > paragraphs) at `work/blog-narrations/texts/<Slug>.txt`; output is the published

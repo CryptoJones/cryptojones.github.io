@@ -2,7 +2,7 @@
 layout: post
 title: "Overfitting my meat-brain"
 audio: /audio/posts/overfitting-my-meat-brain.mp3
-date: 2026-09-29 12:00:00 -0500
+date: 2026-09-29 07:15:00 -0500
 image: /images/ai-ml-basics/ai-ml-basics-p02.jpg
 description: "I take the AWS AI Practitioner exam tomorrow. Five months ago I thought AI was the devil. Here is how cramming for it feels, with my handwritten notes."
 keywords: "AWS Certified AI Practitioner, machine learning, overfitting, DTSC 540, study notes, Kobo"

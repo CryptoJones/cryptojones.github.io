@@ -8,26 +8,26 @@ description: "I take the AWS AI Practitioner exam tomorrow. Five months ago I th
 keywords: "AWS Certified AI Practitioner, machine learning, overfitting, DTSC 540, study notes, Kobo"
 ---
 
-I’m scheduled to take the AWS AI practitioner exam at one P.M. tomorrow.
+I’m scheduled to take the AWS Certified AI Practitioner exam at 1 p.m. tomorrow.
 
-Up until May. I had only used chat GPT and Co-pilot sporadically claiming “AI” was the devil and “real programmers” coded by hand. (I was such a Luddite)
+Up until May, I had only used ChatGPT and Copilot sporadically, claiming “AI” was the devil and “real programmers” coded by hand. (I was such a Luddite.)
 
-I didn’t know the difference  linear regression and clasificación. In may, I was lucky enough to get a graduate internship at my current company that exposed me to large language models and model tuning.
+I didn’t know the difference between linear regression and clasificación. In May, I was lucky enough to get a graduate internship at my current company that exposed me to large language models and model tuning.
 
 [![My handwritten notes on classification metrics, drawn as a two-by-two grid. True positive: predicted fraud, was fraud. False positive: predicted fraud, was clean. True negative: predicted clean, was clean. False negative: missed fraud, circled and labeled WORST.](/images/ai-ml-basics/ai-ml-basics-p10.jpg)](/images/ai-ml-basics/ai-ml-basics-p10.jpg){:target="_blank" rel="noopener"}
 
-My first class in my masters degree is DTC 540 introduction to AI and the concepts run parallel to the AWS AI practitioner certification.
+My first class in my master’s degree is DTSC 540, Introduction to AI, and the concepts run parallel to the AWS Certified AI Practitioner certification.
 
-I am learning so much about AI machine, learning, deep learning, Generative AI, and its historical foundations. I feel I finally found a concept that i am interested enough in that will keep my attention through the three years of a full Master’s degree. (My fifth time starting a masters program, but with the first I opted out with graduate certificates.)
+I am learning so much about AI, machine learning, deep learning, generative AI, and their historical foundations. I feel I finally found a concept I am interested in enough that it will keep my attention through the three years of a full master’s degree. (This is my fifth time starting a master’s program. The first four times, I opted out with graduate certificates.)
 
-On the other side of that is feeling overwhelmed— So much new terminology and concepts to try to wrap my head around. When I first started my graduate internship, I made the mistake of trying to read ML engineering by Chip Huey, which is definitely not a book for beginners.
+On the other side of that is feeling overwhelmed—so much new terminology and so many new concepts to try to wrap my head around. When I first started my graduate internship, I made the mistake of trying to read *AI Engineering* by Chip Huyen, which is definitely not a book for beginners.
 
-The date tomorrow’s in arbitrary timeline, and I could easily push it back and study more (overfitting is the term for ML memorizing answers and not understanding the concepts) but I want to at least try to pass by overfitting my meat brain.
+Tomorrow’s date is an arbitrary deadline, and I could easily push it back and study more, but I want to at least try to pass by overfitting my meat-brain. (Overfitting is when an ML model memorizes its training data instead of learning patterns that generalize.)
 
 [![My handwritten notes on a Kobo e-reader. Fit model: training data plus training algorithm equals model. Model.fit(X, y). Overfitting equals memorizing the test. Evaluate: run the model on test data. Accuracy is less than precision, because chasing rare data gives false accuracy.](/images/ai-ml-basics/ai-ml-basics-p02.jpg)](/images/ai-ml-basics/ai-ml-basics-p02.jpg){:target="_blank" rel="noopener"}
 
-I’m going to take the exam tommorow, let the chips fall where they may and adjust fire from there.
+I’m going to take the exam tomorrow, let the chips fall where they may, and adjust fire from there.
 
 [![My handwritten notes on drift. Data drift equals input changes. Concept drift equals environment changes. Below that, in capital letters: RETRAIN ON FRESH DATA!!!](/images/ai-ml-basics/ai-ml-basics-p12.jpg)](/images/ai-ml-basics/ai-ml-basics-p12.jpg){:target="_blank" rel="noopener"}
 
-If I have to keep studying and take it again so be it. Either way, I know i will continue to be exposed to these concepts as I continue this crazy journey learning about artificial intelligence in its nascent form.
+If I have to keep studying and take it again, so be it. Either way, I know I will continue to be exposed to these concepts as I continue this crazy journey learning about generative AI in its nascent form.

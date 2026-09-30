@@ -33,3 +33,9 @@ I’m going to take the exam tomorrow, let the chips fall where they may, and ad
 [![My handwritten notes on drift. Data drift equals input changes. Concept drift equals environment changes. Below that, in capital letters: RETRAIN ON FRESH DATA!!!](/images/ai-ml-basics/ai-ml-basics-p12.jpg)](/images/ai-ml-basics/ai-ml-basics-p12.jpg){:target="_blank" rel="noopener"}
 
 If I have to keep studying and take it again, so be it. Either way, I know I will continue to be exposed to these concepts as I continue this crazy journey learning about generative AI in its nascent form.
+
+**UPDATE: 2026-09-30**
+
+**I PASSED!**
+
+[![My LinkedIn post announcing that I earned the AWS Certified AI Practitioner certification from Amazon Web Services. The picture is Grampa Simpson shaking his fist at a cloud labeled AI.](/images/ai-ml-basics/aws-ai-practitioner-passed.jpg)](/images/ai-ml-basics/aws-ai-practitioner-passed.jpg){:target="_blank" rel="noopener"}

@@ -123,7 +123,43 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 
 ## Article narration
 
-> **CURRENT PATH (2026-09-08): Chatterbox on ronin28's RTX 4060.** CJ moved blog
+> **CURRENT PATH (2026-10-02): the R-Feynman voice on pluto's V100. This is the
+> default voice for every post from now on** (CJ, 2026-10-02: "let's do the blog
+> narration in Feynman's voice, and make that the default from now on"). The
+> Aaron-voice Chatterbox path below is the PRIOR path, kept for reference; use it
+> only if CJ asks for his own voice on a specific post.
+>
+> 1. Make a plain-prose script at
+>    `../aaronkclark-voicemodel/work/blog-narrations/texts/<Slug>.txt`: no front
+>    matter, no Sources list, link text without URLs, headings merged into the
+>    paragraph that follows, tables read as one sentence per row, and acronyms the
+>    voice would mangle spelled out (`S P S A`, `R and D`, `seven times` for `7x`).
+> 2. On pluto, make sure no other narrator holds the V100:
+>    `systemctl --user stop feynman-narrator coleen-narrator`. If the Feynman book
+>    narrator was running, it resumes from its checkpoint when restarted later.
+> 3. Copy the script to `/mnt/hdd1/feynman/work/` and render it as a one-shot
+>    transient unit pinned to the V100 by UUID:
+>
+> ```bash
+> systemd-run --user --unit=feynman-blog-<slug> --working-directory=/mnt/hdd1/feynman \
+>   -E CUDA_DEVICE_ORDER=PCI_BUS_ID \
+>   -E CUDA_VISIBLE_DEVICES=GPU-bea181bb-7101-d47c-2e4e-6373aff60c8f \
+>   -E HF_HUB_OFFLINE=1 -E PYTHONUNBUFFERED=1 \
+>   /mnt/hdd1/feynman/ft/venv/bin/python /mnt/hdd1/feynman/feynman_narrate.py \
+>   --once /mnt/hdd1/feynman/work/<Slug>.txt
+> ```
+>
+> 4. The result lands in `/mnt/hdd1/feynman/outbox/<Slug>/<Slug>.mp3` with a
+>    `<Slug>.heard.txt` Whisper read-back; every chunk should be at or above 0.95.
+> 5. Re-encode to the site's master format and drop it in place:
+>    `ffmpeg -i <Slug>.mp3 -ac 1 -ar 24000 -b:a 96k -af loudnorm=I=-16:TP=-1.5:LRA=11 audio/posts/<post-slug>.mp3`,
+>    then add the `audio:` line to the front matter.
+>
+> The render needs the V100. If pluto's GPUs report "Node Reboot Required" (the
+> eGPU RTX 3060 falling off the bus takes every card down with it), pluto must be
+> rebooted before anything can render.
+
+> **PRIOR PATH (2026-09-08 to 2026-10-02): Chatterbox on ronin28's RTX 4060.** CJ moved blog
 > narration off VibeVoice on 2026-08-24 ("let's start using chatterbox for my blog
 > post entries instead of vibevoice"). Render on **ronin28** (`ssh akclark@ronin28`).
 > ronin28's 4060 (Ada, sm_89) has working GPU torch.

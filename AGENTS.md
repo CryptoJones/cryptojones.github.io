@@ -61,6 +61,27 @@ Required before you commit a new post:
 4. **`audio: /audio/posts/<post-slug>.mp3` added to the front matter.**
 5. The sensitive-data scrub in `CLAUDE.md`.
 
+### Draft, panel review, then CJ's edit pass (CJ, 2026-10-02)
+
+Every post goes through these steps, in order, before it is committed:
+
+1. **Rough draft.** Write it in the scratchpad, not in `_posts/`. Check every
+   factual claim and reference with Perplexity while drafting.
+2. **Panel review.** Send the rough draft to **every** Flatline Roundtable lane
+   (the `flatline-roundtable` skill, one lane at a time). If the post is built on
+   a source (a video, talk, paper, or article), the **tool-calling lanes** must
+   verify each claim and reference the post cites from that source, not just
+   copy-edit the prose. Lanes that cannot call tools review the prose only, and
+   their answers are labelled tool-less.
+3. **Evaluate and revise.** Verify the panel's findings yourself (a lane can be
+   confidently wrong) and apply the ones that hold up. The result is the
+   **final draft**.
+4. **CJ reads the final draft and makes his changes.** Do not commit, push,
+   narrate, or publish until he has read it and handed it back. His edits are
+   final; do not re-litigate them.
+5. Only then do the definition-of-done steps below (narration, front matter,
+   scrub, build, commit, push).
+
 Read **Article narration** below *before* you start writing, not after. The render
 is the slow step, it runs on another machine, and discovering that at commit time is
 how posts end up shipping silent.

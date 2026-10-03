@@ -123,11 +123,16 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 
 ## Article narration
 
-> **CURRENT PATH (2026-10-02): the R-Feynman voice on pluto's V100. This is the
-> default voice for every post from now on** (CJ, 2026-10-02: "let's do the blog
-> narration in Feynman's voice, and make that the default from now on"). The
-> Aaron-voice Chatterbox path below is the PRIOR path, kept for reference; use it
-> only if CJ asks for his own voice on a specific post.
+> **CURRENT DEFAULT (2026-10-03): CJ's OWN voice, the Aaron-voice Chatterbox path
+> further down.** CJ, 2026-10-03: "change the blog narration back to my voice. I
+> don't like DR. FEYNMAN reading my words. You can leave the 'I'll show you a FLOP'
+> but lets change the SOP back to my voice please." Every new post is narrated in
+> Aaron's voice. "I'll Show You a FLOP" keeps its Feynman narration; do not
+> re-render it.
+
+> **RETIRED (2026-10-02 to 2026-10-03): the R-Feynman voice on pluto's V100.** It was
+> the default for one post only. Kept for reference; do not use it for a blog post
+> unless CJ asks for it on that specific post.
 >
 > 1. Make a plain-prose script at
 >    `../aaronkclark-voicemodel/work/blog-narrations/texts/<Slug>.txt`: no front
@@ -159,7 +164,7 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 > eGPU RTX 3060 falling off the bus takes every card down with it), pluto must be
 > rebooted before anything can render.
 
-> **PRIOR PATH (2026-09-08 to 2026-10-02): Chatterbox on ronin28's RTX 4060.** CJ moved blog
+> **CURRENT PATH (default again since 2026-10-03; also 2026-09-08 to 2026-10-02): Chatterbox in CJ's voice on ronin28's RTX 4060.** CJ moved blog
 > narration off VibeVoice on 2026-08-24 ("let's start using chatterbox for my blog
 > post entries instead of vibevoice"). Render on **ronin28** (`ssh akclark@ronin28`).
 > ronin28's 4060 (Ada, sm_89) has working GPU torch.

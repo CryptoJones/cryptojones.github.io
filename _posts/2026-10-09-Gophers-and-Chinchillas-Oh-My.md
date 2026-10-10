@@ -3,6 +3,7 @@ layout: post
 title: "Gophers and Chinchillas, Oh My!"
 description: "My study notes on Stanford CME 295 Lecture 2: how the Transformer became today's LLMs, the tricks modern models use, and how they pick each next word."
 keywords: "Stanford, CME 295, large language models, BERT, GPT, scaling laws, Chinchilla, mixture of experts, RoPE, grouped query attention, RMSNorm, sampling, temperature, context window, chain of thought"
+audio: /audio/posts/gophers-and-chinchillas-oh-my.mp3
 ---
 
 These are my class notes for Lecture 2 of Stanford's [CME 295: Transformers & Large Language Models](https://www.youtube.com/watch?v=GaIeu3npx04). It was taught on October 2, 2026 and runs 1 hour 43 minutes. Lecture 1 built the Transformer from scratch. My notes on that one are in [A Curious Teddy Bear Is Reading]({% post_url 2026-10-03-A-Curious-Teddy-Bear-Is-Reading %}).

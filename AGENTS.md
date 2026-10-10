@@ -76,9 +76,12 @@ Every post goes through these steps, in order, before it is committed:
 3. **Evaluate and revise.** Verify the panel's findings yourself (a lane can be
    confidently wrong) and apply the ones that hold up. The result is the
    **final draft**.
-4. **CJ reads the final draft and makes his changes.** Do not commit, push,
-   narrate, or publish until he has read it and handed it back. His edits are
-   final; do not re-litigate them.
+4. **CJ reads the final draft, then either approves it as-is or makes his
+   changes.** Often he only reads it for approval and changes nothing; an
+   approval is a complete hand-back, so do not wait for or ask about edits that
+   are not coming. Do not commit, push, narrate, or publish until he has read
+   it and handed it back. When he does edit, his edits are final; do not
+   re-litigate them.
 5. Only then do the definition-of-done steps below (narration, front matter,
    scrub, build, commit, push).
 

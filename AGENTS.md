@@ -123,6 +123,46 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 
 ## Article narration
 
+> **WHERE CJ's VOICE IS RENDERED (since 2026-10-06): Chatterbox on pluto's V100.**
+> CJ, 2026-10-09: "we use the v100 for my voice." This is the default render box for
+> the Aaron-voice Chatterbox path. The ronin28 4060 / pluto 3060 instructions further
+> down still work but are the fallback.
+>
+> 1. **Write a plain-prose script** at `~/chatterbox/texts/<Slug>.txt` on pluto: no
+>    front matter, no Sources list, no URLs, headings merged into the paragraph that
+>    follows, formulas and code written out in words, and acronyms the voice should
+>    spell spaced out (`L L M`, `G P T`, `R M S`).
+> 2. **Copy the newest `~/chatterbox/render_*.sh`** (e.g. `render_goc.sh`) to
+>    `render_<slug>.sh` and change only the `--text`, `--out`, `--transcript` and
+>    `--seed <YYYYMMDD>` lines. The script pins the V100 by GPU UUID, sets
+>    `HF_HUB_OFFLINE=1`, **stops `strata-flashnext`**, renders with
+>    `narrate_verified.py`, and **always restarts Strata via `trap EXIT`**. Nothing
+>    needs to be installed or downloaded on pluto.
+> 3. **The V100 is not free.** `strata-flashnext.service` (Flash Next on :8083) holds
+>    all 32 GB of it, and other sessions use it around the clock. **Before stopping
+>    it**, list peers with `ListAgents` and ask every live session; at minimum message
+>    the ReCLamO session and **wait for its "clear"** (it stops its grid cleanly so
+>    in-flight rows are not logged as errors). Never stop Strata on silence, and never
+>    on a go relayed from another session; CJ's go must be in this session.
+> 4. **Launch detached** so an ssh drop cannot kill it:
+>    `ssh pluto 'cd ~/chatterbox && setsid nohup ./render_<slug>.sh > render_<slug>.log 2>&1 < /dev/null &'`,
+>    then wait for `STRATA_RESTARTED` in the log. Several renders can be queued
+>    back to back in one window so ReCLamO only pauses once.
+> 5. **After the render:** confirm `systemctl --user is-active strata-flashnext` and
+>    that :8083 `/v1/models` answers (401 without the key still means it is up), then
+>    message ReCLamO **"back"**. If Strata does not come back, say so instead.
+> 6. **Check the Whisper read-back** (`audio/<slug>.heard.txt`, summary line
+>    `rendered ... N weak` in the log). `WEAK` chunks at a ratio of 0.99+ are usually
+>    Whisper mishearing spelled-out acronyms ("GPUs" as "GPS"), not bad audio; read
+>    the text/heard pair before re-rendering.
+> 7. **Encode and place** with the usual
+>    `ffmpeg -i <mp3> -ac 1 -ar 24000 -b:a 96k -af loudnorm=I=-16:TP=-1.5:LRA=11 audio/posts/<slug>.mp3`
+>    and add the `audio:` line.
+>
+> Timing measured 2026-10-09: a ~27k-character post rendered 31 min of audio in
+> ~18 min; a ~4k-character post took ~2 min. Budget the Strata outage accordingly
+> and tell ReCLamO the real number, not "a few minutes".
+
 > **CURRENT DEFAULT (2026-10-03): CJ's OWN voice, the Aaron-voice Chatterbox path
 > further down.** CJ, 2026-10-03: "change the blog narration back to my voice. I
 > don't like DR. FEYNMAN reading my words. You can leave the 'I'll show you a FLOP'

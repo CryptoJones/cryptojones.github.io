@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Maps, Four Questions</title>
+<meta name="description" content="A 16-question quiz that plots where you stand on the four AI axes from Elodine's Two Maps, Four Questions framework.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090f; --panel:#0c1018; --edge:#1a2232; --hover:#101826;
+    --text:#cfd8e3; --bright:#eaf2fa; --muted:#88aaaa; --dim:#7a889c; --faint:#2a3344;
+    --accent:#27d4ff; --stamp:#55ff99; --violet:#b8a8ff; --amber:#ff9b3d; --pink:#ff7fc8;
+    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);font-size:15px;line-height:1.55}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
+    background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px)}
+  main{max-width:860px;margin:0 auto;padding:28px 16px 64px}
+  .prompt{color:var(--dim);font-size:12px;letter-spacing:.04em}
+  .prompt b{color:var(--stamp);font-weight:500}
+  h1{color:var(--bright);font-size:clamp(22px,4.6vw,32px);margin:.3em 0 .2em;letter-spacing:.02em;
+     text-shadow:0 0 14px rgba(39,212,255,.25)}
+  h2{color:var(--accent);font-size:15px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 .6em}
+  p{margin:.6em 0}
+  a{color:var(--accent)}
+  .lede{color:var(--muted);max-width:68ch}
+  .card{background:var(--panel);border:1px solid var(--edge);border-radius:8px;padding:18px 18px 8px;margin:18px 0}
+  .axis-tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+     border:1px solid var(--edge);border-radius:4px;padding:2px 7px;margin-bottom:8px}
+  .q{padding:14px 0;border-top:1px dashed var(--faint)}
+  .q:first-of-type{border-top:0}
+  .q p{margin:0 0 10px;color:var(--bright)}
+  .q .n{color:var(--dim);margin-right:.5em}
+  .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+  .scale label{cursor:pointer}
+  .scale input{position:absolute;opacity:0;pointer-events:none}
+  .scale span{display:block;text-align:center;font-size:11.5px;line-height:1.25;padding:8px 4px;min-height:44px;
+     display:flex;align-items:center;justify-content:center;
+     border:1px solid var(--edge);border-radius:5px;color:var(--muted);background:#090d14;transition:.12s}
+  .scale label:hover span{background:var(--hover);color:var(--text)}
+  .scale input:checked + span{border-color:var(--accent);color:var(--bg);background:var(--accent);font-weight:600}
+  .scale input:focus-visible + span{outline:2px solid var(--stamp);outline-offset:2px}
+  .bar{position:sticky;top:0;z-index:5;background:rgba(7,9,15,.94);backdrop-filter:blur(4px);
+     border-bottom:1px solid var(--edge);margin:0 -16px;padding:10px 16px;display:flex;gap:12px;align-items:center}
+  .bar .track{flex:1;height:6px;background:var(--faint);border-radius:3px;overflow:hidden}
+  .bar .fill{height:100%;width:0;background:var(--stamp);box-shadow:0 0 8px var(--stamp);transition:width .2s}
+  .bar .count{font-size:12px;color:var(--muted);min-width:5.5em;text-align:right}
+  button{font-family:var(--mono);font-size:14px;cursor:pointer;border-radius:6px;padding:10px 16px;
+     border:1px solid var(--accent);background:transparent;color:var(--accent)}
+  button.primary{background:var(--accent);color:var(--bg);font-weight:600}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  button:hover:not(:disabled){filter:brightness(1.15)}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+  #results{display:none;scroll-margin-top:56px}
+  #rh:focus{outline:none}
+  .maps{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:720px){.maps{grid-template-columns:1fr}}
+  .map{background:var(--panel);border:1px solid var(--edge);border-radius:8px;padding:12px}
+  .map h3{margin:0 0 2px;color:var(--bright);font-size:14px;letter-spacing:.08em}
+  .map .sub{color:var(--dim);font-size:12px;margin:0 0 8px}
+  svg{width:100%;height:auto;display:block}
+  svg text{font-family:var(--mono)}
+  .verdict{margin-top:10px;font-size:13px}
+  .verdict b{color:var(--stamp)}
+  .scores{display:grid;grid-template-columns:1fr;gap:10px;margin-top:16px}
+  .sc{font-size:12.5px}
+  .sc .lbls{display:flex;justify-content:space-between;color:var(--muted);font-size:11.5px}
+  .sc .rail{position:relative;height:8px;background:var(--faint);border-radius:4px;margin:4px 0 2px}
+  .sc .rail i{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;
+     background:var(--stamp);box-shadow:0 0 10px var(--stamp)}
+  .sc .rail::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--dim)}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--muted);margin:12px 0 0}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+  .toggle{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px;margin-top:10px}
+  .note{font-size:12px;color:var(--dim)}
+  .copied{color:var(--stamp);font-size:12.5px;align-self:center}
+  footer{margin-top:40px;color:var(--dim);font-size:12px;border-top:1px solid var(--edge);padding-top:14px}
+</style>
+</head>
+<body>
+<main>
+  <div class="prompt"><b>cryptojones@blog</b>:~/ai-philosophy$ ./two-maps --quiz</div>
+  <h1>Two Maps, Four Questions</h1>
+  <p class="lede">Sixteen statements, four axes, two maps. Pick how much you agree with each one.
+    There are no right answers, and your answers never leave your browser.
+    The framework comes from Elodine's video
+    <a href="https://www.youtube.com/watch?v=SSEC3SfNNzI" target="_blank" rel="noopener">The 4 Hidden Factions Controlling the Future of AI</a>.
+    The questions are mine, so blame me, not her.</p>
+
+  <div class="bar" role="status" aria-live="polite">
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="count" id="count">0 / 16</div>
+  </div>
+
+  <form id="quiz" onsubmit="return false"></form>
+
+  <div class="actions">
+    <button class="primary" id="go" disabled>Plot my position</button>
+    <button type="button" id="reset">Start over</button>
+  </div>
+
+  <section id="results">
+    <h2 id="rh" tabindex="-1">// your maps</h2>
+    <div class="maps">
+      <div class="map">
+        <h3>MAP 01 · WHERE SHOULD AI GO?</h3>
+        <p class="sub">Direction × clock privilege</p>
+        <svg id="map1" viewBox="0 0 400 400" role="img" aria-label="Map one, your position"></svg>
+        <div class="verdict" id="v1"></div>
+      </div>
+      <div class="map">
+        <h3>MAP 02 · IS AI A SOMEONE?</h3>
+        <p class="sub">Could it ever be someone × is it there now</p>
+        <svg id="map2" viewBox="0 0 400 400" role="img" aria-label="Map two, your position"></svg>
+        <div class="verdict" id="v2"></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--stamp);box-shadow:0 0 6px var(--stamp)"></i>You</span>
+      <span id="elo-leg"><i style="background:var(--pink)"></i>Elodine (where she put herself, approximate)</span>
+    </div>
+    <label class="toggle"><input type="checkbox" id="showElo" checked> Show Elodine's dot for comparison</label>
+
+    <div class="scores" id="scores"></div>
+
+    <div class="actions">
+      <button type="button" id="share">Copy a link to my results</button>
+      <span class="copied" id="copied" role="status"></span>
+    </div>
+    <p class="note">Your answers stay on this page. The share link holds your four scores, not a list of your answers. (A score at the very end of an axis does show you picked the strongest answer on all four of its questions.)
+      A score near the middle of an axis means you are mixed or unsure on that question. That is a real position, not a failed quiz.</p>
+  </section>
+
+  <footer>
+    Framework: Elodine, <em>The 4 Hidden Factions Controlling the Future of AI</em> (2026). Quiz and wording: CryptoJones.
+    Back to <a href="/">the blog</a>.<br>
+    <em>Proudly Made in Nebraska. Go Big Red! 🌽 <a href="https://xkcd.com/2347/">https://xkcd.com/2347/</a></em>
+  </footer>
+</main>
+
+<script>
+// Each axis runs from -1 to +1. "k" is the direction a "strongly agree" pushes the score.
+const AXES = {
+  dir:  {name:"Direction",            q:"Where do you want AI to go?",               neg:"Restrain",                 pos:"Accelerate",                color:"var(--accent)"},
+  clk:  {name:"Clock privilege",      q:"How open should AI companies be?",          neg:"Distributed & transparent", pos:"Concentrated & opaque",     color:"var(--amber)"},
+  who:  {name:"Someone or something", q:"Could AI ever be a someone?",               neg:"A tool",                   pos:"Someone",                   color:"var(--violet)"},
+  now:  {name:"The bar",              q:"Is it there now?",                          neg:"Mindless (autocomplete)",  pos:"Clears the bar (a mind)",   color:"var(--pink)"}
+};
+const QS = [
+  ["dir", +1, "AI should keep moving forward as fast as it can, even if that means accepting real risks."],
+  ["dir", -1, "AI companies should slow down until the technology is safer and better understood."],
+  ["dir", -1, "Most of today's AI tools should be pulled back off the market."],
+  ["dir", +1, "The good that faster AI could do is worth the risks."],
+  ["clk", +1, "Big, well-funded labs working in private are the best way to build advanced AI."],
+  ["clk", -1, "AI companies should publish their safety test results before they release a new model."],
+  ["clk", +1, "AI companies should be allowed to keep how their models are built a secret."],
+  ["clk", -1, "Companies should have to tell the public about known risks of a new AI product before they sell it, not after."],
+  ["who", +1, "A future AI could deserve to be treated as a “someone,” not a “something.”"],
+  ["who", -1, "No matter how advanced it gets, AI will always be just a tool."],
+  ["who", +1, "If a future AI showed every sign of having feelings, it would deserve some kind of protection."],
+  ["who", -1, "Even a future AI that acts exactly like a person would still be a thing, not a someone."],
+  ["now", +1, "Some of today's AI models have something like a mind."],
+  ["now", -1, "Today's chatbots are just very good autocomplete."],
+  ["now", +1, "Today's AI probably has some kind of experience or feeling."],
+  ["now", -1, "Today's AI has no inner life of any kind."]
+];
+const SCALE = [["Strongly disagree",-2],["Disagree",-1],["Not sure",0],["Agree",1],["Strongly agree",2]];
+
+// Elodine's own dots, read off her graphs in the video (approximate).
+const ELO = {dir:0.3, clk:-0.45, who:0.3, now:-0.45};
+
+const MAP1 = {x:"dir", y:"clk", top:"CONCENTRATED & OPAQUE", bottom:"DISTRIBUTED & TRANSPARENT", left:"RESTRAIN", right:"ACCELERATE",
+  quads:{tl:"GUARDED STEWARDSHIP", tr:"INCUMBENT ACCELERATION", bl:"DEMOCRATIC PRECAUTION", br:"OPEN ACCELERATION"}};
+const MAP2 = {x:"who", y:"now", top:"AI CLEARS THE BAR · A MIND", bottom:"AI IS MINDLESS · AUTOCOMPLETE", left:"A TOOL", right:"SOMEONE",
+  quads:{tl:"COLD CONVICTION", tr:"WHOLEHEARTED PERSONHOOD", bl:"WHOLEHEARTED TOOL", br:"THE PACK-BOND"}};
+
+const BLURB = {
+  "GUARDED STEWARDSHIP":"You would rather go slow, and you trust a small number of careful hands to hold the keys while we do.",
+  "INCUMBENT ACCELERATION":"You want AI to move fast, and you are fine with the big, well-funded labs leading the way behind closed doors.",
+  "DEMOCRATIC PRECAUTION":"You want to slow down or walk things back, and you want the public, not a few companies, deciding how.",
+  "OPEN ACCELERATION":"You want AI to move forward, out in the open: open weights, disclosure, and the public kept in the loop.",
+  "COLD CONVICTION":"You think today's AI may already be a mind, but that it is still a thing, not a someone.",
+  "WHOLEHEARTED PERSONHOOD":"You think AI could be a someone, and that it may already be one.",
+  "WHOLEHEARTED TOOL":"AI is a tool to you. It is not a mind today, and it never will be a someone.",
+  "THE PACK-BOND":"You don't think today's AI is a mind, but you can't treat it as only a tool. You feel some empathy for it anyway."
+};
+
+const form = document.getElementById('quiz');
+let curAxis = null, html = "";
+QS.forEach(([ax,k,text],i)=>{
+  if(ax!==curAxis){
+    if(curAxis) html += "</div>";
+    const A = AXES[ax];
+    html += `<div class="card"><span class="axis-tag" style="color:${A.color};border-color:${A.color}">Axis ${Object.keys(AXES).indexOf(ax)+1} · ${A.name}</span><h2 style="color:${A.color}">${A.q}</h2>`;
+    curAxis = ax;
+  }
+  html += `<div class="q" role="radiogroup" aria-labelledby="q${i}t"><p id="q${i}t"><span class="n">${String(i+1).padStart(2,"0")}</span>${text}</p><div class="scale">`;
+  SCALE.forEach(([lbl,v])=>{
+    html += `<label><input type="radio" name="q${i}" value="${v}"><span>${lbl}</span></label>`;
+  });
+  html += `</div></div>`;
+});
+form.innerHTML = html + "</div>";
+
+const fill = document.getElementById('fill'), count = document.getElementById('count'), go = document.getElementById('go');
+function answered(){ return QS.filter((_,i)=>form.querySelector(`input[name=q${i}]:checked`)).length; }
+form.addEventListener('change', ()=>{
+  const n = answered();
+  fill.style.width = (n/QS.length*100)+"%";
+  count.textContent = `${n} / ${QS.length}`;
+  go.disabled = n < QS.length;
+  // Changing an answer after plotting hides the old, now-stale result.
+  if(last){ document.getElementById('results').style.display = "none"; last = null; history.replaceState(null, "", location.pathname); }
+});
+
+function score(){
+  const s = {}, max = {};
+  Object.keys(AXES).forEach(a=>{s[a]=0; max[a]=0;});
+  QS.forEach(([ax,k],i)=>{
+    const v = +form.querySelector(`input[name=q${i}]:checked`).value;
+    s[ax] += v*k; max[ax] += 2;
+  });
+  Object.keys(s).forEach(a=> s[a] = s[a]/max[a]);
+  return s;
+}
+
+const NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, parent, txt){
+  const e = document.createElementNS(NS, tag);
+  for(const k in attrs) e.setAttribute(k, attrs[k]);
+  if(txt!=null) e.textContent = txt;
+  parent.appendChild(e); return e;
+}
+// Plot area is 60..340 on both axes. y is flipped so +1 is the top.
+const P0=60, P1=340, PC=200, PH=140;
+const px = v => PC + v*PH, py = v => PC - v*PH;
+const DEAD = 0.15;
+function quadOf(M, s){ return M.quads[(s[M.y]>=0?"t":"b")+(s[M.x]>=0?"r":"l")]; }
+// Which quadrants a point touches: one normally, two on a line, all four at the center.
+function quadsOf(M, s){
+  const ys = Math.abs(s[M.y])<DEAD ? ["t","b"] : [s[M.y]>0?"t":"b"];
+  const xs = Math.abs(s[M.x])<DEAD ? ["l","r"] : [s[M.x]>0?"r":"l"];
+  return ys.flatMap(y=>xs.map(x=>M.quads[y+x]));
+}
+function verdict(M, s, who){
+  const q = quadsOf(M, s);
+  if(q.length===1) return `${who} in <b>${q[0]}</b>. ${BLURB[q[0]]}`;
+  if(q.length===2) return `${who} on the line between <b>${q[0]}</b> and <b>${q[1]}</b>. The answers don't lean far enough either way to pick one.`;
+  return `${who} near the <b>center</b> of this map. The answers balance out on both questions, which is a real position too.`;
+}
+
+function drawMap(svg, M, s, showElo){
+  svg.innerHTML = "";
+  const q = quadsOf(M, s);
+  const cells = {tl:[P0,P0], tr:[PC,P0], bl:[P0,PC], br:[PC,PC]};
+  for(const k in cells){
+    const [x,y] = cells[k], on = q.includes(M.quads[k]);
+    el("rect",{x,y,width:PH,height:PH,fill:on?"rgba(85,255,153,.08)":"rgba(255,255,255,.015)",stroke:"#1a2232"},svg);
+    const lines = M.quads[k].split(" ");
+    const ty = (k[0]==="t") ? y+20 : y+PH-14-(lines.length-1)*13;
+    lines.forEach((w,j)=> el("text",{x:x+PH/2,y:ty+j*13,"text-anchor":"middle","font-size":10.5,"font-weight":600,
+      fill:on?"#55ff99":"#7a889c","letter-spacing":".06em"},svg,w));
+  }
+  const defs = el("defs",{},svg), mk = el("marker",{id:svg.id+"a",viewBox:"0 0 10 10",refX:5,refY:5,markerWidth:7,markerHeight:7,orient:"auto-start-reverse"},defs);
+  el("path",{d:"M0 0L10 5L0 10z",fill:"#27d4ff"},mk);
+  const arrow = {stroke:"#3a4456","marker-start":`url(#${svg.id}a)`,"marker-end":`url(#${svg.id}a)`};
+  el("line",{x1:P0-12,y1:PC,x2:P1+12,y2:PC,...arrow},svg);
+  el("line",{x1:PC,y1:P0-12,x2:PC,y2:P1+12,...arrow},svg);
+  el("text",{x:PC,y:30,"text-anchor":"middle","font-size":10.5,fill:"#27d4ff"},svg,M.top);
+  el("text",{x:PC,y:380,"text-anchor":"middle","font-size":10.5,fill:"#27d4ff"},svg,M.bottom);
+  el("text",{x:22,y:PC,"text-anchor":"middle","font-size":10,fill:"#27d4ff",transform:`rotate(-90 22 ${PC})`},svg,M.left);
+  el("text",{x:378,y:PC,"text-anchor":"middle","font-size":10,fill:"#27d4ff",transform:`rotate(90 378 ${PC})`},svg,M.right);
+  if(showElo){
+    el("circle",{cx:px(ELO[M.x]),cy:py(ELO[M.y]),r:7,fill:"none",stroke:"#ff7fc8","stroke-width":2,"stroke-dasharray":"3 2"},svg);
+  }
+  const ux=px(s[M.x]), uy=py(s[M.y]);
+  el("circle",{cx:ux,cy:uy,r:16,fill:"rgba(85,255,153,.15)"},svg);
+  el("circle",{cx:ux,cy:uy,r:7,fill:"#55ff99",stroke:"#07090f","stroke-width":2},svg);
+  svg.setAttribute("aria-label", `${M===MAP1?"Map one":"Map two"}. Your dot: ${q.length===4 ? "near the center" : q.join(" / ")}.` + (showElo ? ` Elodine's dot: ${quadOf(M, ELO)}.` : ""));
+  return q;
+}
+
+function pct(v){ return Math.round(Math.abs(v)*100); }
+function lean(A, v){
+  if(Math.abs(v) < 0.15) return "about even";
+  return `${pct(v)}% toward ${v>0?A.pos:A.neg}`;
+}
+function render(s, shared){
+  const showElo = document.getElementById('showElo').checked;
+  drawMap(document.getElementById('map1'), MAP1, s, showElo);
+  drawMap(document.getElementById('map2'), MAP2, s, showElo);
+  const who = shared ? "This shared result lands" : "You land";
+  document.getElementById('v1').innerHTML = verdict(MAP1, s, who);
+  document.getElementById('v2').innerHTML = verdict(MAP2, s, who);
+  document.getElementById('elo-leg').style.opacity = showElo ? 1 : .35;
+  document.getElementById('scores').innerHTML = Object.entries(AXES).map(([a,A])=>
+    `<div class="sc"><div><span style="color:${A.color}">${A.name}</span>: ${lean(A,s[a])}</div>
+     <div class="lbls"><span>${A.neg}</span><span>${A.pos}</span></div>
+     <div class="rail"><i style="left:${(s[a]+1)*50}%"></i></div></div>`).join("");
+  const r = document.getElementById('results');
+  r.style.display = "block";
+  return r;
+}
+
+let last = null, lastShared = false;
+const smooth = matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+function show(r){ r.scrollIntoView({behavior:smooth}); document.getElementById('rh').focus({preventScroll:true}); }
+go.addEventListener('click', ()=>{
+  last = score(); lastShared = false;
+  history.replaceState(null, "", "#" + Object.keys(AXES).map(a=>a+"="+last[a].toFixed(3)).join("&"));
+  show(render(last));
+});
+document.getElementById('showElo').addEventListener('change', ()=>{ if(last) render(last, lastShared); });
+document.getElementById('reset').addEventListener('click', ()=>{
+  form.reset(); form.dispatchEvent(new Event('change'));
+  document.getElementById('results').style.display = "none";
+  history.replaceState(null, "", location.pathname); last = null;
+  window.scrollTo({top:0,behavior:smooth});
+});
+document.getElementById('share').addEventListener('click', async ()=>{
+  const msg = document.getElementById('copied');
+  try { await navigator.clipboard.writeText(location.href); msg.textContent = "Link copied."; }
+  catch(e){ msg.textContent = "Copy this page's address from your browser bar."; }
+});
+
+// A shared link (#dir=..&clk=..&who=..&now=..) shows those results straight away.
+(function(){
+  const h = new URLSearchParams(location.hash.slice(1)), s = {};
+  for(const a of Object.keys(AXES)){
+    const raw = h.get(a), v = raw === null || raw.trim() === "" ? NaN : Number(raw);
+    if(!isFinite(v)) return;
+    s[a] = Math.max(-1, Math.min(1, v));
+  }
+  last = s; lastShared = true; show(render(s, true));
+})();
+</script>
+</body>
+</html>

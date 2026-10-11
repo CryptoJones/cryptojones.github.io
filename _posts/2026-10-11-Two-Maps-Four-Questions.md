@@ -3,6 +3,7 @@ layout: post
 title: "Two Maps, Four Questions"
 description: "Doomer, Luddite, hopepilled. AI labels flatten people. Elodine offers a better tool: two maps and four questions. Take the quiz and plot yourself."
 keywords: "Elodine, AI philosophy, AI factions, accelerationism, Luddite, doomer, Collingridge dilemma, clock privilege, AI transparency, AI sentience, AI personhood, quiz"
+audio: /audio/posts/two-maps-four-questions.mp3
 ---
 
 Spend ten minutes in any AI comment section and you will get sorted into a team. Doomer. Luddite. Hopepilled. Tech spiritualist. The labels are fast, and they often miss most of what the actual person thinks.

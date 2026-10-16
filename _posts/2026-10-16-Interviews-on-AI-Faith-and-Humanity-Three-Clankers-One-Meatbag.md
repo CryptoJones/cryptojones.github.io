@@ -2,6 +2,7 @@
 layout: post
 title: "Interviews on AI, Faith, and Humanity: Three Clankers, One Meatbag"
 description: "For a grad school class I asked three AI models and one person about souls, God, and the off switch. The models sounded wise. I still felt like a mark."
+audio: /audio/posts/interviews-on-ai-faith-and-humanity-three-clankers-one-meatbag.mp3
 keywords: "AI and faith, souls, consciousness, DTSC 540, Eastern University, Claude Fable, DeepSeek, MiniMax, AI worship, off switch, free will, self deception, alignment, Imago Dei, transhumanism"
 ---
 

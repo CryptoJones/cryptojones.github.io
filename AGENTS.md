@@ -55,7 +55,7 @@ narrated, and every new one needs narration too.** A post that merges without an
 Required before you commit a new post:
 
 1. Markdown at `_posts/YYYY-MM-DD-Title-With-Dashes.md`, eighth-grade reading level,
-   no em dashes. See **Writing**.
+   no em dashes, no hedged superlatives. See **Writing**.
 2. A `description` field in the front matter. See **Index descriptions**.
 3. **Narration rendered and encoded to `audio/posts/<post-slug>.mp3`.**
 4. **`audio: /audio/posts/<post-slug>.mp3` added to the front matter.**
@@ -112,6 +112,9 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
   common words. It's fine to use technical terms, but define each one in plain language
   the first time it appears (a short blockquote works well).
 - Do not use em dashes in blog posts.
+- Do not use the hedged-superlative opener, a common AI-writing tell: "Yes, and X may be
+  the best Y", "This is arguably the strongest...", "It may be the most...". Make the
+  claim directly or give the reason; do not rank it.
 
 ## Index descriptions
 

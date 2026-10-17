@@ -8,13 +8,13 @@ keywords: "3Blue1Brown, Grant Sanderson, AI and math, proof as data, theory buil
 
 ![A bearded man in a hoodie sits at a cluttered workbench full of monitors and circuit boards, holding a yellow copy of Serge Lang's Basic Mathematics](/images/basic-math-hero.jpg)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LKrwhjOI8Nc" title="There's never been a better time to go into math" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 Grant Sanderson runs [3Blue1Brown](https://www.3blue1brown.com), the YouTube channel that made linear algebra click for a lot of us. On October 16 he posted a 40-minute video called [*There's never been a better time to go into math*](https://www.youtube.com/watch?v=LKrwhjOI8Nc). It answers one comment from a math PhD who is worried about AI. The comment is short: "Just tell me what to do tomorrow."
 
 I am not a math PhD. I took intermediate algebra as an undergrad and discrete math in grad school. Linear algebra is my weak spot, and I have been fixing that with Grant's own videos. But a lot of what he said landed on me anyway, and it pointed me toward something I want to share: a community of people doing math on purpose, slowly, in public.
 
 Grant opens with a warning, so I will too. He says he wants to "put very wide error bars" around his predictions. This is his best guess, not a forecast.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LKrwhjOI8Nc" title="There's never been a better time to go into math" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## What math is for
 

@@ -92,6 +92,10 @@ Jon Crossley goes by **jcpractices** online. He is an iOS app developer with a m
 
 His stream descriptions are honest in a way I love: "Lots of mistakes. Intentionally boring. Random mix of note taking, exercises, and teaching." Then, on its own line: "Cats!" In January, his early streams were chapter one of a linear algebra textbook. By July, past Day 120, he was working out of a calculus book, Serge Lang's *Basic Mathematics*, that same linear algebra book, and a graduate-level book on the math of symmetry. His newest streams are past Day 180.
 
+![The blue pi creature from 3Blue1Brown curls a pair of dumbbells while a gray robot bench-presses a heavy barbell beside it](/images/3b1b-gym-pi.jpg)
+
+*Image courtesy of Grant Sanderson / 3Blue1Brown*
+
 That is the gym argument, made real. A model could probably do most of those exercises faster than he can. He does them anyway, on camera, mistakes included, because the point is what happens in his own head. And since grading homework no longer proves anyone did the reps, doing them live in front of people is about as honest as it gets.
 
 Every stream description links to his Discord server, called jcpractices, which has more than 600 members. That is what Grant was talking about: math as a shared thing, not a race. You don't need to be good at math to show up. You just need to want to practice.

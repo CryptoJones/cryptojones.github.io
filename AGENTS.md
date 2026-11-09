@@ -60,6 +60,10 @@ Required before you commit a new post:
 3. **Narration rendered and encoded to `audio/posts/<post-slug>.mp3`.**
 4. **`audio: /audio/posts/<post-slug>.mp3` added to the front matter.**
 5. The sensitive-data scrub in `CLAUDE.md`.
+6. **Interactive diagrams for all technical illustrations.** Any architecture, topology,
+   memory, or workflow diagram must use the interactive diagram viewer tool (native Mermaid
+   blocks with pan/zoom/fullscreen controls, plus clickable vector links). See **Diagrams
+   and illustrations — INTERACTIVE VIEWER REQUIRED**.
 
 ### Draft, panel review, then CJ's edit pass (CJ, 2026-10-02)
 
@@ -126,6 +130,29 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
   fall back to the generated excerpt for older posts.
 - Build the site and check the new post card before publishing. A post that begins
   with a video or other embed must still have a useful text description on the index.
+
+## Diagrams and illustrations — INTERACTIVE VIEWER REQUIRED
+
+Every architectural, topology, memory, workflow, or process diagram in a blog post
+must use the interactive diagram viewer tool (native Mermaid code blocks), not just
+a flat static image alone.
+
+Readers need to pan, zoom in on dense details, inspect relationships, and explore
+complex topologies in full-screen on desktop or mobile.
+
+Required for any diagram in a blog post:
+
+1. **Native Mermaid diagram block (` ```mermaid `):** Provides the interactive diagram
+   viewer tool (pan, zoom controls, fullscreen explorer, and copyable diagram source).
+   Follow standard Mermaid formatting without unquoted special characters in node or
+   subgraph labels.
+2. **Clickable high-resolution vector canvas link:** When an SVG or high-detail rendering
+   accompanies the diagram, link it directly (`[![alt](/images/foo.svg)](/images/foo.svg)`)
+   so readers can open and zoom the raw vector graphic in a separate canvas tab.
+3. **Plain-English caption/alt text:** Every diagram must have accompanying text describing
+   the core technical insight in plain language.
+4. **No static-only diagrams:** Never paste a raw PNG/JPEG/SVG alone without the
+   accompanying interactive Mermaid diagram viewer tool.
 
 ## Article narration
 

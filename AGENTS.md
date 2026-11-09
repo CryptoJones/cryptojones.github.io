@@ -60,10 +60,12 @@ Required before you commit a new post:
 3. **Narration rendered and encoded to `audio/posts/<post-slug>.mp3`.**
 4. **`audio: /audio/posts/<post-slug>.mp3` added to the front matter.**
 5. The sensitive-data scrub in `CLAUDE.md`.
-6. **Interactive diagrams for all technical illustrations.** Any architecture, topology,
-   memory, or workflow diagram must use the interactive diagram viewer tool (native Mermaid
-   blocks with pan/zoom/fullscreen controls, plus clickable vector links). See **Diagrams
-   and illustrations — INTERACTIVE VIEWER REQUIRED**.
+6. **If the post includes technical diagrams:** Every architecture, topology, memory,
+   or workflow diagram must use the interactive diagram viewer tool (native Mermaid
+   blocks with pan/zoom/fullscreen controls, plus clickable vector links). Diagrams
+   are not required for every post (essays and commentary are fine with prose alone),
+   but when diagrams are included, this tool is mandatory. See **Diagrams and
+   illustrations — INTERACTIVE VIEWER REQUIRED**.
 
 ### Draft, panel review, then CJ's edit pass (CJ, 2026-10-02)
 
@@ -133,9 +135,13 @@ finished later. Do not quietly ship a silent post and do not treat it as done.
 
 ## Diagrams and illustrations — INTERACTIVE VIEWER REQUIRED
 
-Every architectural, topology, memory, workflow, or process diagram in a blog post
-must use the interactive diagram viewer tool (native Mermaid code blocks), not just
-a flat static image alone.
+Diagrams are **not** required for every post — many articles are narrative essays,
+philosophical reflections, or technical commentary that require only clear prose and
+narration.
+
+However, **whenever a post does include an architectural, topology, memory, workflow,
+or process diagram**, it must use the interactive diagram viewer tool (native Mermaid
+code blocks), not just a flat static image alone.
 
 Readers need to pan, zoom in on dense details, inspect relationships, and explore
 complex topologies in full-screen on desktop or mobile.

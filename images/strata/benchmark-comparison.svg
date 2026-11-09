@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="960" height="460">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f17"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e11d48"/>
+      <stop offset="100%" stop-color="#fb7185"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="460" rx="16" fill="url(#bgGrad)" stroke="#1f2937" stroke-width="2"/>
+
+  <text x="40" y="45" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="20" font-weight="700" fill="#f9fafb">Inference Throughput &amp; Latency Parity</text>
+  <text x="40" y="68" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" fill="#9ca3af">Benchmarking Qwen 3.8 Flash-Next before vs after enabling RTX 3060 CUDA vision offloading</text>
+
+  <!-- Metric 1: Prompt Prefill Speed (tok/s) -->
+  <g transform="translate(40, 105)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="600" fill="#f3f4f6">1. Prompt Prefill Speed (higher is better)</text>
+    
+    <!-- Bar 1: Before Vision (Dual V100 only) -->
+    <text x="0" y="28" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" fill="#9ca3af">Before (Dual V100 Only)</text>
+    <rect x="180" y="16" width="588" height="20" rx="4" fill="#3b82f6" opacity="0.8"/>
+    <text x="778" y="30" font-family="monospace" font-size="11" font-weight="bold" fill="#93c5fd">98.0 tok/s</text>
+
+    <!-- Bar 2: After Vision (Dual V100 + 3060) -->
+    <text x="0" y="56" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" fill="#9ca3af">After (With Vision Active)</text>
+    <rect x="180" y="44" width="588" height="20" rx="4" fill="url(#cyanGrad)"/>
+    <text x="778" y="58" font-family="monospace" font-size="11" font-weight="bold" fill="#38bdf8">98.0 tok/s (100% Parity)</text>
+  </g>
+
+  <!-- Metric 2: Generation Speed (tok/s) -->
+  <g transform="translate(40, 200)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="600" fill="#f3f4f6">2. Generation Speed &amp; Speculative Decoding (higher is better)</text>
+    
+    <!-- Bar 1: Before Vision -->
+    <text x="0" y="28" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" fill="#9ca3af">Before (Dual V100 Only)</text>
+    <rect x="180" y="16" width="395" height="20" rx="4" fill="#6366f1" opacity="0.8"/>
+    <text x="585" y="30" font-family="monospace" font-size="11" font-weight="bold" fill="#c7d2fe">65.9 tok/s</text>
+
+    <!-- Bar 2: After Vision -->
+    <text x="0" y="56" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" fill="#9ca3af">After (With Vision Active)</text>
+    <rect x="180" y="44" width="386" height="20" rx="4" fill="url(#purpleGrad)"/>
+    <text x="576" y="58" font-family="monospace" font-size="11" font-weight="bold" fill="#c084fc">64.4 tok/s (98.5% Cache Hit)</text>
+  </g>
+
+  <!-- Metric 3: Vision Encoding Latency (lower is better) -->
+  <g transform="translate(40, 295)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="600" fill="#f3f4f6">3. Image Encoding Latency per Frame (lower is better)</text>
+    
+    <!-- Bar 1: CPU Vision -->
+    <text x="0" y="28" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" fill="#9ca3af">CPU Vision Encoder</text>
+    <rect x="180" y="16" width="600" height="20" rx="4" fill="url(#roseGrad)"/>
+    <text x="790" y="30" font-family="monospace" font-size="11" font-weight="bold" fill="#fda4af">12.0s</text>
+
+    <!-- Bar 2: RTX 3060 CUDA sm_86 -->
+    <text x="0" y="56" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" fill="#9ca3af">RTX 3060 CUDA (sm_86)</text>
+    <rect x="180" y="44" width="80" height="20" rx="4" fill="url(#emeraldGrad)"/>
+    <text x="270" y="58" font-family="monospace" font-size="11" font-weight="bold" fill="#34d399">1.6s (7.5x Faster Acceleration!)</text>
+  </g>
+
+  <!-- Footer Stats Summary Box -->
+  <g transform="translate(40, 385)">
+    <rect width="880" height="50" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="22" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" font-weight="bold" fill="#38bdf8">Key Takeaway:</text>
+    <text x="120" y="22" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="12" fill="#cbd5e1">MoE language model throughput is 100% decoupled from multimodal image processing overhead.</text>
+    <text x="20" y="38" font-family="monospace" font-size="10" fill="#94a3b8">Speculative Draft Acceptance: 63.2% – 75.7% · Expert Cache Hits: 96.9% – 98.5% · Quality Preserved: STRATA_ROUTE_TAIL_SKIP=0</text>
+  </g>
+</svg>

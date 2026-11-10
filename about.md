@@ -4,7 +4,8 @@ title: About
 permalink: /about/
 ---
 
-I'm **Aaron K. Clark** — **CryptoJones** online. A **Principal Software
+I'm **Aaron K. Clark** — **CryptoJones** online, 加密琼斯
+(*Jiāmì Qióngsī*, "Crypto Jones" in Chinese). A **Principal Software
 Engineer / Architect** with 25+ years spanning .NET/backend development,
 AI-agent infrastructure, cloud, and security, and a USMC veteran. Right now I'm
 **Principal Software Architect & ML Engineer** (contract) at **Ronin 48**,

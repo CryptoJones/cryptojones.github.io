@@ -3,6 +3,7 @@ layout: post
 title: "You Can Do Science Without a University. You Can't Do It Alone."
 description: "I pulled the transcripts of ten YouTube videos on becoming an independent STEM researcher. Here is the advice that holds up, combined into one playbook, and the myths and the money-making hype to throw out."
 keywords: "independent research, STEM, computational research, peer review, preprint, arXiv, predatory journals, college admissions research, PhD apprenticeship, AI citation fabrication, scientific method"
+audio: /audio/posts/You-Can-Do-Science-Without-a-University.mp3
 ---
 
 I went looking for how to become an independent researcher in STEM. Not the humanities version. The science-and-code version. I found a stack of YouTube videos, pulled the transcripts, and read all ten. Some are genuine. Some are college-application hustle wearing a lab coat. Some are supervised student research calling itself independent. I kept the advice that holds up and combined it into one playbook. Then I added the part most of them skip. The myths to kill, and who gains if you believe them.
